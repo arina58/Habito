@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/enterNameFragment">
+    <fragment
+        android:id="@+id/enterNameFragment"
+        android:name="com.example.habitstracker.nav_fragment.EnterNameFragment"
+        android:label="EnterNameFragment"
+        tools:layout="@layout/fragment_enter_name">
+        <action
+            android:id="@+id/action_enterNameFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.habitstracker.nav_fragment.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home"/>
+    <fragment
+        android:id="@+id/analysisFragment"
+        android:name="com.example.habitstracker.nav_fragment.AnalysisFragment"
+        android:label="AnalysisFragment"
+        tools:layout="@layout/fragment_analysis"/>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.habitstracker.nav_fragment.SettingsFragment"
+        android:label="SettingsFragment"
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_settingsFragment_to_aboutAppFragment"
+            app:destination="@id/aboutAppFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_soundAndVebrationFragment"
+            app:destination="@id/soundAndVebrationFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_themeFragment"
+            app:destination="@id/themeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutAppFragment"
+        android:name="com.example.habitstracker.nav_fragment.AboutAppFragment"
+        android:label="AboutAppFragment"
+        tools:layout="@layout/fragment_about_app">
+        <action
+            android:id="@+id/action_aboutAppFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/soundAndVebrationFragment"
+        android:name="com.example.habitstracker.nav_fragment.SoundAndVebrationFragment"
+        android:label="SoundAndVebrationFragment"
+        tools:layout="@layout/fragment_sound_and_vebration">
+        <action
+            android:id="@+id/action_soundAndVebrationFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/themeFragment"
+        android:name="com.example.habitstracker.nav_fragment.ThemeFragment"
+        android:label="ThemeFragment"
+        tools:layout="@layout/fragment_theme">
+        <action
+            android:id="@+id/action_themeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+</navigation>
