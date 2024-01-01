@@ -1,4 +1,4 @@
-package com.example.habitstracker
+package com.example.habitstracker.domain.adapter
 
 import android.animation.ObjectAnimator
 import android.view.LayoutInflater
@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.habitstracker.R
+import com.example.habitstracker.domain.model.ProgressViewModel
 
 class ProgressBarAdapter(private val mList: List<ProgressViewModel>) :
     RecyclerView.Adapter<ProgressBarAdapter.ViewHolder>() {

@@ -1,20 +1,15 @@
 package com.example.habitstracker.nav_fragment
 
-import android.app.ActionBar
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
 import android.view.ViewGroup
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.habitstracker.*
 import com.example.habitstracker.databinding.FragmentAnalysisBinding
-import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.bottomappbar.BottomAppBar
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.example.habitstracker.domain.adapter.ProgressBarAdapter
+import com.example.habitstracker.domain.model.ProgressViewModel
 
 
 class AnalysisFragment : Fragment() {

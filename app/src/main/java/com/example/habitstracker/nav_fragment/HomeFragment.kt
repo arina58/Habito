@@ -11,19 +11,22 @@ import android.widget.Button
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.habitstracker.CustomAdapter
-import com.example.habitstracker.ItemsViewModel
+import com.example.habitstracker.domain.adapter.CustomAdapter
+import com.example.habitstracker.domain.model.ItemsViewModel
 import com.example.habitstracker.MAIN
 import com.example.habitstracker.R
 import com.example.habitstracker.databinding.FragmentHomeBinding
+import com.example.habitstracker.domain.useCase.GetCurrentDateUseCase
+import com.example.habitstracker.domain.useCase.GetCurrentMonthUseCase
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.eazegraph.lib.models.PieModel
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class HomeFragment : Fragment() {
     lateinit var HomeClass: FragmentHomeBinding
+    private val getCurrentDate = GetCurrentDateUseCase()
+    private  val getCurrentMonth = GetCurrentMonthUseCase()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -112,62 +115,60 @@ class HomeFragment : Fragment() {
 
     fun createCalendar(){
         val cal: Calendar = Calendar.getInstance()
-        val dayOfWeek: Int = cal.get(Calendar.DAY_OF_WEEK)
-        var sub = 0;
-
-        when(dayOfWeek){
-            Calendar.MONDAY -> {HomeClass.tvDay1.setTextColor(Color.parseColor("#8D4AF8"))
-                HomeClass.tvMonth1.setTextColor(Color.parseColor("#8D4AF8"))}
-            Calendar.TUESDAY -> {sub = 1
-                HomeClass.tvDay2.setTextColor(Color.parseColor("#8D4AF8"))
-                HomeClass.tvMonth2.setTextColor(Color.parseColor("#8D4AF8"))};
-            Calendar.WEDNESDAY -> {sub = 2
-                HomeClass.tvDay3.setTextColor(Color.parseColor("#8D4AF8"))
-                HomeClass.tvMonth3.setTextColor(Color.parseColor("#8D4AF8"))}
-            Calendar.THURSDAY -> {sub = 3
-                HomeClass.tvDay4.setTextColor(Color.parseColor("#8D4AF8"))
-                HomeClass.tvMonth4.setTextColor(Color.parseColor("#8D4AF8"))};
-            Calendar.FRIDAY -> {sub = 4
-                HomeClass.tvDay5.setTextColor(Color.parseColor("#8D4AF8"))
-                HomeClass.tvMonth5.setTextColor(Color.parseColor("#8D4AF8"))};
-            Calendar.SATURDAY -> {sub = 5
-                HomeClass.tvDay6.setTextColor(Color.parseColor("#8D4AF8"))
-                HomeClass.tvMonth6.setTextColor(Color.parseColor("#8D4AF8"))};
-            Calendar.SUNDAY -> {sub = 6
-                HomeClass.tvDay7.setTextColor(Color.parseColor("#8D4AF8"))
-                HomeClass.tvMonth7.setTextColor(Color.parseColor("#8D4AF8"))};
-        }
         val date = cal.get(Calendar.DATE)
-        val month = when(cal.get(Calendar.MONTH)){
-            1 -> "Jan"
-            2 -> "Feb"
-            3 -> "Mat"
-            4 -> "Apr"
-            5 -> "May"
-            6 -> "Jun"
-            7 -> "Jul"
-            8 -> "Aug"
-            9 -> "Sep"
-            10 -> "Oct"
-            11 -> "Nov"
-            12 -> "Dec"
-            else -> ""
+
+        val currentDate = getCurrentDate.execute()
+        val currentMonth = getCurrentMonth.execute()
+
+        setColorDate(currentDate)
+
+        HomeClass.tvDay1.text = (date - currentDate).toString()
+        HomeClass.tvDay2.text = (date - currentDate + 1).toString()
+        HomeClass.tvDay3.text = (date - currentDate + 2).toString()
+        HomeClass.tvDay4.text = (date - currentDate + 3).toString()
+        HomeClass.tvDay5.text = (date - currentDate + 4).toString()
+        HomeClass.tvDay6.text = (date - currentDate + 5).toString()
+        HomeClass.tvDay7.text = (date - currentDate + 6).toString()
+
+        HomeClass.tvMonth1.text = currentMonth
+        HomeClass.tvMonth2.text = currentMonth
+        HomeClass.tvMonth3.text = currentMonth
+        HomeClass.tvMonth4.text = currentMonth
+        HomeClass.tvMonth5.text = currentMonth
+        HomeClass.tvMonth6.text = currentMonth
+        HomeClass.tvMonth7.text = currentMonth
+    }
+
+    fun setColorDate(currentDate: Int) {
+        when (currentDate) {
+            0 -> {
+                HomeClass.tvDay1.setTextColor(Color.parseColor("#8D4AF8"))
+                HomeClass.tvMonth1.setTextColor(Color.parseColor("#8D4AF8"))
+            }
+            1 -> {
+                HomeClass.tvDay2.setTextColor(Color.parseColor("#8D4AF8"))
+                HomeClass.tvMonth2.setTextColor(Color.parseColor("#8D4AF8"))
+            }
+            2 -> {
+                HomeClass.tvDay3.setTextColor(Color.parseColor("#8D4AF8"))
+                HomeClass.tvMonth3.setTextColor(Color.parseColor("#8D4AF8"))
+            }
+            3 -> {
+                HomeClass.tvDay4.setTextColor(Color.parseColor("#8D4AF8"))
+                HomeClass.tvMonth4.setTextColor(Color.parseColor("#8D4AF8"))
+            }
+            4 -> {
+                HomeClass.tvDay5.setTextColor(Color.parseColor("#8D4AF8"))
+                HomeClass.tvMonth5.setTextColor(Color.parseColor("#8D4AF8"))
+            }
+            5 -> {
+                HomeClass.tvDay6.setTextColor(Color.parseColor("#8D4AF8"))
+                HomeClass.tvMonth6.setTextColor(Color.parseColor("#8D4AF8"))
+            }
+            6 -> {
+                HomeClass.tvDay7.setTextColor(Color.parseColor("#8D4AF8"))
+                HomeClass.tvMonth7.setTextColor(Color.parseColor("#8D4AF8"))
+            }
         }
-
-        HomeClass.tvDay1.text = (date - sub).toString()
-        HomeClass.tvDay2.text = (date - sub + 1).toString()
-        HomeClass.tvDay3.text = (date - sub + 2).toString()
-        HomeClass.tvDay4.text = (date - sub + 3).toString()
-        HomeClass.tvDay5.text = (date - sub + 4).toString()
-        HomeClass.tvDay6.text = (date - sub + 5).toString()
-        HomeClass.tvDay7.text = (date - sub + 6).toString()
-
-        HomeClass.tvMonth1.text = month
-        HomeClass.tvMonth2.text = month
-        HomeClass.tvMonth3.text = month
-        HomeClass.tvMonth4.text = month
-        HomeClass.tvMonth5.text = month
-        HomeClass.tvMonth6.text = month
-        HomeClass.tvMonth7.text = month
     }
 }

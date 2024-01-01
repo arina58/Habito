@@ -1,4 +1,4 @@
-package com.example.habitstracker
+package com.example.habitstracker.domain.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,8 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
+import com.example.habitstracker.R
+import com.example.habitstracker.domain.model.ItemsViewModel
 
 class CustomAdapter(private val mList: List<ItemsViewModel>) :  RecyclerView.Adapter<CustomAdapter.ViewHolder>(),
     View.OnClickListener {
