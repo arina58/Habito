@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="5dp"
-    app:cardBackgroundColor="#343A40"
+    app:cardBackgroundColor="?attr/colorSecondary"
     app:cardCornerRadius="15dp">
 
     <LinearLayout
@@ -30,7 +30,7 @@
                 android:fontFamily="@font/nunito_regular"
                 android:text="Name Item"
                 android:layout_weight="1"
-                android:textColor="#ffffff"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="20sp" />
 
             <CheckBox
@@ -41,14 +41,15 @@
                 android:theme="@style/MyCheckBox"
                 android:checked="false"
                 android:textAlignment="viewEnd"
-                android:buttonTint="@color/white" />
+                android:buttonTint="?attr/colorOnPrimary" />
 
             <ImageButton
                 android:id="@+id/moreButton"
                 android:layout_width="28dp"
                 android:layout_height="match_parent"
                 android:backgroundTint="#00000000"
-                app:srcCompat="@drawable/more_item" />
+                app:srcCompat="@drawable/more_item"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -67,7 +68,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/nunito_regular"
                 android:text="Current: 7"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="16sp" />
 
             <TextView
@@ -78,7 +79,7 @@
                 android:fontFamily="@font/nunito_regular"
                 android:text="Best: 11"
                 android:textAlignment="viewEnd"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>

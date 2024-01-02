@@ -4,4 +4,19 @@
         <item name="colorAccent">@color/purple_my</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
     </style>
+
+    <style name="MyCalendar" parent="Theme.AppCompat">
+        <item name="android:textColorPrimary">?attr/colorOnPrimary</item>
+        <item name="android:colorControlActivated">@color/purple_my</item>
+    </style>
+
+    <style name="MyCalendarText" parent="TextAppearance.AppCompat">
+        <item name="android:textColorPrimary">?attr/colorOnPrimary</item>
+        <item name="android:textColorSecondary">?attr/colorOnPrimary</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+    </style>
+    <style name="MySwitch" parent="Theme.MaterialComponents">
+        <item name="colorOnSurface">@color/grey_light</item>
+        <item name="colorSecondary">@color/purple_my</item>
+    </style>
 </resources>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/grey_black"
+    android:background="?attr/backgroundColor"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -41,7 +41,7 @@
                 android:layout_marginLeft="0dp"
                 android:fontFamily="@font/nunito_bold"
                 android:text="Sound and vebration"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="28sp" />
         </LinearLayout>
 
@@ -63,14 +63,17 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/nunito_regular"
                 android:text="Sound"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="20sp" />
 
-            <Switch
+            <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switch2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                app:trackTint="@color/grey_light"
+                android:theme="@style/MySwitch"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -91,14 +94,17 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/nunito_regular"
                 android:text="Vebration"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="20sp" />
 
-            <Switch
+            <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switch1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                app:trackTint="@color/grey_light"
+                android:theme="@style/MySwitch"
+                />
         </LinearLayout>
 
 

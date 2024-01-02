@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent"
 
         app:cardCornerRadius="20dp"
-        android:backgroundTint="@color/grey_black">
+        android:backgroundTint="?attr/backgroundColor">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -30,7 +30,8 @@
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginLeft="5dp"/>
+                android:layout_marginLeft="5dp"
+                android:textColor="?attr/colorOnPrimary"/>
 
             <EditText
                 android:id="@+id/NameGoal"
@@ -63,7 +64,8 @@
                     android:fontFamily="@font/nunito_regular"
                     android:text="Period"
                     android:textSize="16sp"
-                    android:layout_marginRight="80dp"/>
+                    android:layout_marginRight="80dp"
+                    android:textColor="?attr/colorOnPrimary"/>
 
                 <Spinner
                     android:id="@+id/SpinnerPeriod"
@@ -90,7 +92,8 @@
                     android:fontFamily="@font/nunito_regular"
                     android:text="Type"
                     android:textSize="16sp"
-                    android:layout_marginRight="91dp"/>
+                    android:layout_marginRight="91dp"
+                    android:textColor="?attr/colorOnPrimary"/>
 
                 <Spinner
                     android:id="@+id/SpinnerType"

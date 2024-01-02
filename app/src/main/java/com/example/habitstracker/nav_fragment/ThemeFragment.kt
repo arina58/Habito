@@ -5,13 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.example.habitstracker.MAIN
 import com.example.habitstracker.R
 import com.example.habitstracker.databinding.FragmentThemeBinding
+import com.example.habitstracker.domain.useCase.SaveNameThemeUseCase
 
 class ThemeFragment : Fragment() {
     lateinit var ThemeClass: FragmentThemeBinding
+    private val saveNameTheme = SaveNameThemeUseCase()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +31,15 @@ class ThemeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         ThemeClass.BackButton.setOnClickListener {
             MAIN.navController.navigate(R.id.action_themeFragment_to_settingsFragment)
+        }
+
+        ThemeClass.LightTheme.setOnClickListener{
+            saveNameTheme.execute("LIGHT_THEME")
+        }
+
+        ThemeClass.DarkTheme.setOnClickListener {
+            saveNameTheme.execute("DARK_THEME")
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         }
     }
 

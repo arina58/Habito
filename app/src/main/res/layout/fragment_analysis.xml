@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity"
-        android:background="@color/grey_black"
+        android:background="?attr/backgroundColor"
     >
 
         <ScrollView
@@ -30,16 +30,22 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginLeft="0dp">
 
                     <CalendarView
                         android:id="@+id/calendarView"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/streak_background"
+                        android:dateTextAppearance="@style/MyCalendarText"
+                        android:theme="@style/MyCalendar"
+                        android:weekDayTextAppearance="@style/MyCalendarText"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -56,7 +62,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         android:fontFamily="@font/nunito_bold"
                         android:textSize="30sp"
-                        android:textColor="@color/white"
+                        android:textColor="?attr/colorOnPrimary"
                         android:layout_marginLeft="5dp"/>
 
                     <androidx.recyclerview.widget.RecyclerView

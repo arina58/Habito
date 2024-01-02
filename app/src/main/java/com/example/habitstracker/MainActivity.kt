@@ -9,12 +9,13 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.example.habitstracker.databinding.ActivityMainBinding
+import com.example.habitstracker.domain.useCase.GetUserNameUseCase
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var MainClass: ActivityMainBinding
     lateinit var navController: NavController
-    lateinit var pref: SharedPreferences
+    private val getUserName = GetUserNameUseCase()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,8 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         navController = Navigation.findNavController(this, R.id.navHostFragment)
 
-        pref = MAIN.getSharedPreferences("User", MODE_PRIVATE)
-        if(pref.contains("username")) {
+        if(getUserName.execute() != DEFAULT_NAME) {
             (supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment).also { navHost ->
                 val navInflater = navHost.navController.navInflater
                 val navGraph = navInflater.inflate(R.navigation.nav_graph).apply {
@@ -43,7 +43,6 @@ class MainActivity : AppCompatActivity() {
                 navHost.navController.graph = navGraph
             }
         }
-//            setupWithNavController(MainClass.bottomNavigationView, navController)
 
         setupWithNavController(MainClass.bottomNavigationView, navController)
     }

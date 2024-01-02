@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity"
-        android:background="@color/grey_black">
+        android:background="?attr/backgroundColor">
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -38,7 +38,7 @@
                     android:layout_marginTop="40dp"
                     android:fontFamily="@font/nunito_regular"
                     android:text="Hello, User"
-                    android:textColor="#ffffff"
+                    android:textColor="?attr/colorOnPrimary"
                     android:textSize="16dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -50,7 +50,7 @@
                     android:layout_marginStart="25dp"
                     android:fontFamily="@font/nunito_regular"
                     android:text="Good Morning"
-                    android:textColor="#ffffff"
+                    android:textColor="?attr/colorOnPrimary"
                     android:textSize="24dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/Hello" />
@@ -85,7 +85,7 @@
                             android:layout_marginTop="3dp"
                             android:text="1"
                             android:textAlignment="center"
-                            android:textColor="#1F272E"
+                            android:textColor="?attr/colorOnBackground"
                             android:textSize="13sp"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -99,7 +99,7 @@
                             android:fontFamily="@font/nunito_bold"
                             android:text="Feb"
                             android:textAlignment="center"
-                            android:textColor="#1F272E"
+                            android:textColor="?attr/colorOnBackground"
                             android:textSize="13sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.538"
@@ -121,7 +121,7 @@
                             android:layout_marginTop="3dp"
                             android:text="2"
                             android:textAlignment="center"
-                            android:textColor="#1F272E"
+                            android:textColor="?attr/colorOnBackground"
                             android:textSize="13sp"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -135,7 +135,7 @@
                             android:fontFamily="@font/nunito_bold"
                             android:text="Feb"
                             android:textAlignment="center"
-                            android:textColor="#1F272E"
+                            android:textColor="?attr/colorOnBackground"
                             android:textSize="13sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.538"
@@ -157,7 +157,7 @@
                             android:layout_marginTop="3dp"
                             android:text="3"
                             android:textAlignment="center"
-                            android:textColor="#1F272E"
+                            android:textColor="?attr/colorOnBackground"
                             android:textSize="13sp"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -171,7 +171,7 @@
                             android:fontFamily="@font/nunito_bold"
                             android:text="Feb"
                             android:textAlignment="center"
-                            android:textColor="#1F272E"
+                            android:textColor="?attr/colorOnBackground"
                             android:textSize="13sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.538"
@@ -193,7 +193,7 @@
                             android:layout_marginTop="3dp"
                             android:text="4"
                             android:textAlignment="center"
-                            android:textColor="#1F272E"
+                            android:textColor="?attr/colorOnBackground"
                             android:textSize="13sp"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -207,7 +207,7 @@
                             android:fontFamily="@font/nunito_bold"
                             android:text="Feb"
                             android:textAlignment="center"
-                            android:textColor="#1F272E"
+                            android:textColor="?attr/colorOnBackground"
                             android:textSize="13sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.538"
@@ -229,7 +229,7 @@
                             android:layout_marginTop="3dp"
                             android:text="5"
                             android:textAlignment="center"
-                            android:textColor="#1F272E"
+                            android:textColor="?attr/colorOnBackground"
                             android:textSize="13sp"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -243,7 +243,7 @@
                             android:fontFamily="@font/nunito_bold"
                             android:text="Feb"
                             android:textAlignment="center"
-                            android:textColor="#1F272E"
+                            android:textColor="?attr/colorOnBackground"
                             android:textSize="13sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.538"
@@ -265,7 +265,7 @@
                             android:layout_marginTop="3dp"
                             android:text="6"
                             android:textAlignment="center"
-                            android:textColor="#1F272E"
+                            android:textColor="?attr/colorOnBackground"
                             android:textSize="13sp"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -279,7 +279,7 @@
                             android:fontFamily="@font/nunito_bold"
                             android:text="Feb"
                             android:textAlignment="center"
-                            android:textColor="#1F272E"
+                            android:textColor="?attr/colorOnBackground"
                             android:textSize="13sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.538"
@@ -301,7 +301,7 @@
                             android:layout_marginTop="3dp"
                             android:text="7"
                             android:textAlignment="center"
-                            android:textColor="#1F272E"
+                            android:textColor="?attr/colorOnBackground"
                             android:textSize="13sp"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -315,7 +315,7 @@
                             android:fontFamily="@font/nunito_bold"
                             android:text="Feb"
                             android:textAlignment="center"
-                            android:textColor="#1F272E"
+                            android:textColor="?attr/colorOnBackground"
                             android:textSize="13sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.538"
@@ -357,7 +357,7 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/nunito_bold"
                         android:text="Overall streak: 121 days "
-                        android:textColor="#ffffff"
+                        android:textColor="?attr/colorOnPrimary"
                         android:textSize="16sp" />
 
                     <TextView
@@ -370,7 +370,7 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/nunito_bold"
                         android:text="Overall best streak: 121 days "
-                        android:textColor="#ffffff"
+                        android:textColor="?attr/colorOnPrimary"
                         android:textSize="16sp" />
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -395,8 +395,8 @@
                         android:layout_width="115dp"
                         android:layout_height="115dp"
                         android:layout_marginRight="30dp"
-                        android:background="@color/grey_black"
-                        app:egInnerPaddingColor="@color/grey_black"
+                        android:background="?attr/backgroundColor"
+                        app:egInnerPaddingColor="?attr/backgroundColor"
                         tools:ignore="MissingConstraints">
 
                     </org.eazegraph.lib.charts.PieChart>
@@ -417,7 +417,7 @@
                             android:layout_marginRight="0dp"
                             android:fontFamily="@font/nunito_bold"
                             android:text="1 of 3 habits"
-                            android:textColor="@color/white"
+                            android:textColor="?attr/colorOnPrimary"
                             android:textSize="20sp" />
 
                         <TextView
@@ -427,7 +427,7 @@
                             android:layout_weight="0"
                             android:fontFamily="@font/nunito_regular"
                             android:text="completed today!"
-                            android:textColor="@color/white"
+                            android:textColor="?attr/colorOnPrimary"
                             android:textSize="20sp" />
                     </LinearLayout>
 
@@ -450,7 +450,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nunito_bold"
                     android:text="Today’s Checklist"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorOnPrimary"
                     android:textSize="24sp"
                     app:layout_constraintBottom_toTopOf="@+id/CheckList"
                     app:layout_constraintStart_toStartOf="parent"

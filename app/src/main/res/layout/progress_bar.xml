@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="5dp"
-    app:cardBackgroundColor="#343A40"
+    app:cardBackgroundColor="?attr/colorSecondary"
     app:cardCornerRadius="15dp">
 
     <LinearLayout
@@ -23,7 +23,7 @@
             android:text="NameItem"
             android:textSize="18sp"
             android:fontFamily="@font/nunito_bold"
-            android:textColor="@color/white"/>
+            android:textColor="?attr/colorOnPrimary"/>
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nunito_regular"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="16sp"
             android:text="current"
             android:layout_marginTop="5dp"/>

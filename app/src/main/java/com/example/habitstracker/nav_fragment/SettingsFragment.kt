@@ -27,6 +27,7 @@ class SettingsFragment : Fragment() {
         var bar = MAIN.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         main_coor.visibility = View.VISIBLE
         bar.background = null
+
         SettingsClass.SaV.setOnClickListener {
             MAIN.navController.navigate(R.id.action_settingsFragment_to_soundAndVebrationFragment)
 

@@ -1,7 +1,6 @@
 package com.example.habitstracker.nav_fragment
 
 import android.app.Dialog
-import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,24 +15,26 @@ import com.example.habitstracker.domain.model.ItemsViewModel
 import com.example.habitstracker.MAIN
 import com.example.habitstracker.R
 import com.example.habitstracker.databinding.FragmentHomeBinding
-import com.example.habitstracker.domain.useCase.GetCurrentDateUseCase
+import com.example.habitstracker.domain.useCase.GetWeeklyDateUseCase
 import com.example.habitstracker.domain.useCase.GetCurrentMonthUseCase
+import com.example.habitstracker.domain.useCase.GetUserNameUseCase
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.eazegraph.lib.models.PieModel
 import java.util.*
 
 
 class HomeFragment : Fragment() {
-    lateinit var HomeClass: FragmentHomeBinding
-    private val getCurrentDate = GetCurrentDateUseCase()
-    private  val getCurrentMonth = GetCurrentMonthUseCase()
+    private lateinit var HomeClass: FragmentHomeBinding
+    private val getWeeklyDate = GetWeeklyDateUseCase()
+    private val getCurrentMonth = GetCurrentMonthUseCase()
+    private val getUserName = GetUserNameUseCase()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         HomeClass = FragmentHomeBinding.inflate(layoutInflater, container, false)
-        var main_coor = MAIN.findViewById<CoordinatorLayout>(R.id.main_coord_lay)
-        var bar = MAIN.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        val main_coor = MAIN.findViewById<CoordinatorLayout>(R.id.main_coord_lay)
+        val bar = MAIN.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         main_coor.visibility = View.VISIBLE
         bar.background = null
         return HomeClass.root
@@ -44,7 +45,7 @@ class HomeFragment : Fragment() {
         setName()
         setTime()
         createCalendar()
-        HomeClass.CheckList.setNestedScrollingEnabled(false)
+        HomeClass.CheckList.isNestedScrollingEnabled = false
         addPieChart()
         addCheckList()
         HomeClass.ActionButton.setOnClickListener {
@@ -52,29 +53,29 @@ class HomeFragment : Fragment() {
         }
     }
 
-    fun setTime(){
+    private fun setTime(){
         val cal: Calendar = Calendar.getInstance()
         val time = cal.get(Calendar.HOUR_OF_DAY)
 
 
         HomeClass.Hour.text = when(time){
+            in 0..3 -> "Good Night"
             in 4..11 -> "Good Morning"
             in 12..15 -> "Good Afternoon"
             in 16..21 -> "Good Evening"
-            else -> ""
+            in 22..23 -> "Good Night"
+            else -> "error"
         }
-
     }
 
-    fun setName(){
-        var pref = activity?.getSharedPreferences("User", Context.MODE_PRIVATE)
-        HomeClass.Hello.text = "Hello, ${pref?.getString("username", "User")}"
+    private fun setName(){
+        HomeClass.Hello.text = "Hello, ${getUserName.execute()}"
     }
 
     private fun showAddDialog() {
         val dialog = Dialog(MAIN)
         dialog.setContentView(R.layout.new_goal)
-        dialog.getWindow()!!.setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.window!!.setBackgroundDrawableResource(android.R.color.transparent);
         dialog.show()
 
         val button_create: Button = dialog.findViewById(R.id.ButtonCreate)
@@ -83,19 +84,19 @@ class HomeFragment : Fragment() {
         }
     }
 
-    fun addPieChart(){
+    private fun addPieChart(){
         HomeClass.PieChart.addPieSlice(
             PieModel("Integer 1", 33F, Color.parseColor("#8D4AF8")
             )
         )
         HomeClass.PieChart.addPieSlice(
-            PieModel("Integer 2", 66F, Color.parseColor("#E7D8FF")
+            PieModel("Integer 2", 66F, Color.parseColor("#CFB1FF")
             )
         )
         HomeClass.PieChart.startAnimation()
     }
 
-    fun addCheckList(){
+    private fun addCheckList(){
         val recyclerview = HomeClass.CheckList
         recyclerview.layoutManager = LinearLayoutManager(MAIN)
         val data = ArrayList<ItemsViewModel>()
@@ -113,22 +114,20 @@ class HomeFragment : Fragment() {
         recyclerview.adapter = adapter
     }
 
-    fun createCalendar(){
-        val cal: Calendar = Calendar.getInstance()
-        val date = cal.get(Calendar.DATE)
+    private fun createCalendar(){
 
-        val currentDate = getCurrentDate.execute()
+        val weeklyDate = getWeeklyDate.execute()
         val currentMonth = getCurrentMonth.execute()
 
-        setColorDate(currentDate)
+        setColorDate(getWeeklyDate.getDayInWeek())
 
-        HomeClass.tvDay1.text = (date - currentDate).toString()
-        HomeClass.tvDay2.text = (date - currentDate + 1).toString()
-        HomeClass.tvDay3.text = (date - currentDate + 2).toString()
-        HomeClass.tvDay4.text = (date - currentDate + 3).toString()
-        HomeClass.tvDay5.text = (date - currentDate + 4).toString()
-        HomeClass.tvDay6.text = (date - currentDate + 5).toString()
-        HomeClass.tvDay7.text = (date - currentDate + 6).toString()
+        HomeClass.tvDay1.text = weeklyDate[0].toString()
+        HomeClass.tvDay2.text = weeklyDate[1].toString()
+        HomeClass.tvDay3.text = weeklyDate[2].toString()
+        HomeClass.tvDay4.text = weeklyDate[3].toString()
+        HomeClass.tvDay5.text = weeklyDate[4].toString()
+        HomeClass.tvDay6.text = weeklyDate[5].toString()
+        HomeClass.tvDay7.text = weeklyDate[6].toString()
 
         HomeClass.tvMonth1.text = currentMonth
         HomeClass.tvMonth2.text = currentMonth
@@ -139,7 +138,7 @@ class HomeFragment : Fragment() {
         HomeClass.tvMonth7.text = currentMonth
     }
 
-    fun setColorDate(currentDate: Int) {
+    private fun setColorDate(currentDate: Int) {
         when (currentDate) {
             0 -> {
                 HomeClass.tvDay1.setTextColor(Color.parseColor("#8D4AF8"))

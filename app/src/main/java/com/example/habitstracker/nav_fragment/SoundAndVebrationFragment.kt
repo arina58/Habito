@@ -29,5 +29,4 @@ class SoundAndVebrationFragment : Fragment() {
             MAIN.navController.navigate(R.id.action_soundAndVebrationFragment_to_settingsFragment)
         }
     }
-
 }
