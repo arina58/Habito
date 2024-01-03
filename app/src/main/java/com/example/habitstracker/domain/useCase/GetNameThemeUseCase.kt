@@ -8,9 +8,9 @@ import com.example.habitstracker.USER_NAME
 
 class GetNameThemeUseCase {
 
-    fun execute(): String? {
+    fun execute(): Boolean {
         var pref = MAIN.getSharedPreferences("User", Context.MODE_PRIVATE)
-        return pref.getString(NAME_THEME, "DARK_THEME")
+        return pref.getBoolean(NAME_THEME, false)
     }
 
 }

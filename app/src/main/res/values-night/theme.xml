@@ -1,19 +1,18 @@
 <resources>
-
     <style name="Theme.HabitsTracker" parent="Theme.MaterialComponents.NoActionBar">
 
         <item name="colorPrimary">@color/purple_my</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorOnPrimary">@color/white</item>
         <item name="colorPrimaryDark">@color/grey_light</item>
 
-        <item name="backgroundColor">#f2f3f4</item>
+        <item name="backgroundColor">@color/grey_dark</item>
         <item name="colorOnBackground">@color/black</item>
         <item name="colorAccent">@color/purple_my</item>
 
-
-        <item name="colorSecondary">#c0c0c0</item>
-        <item name="colorOnSecondary">#c0c0c0</item>
+        <item name="colorSecondary">@color/grey_light</item>
+        <item name="colorOnSecondary">@color/white</item>
 
         <item name="android:statusBarColor">#343A40</item>
+
     </style>
 </resources>
