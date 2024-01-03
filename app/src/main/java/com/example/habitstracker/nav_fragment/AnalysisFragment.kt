@@ -13,25 +13,25 @@ import com.example.habitstracker.domain.model.ProgressViewModel
 
 
 class AnalysisFragment : Fragment() {
-    private lateinit var AnalysisClass: FragmentAnalysisBinding
+    private lateinit var analysisClass: FragmentAnalysisBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        AnalysisClass = FragmentAnalysisBinding.inflate(layoutInflater, container, false)
-        return AnalysisClass.root
+        analysisClass = FragmentAnalysisBinding.inflate(layoutInflater, container, false)
+        return analysisClass.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        AnalysisClass.ProgressList.isNestedScrollingEnabled = false
+        analysisClass.ProgressList.isNestedScrollingEnabled = false
         addProgressList()
     }
 
     private fun addProgressList(){
-        val recyclerview = AnalysisClass.ProgressList
+        val recyclerview = analysisClass.ProgressList
         recyclerview.layoutManager = LinearLayoutManager(MAIN)
         val data = ArrayList<ProgressViewModel>()
 

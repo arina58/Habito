@@ -24,7 +24,7 @@ import java.util.*
 
 
 class HomeFragment : Fragment() {
-    private lateinit var HomeClass: FragmentHomeBinding
+    private lateinit var homeClass: FragmentHomeBinding
     private val getWeeklyDate = GetWeeklyDateUseCase()
     private val getCurrentMonth = GetCurrentMonthUseCase()
     private val getUserName = GetUserNameUseCase()
@@ -32,12 +32,12 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        HomeClass = FragmentHomeBinding.inflate(layoutInflater, container, false)
-        val main_coor = MAIN.findViewById<CoordinatorLayout>(R.id.main_coord_lay)
+        homeClass = FragmentHomeBinding.inflate(layoutInflater, container, false)
+        val mainCoor = MAIN.findViewById<CoordinatorLayout>(R.id.main_coord_lay)
         val bar = MAIN.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        main_coor.visibility = View.VISIBLE
+        mainCoor.visibility = View.VISIBLE
         bar.background = null
-        return HomeClass.root
+        return homeClass.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,10 +45,10 @@ class HomeFragment : Fragment() {
         setName()
         setTime()
         createCalendar()
-        HomeClass.CheckList.isNestedScrollingEnabled = false
+        homeClass.CheckList.isNestedScrollingEnabled = false
         addPieChart()
         addCheckList()
-        HomeClass.ActionButton.setOnClickListener {
+        homeClass.ActionButton.setOnClickListener {
             showAddDialog()
         }
     }
@@ -58,7 +58,7 @@ class HomeFragment : Fragment() {
         val time = cal.get(Calendar.HOUR_OF_DAY)
 
 
-        HomeClass.Hour.text = when(time){
+        homeClass.Hour.text = when(time){
             in 0..3 -> "Good Night"
             in 4..11 -> "Good Morning"
             in 12..15 -> "Good Afternoon"
@@ -69,35 +69,35 @@ class HomeFragment : Fragment() {
     }
 
     private fun setName(){
-        HomeClass.Hello.text = "Hello, ${getUserName.execute()}"
+        homeClass.Hello.text = "Hello, ${getUserName.execute()}"
     }
 
     private fun showAddDialog() {
         val dialog = Dialog(MAIN)
         dialog.setContentView(R.layout.new_goal)
-        dialog.window!!.setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.window!!.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.show()
 
-        val button_create: Button = dialog.findViewById(R.id.ButtonCreate)
-        button_create.setOnClickListener {
+        val createButton: Button = dialog.findViewById(R.id.ButtonCreate)
+        createButton.setOnClickListener {
             dialog.cancel()
         }
     }
 
     private fun addPieChart(){
-        HomeClass.PieChart.addPieSlice(
+        homeClass.PieChart.addPieSlice(
             PieModel("Integer 1", 33F, Color.parseColor("#8D4AF8")
             )
         )
-        HomeClass.PieChart.addPieSlice(
+        homeClass.PieChart.addPieSlice(
             PieModel("Integer 2", 66F, Color.parseColor("#CFB1FF")
             )
         )
-        HomeClass.PieChart.startAnimation()
+        homeClass.PieChart.startAnimation()
     }
 
     private fun addCheckList(){
-        val recyclerview = HomeClass.CheckList
+        val recyclerview = homeClass.CheckList
         recyclerview.layoutManager = LinearLayoutManager(MAIN)
         val data = ArrayList<ItemsViewModel>()
 
@@ -121,52 +121,52 @@ class HomeFragment : Fragment() {
 
         setColorDate(getWeeklyDate.getDayInWeek())
 
-        HomeClass.tvDay1.text = weeklyDate[0].toString()
-        HomeClass.tvDay2.text = weeklyDate[1].toString()
-        HomeClass.tvDay3.text = weeklyDate[2].toString()
-        HomeClass.tvDay4.text = weeklyDate[3].toString()
-        HomeClass.tvDay5.text = weeklyDate[4].toString()
-        HomeClass.tvDay6.text = weeklyDate[5].toString()
-        HomeClass.tvDay7.text = weeklyDate[6].toString()
+        homeClass.tvDay1.text = weeklyDate[0].toString()
+        homeClass.tvDay2.text = weeklyDate[1].toString()
+        homeClass.tvDay3.text = weeklyDate[2].toString()
+        homeClass.tvDay4.text = weeklyDate[3].toString()
+        homeClass.tvDay5.text = weeklyDate[4].toString()
+        homeClass.tvDay6.text = weeklyDate[5].toString()
+        homeClass.tvDay7.text = weeklyDate[6].toString()
 
-        HomeClass.tvMonth1.text = currentMonth
-        HomeClass.tvMonth2.text = currentMonth
-        HomeClass.tvMonth3.text = currentMonth
-        HomeClass.tvMonth4.text = currentMonth
-        HomeClass.tvMonth5.text = currentMonth
-        HomeClass.tvMonth6.text = currentMonth
-        HomeClass.tvMonth7.text = currentMonth
+        homeClass.tvMonth1.text = currentMonth
+        homeClass.tvMonth2.text = currentMonth
+        homeClass.tvMonth3.text = currentMonth
+        homeClass.tvMonth4.text = currentMonth
+        homeClass.tvMonth5.text = currentMonth
+        homeClass.tvMonth6.text = currentMonth
+        homeClass.tvMonth7.text = currentMonth
     }
 
     private fun setColorDate(currentDate: Int) {
         when (currentDate) {
             0 -> {
-                HomeClass.tvDay1.setTextColor(Color.parseColor("#8D4AF8"))
-                HomeClass.tvMonth1.setTextColor(Color.parseColor("#8D4AF8"))
+                homeClass.tvDay1.setTextColor(Color.parseColor("#8D4AF8"))
+                homeClass.tvMonth1.setTextColor(Color.parseColor("#8D4AF8"))
             }
             1 -> {
-                HomeClass.tvDay2.setTextColor(Color.parseColor("#8D4AF8"))
-                HomeClass.tvMonth2.setTextColor(Color.parseColor("#8D4AF8"))
+                homeClass.tvDay2.setTextColor(Color.parseColor("#8D4AF8"))
+                homeClass.tvMonth2.setTextColor(Color.parseColor("#8D4AF8"))
             }
             2 -> {
-                HomeClass.tvDay3.setTextColor(Color.parseColor("#8D4AF8"))
-                HomeClass.tvMonth3.setTextColor(Color.parseColor("#8D4AF8"))
+                homeClass.tvDay3.setTextColor(Color.parseColor("#8D4AF8"))
+                homeClass.tvMonth3.setTextColor(Color.parseColor("#8D4AF8"))
             }
             3 -> {
-                HomeClass.tvDay4.setTextColor(Color.parseColor("#8D4AF8"))
-                HomeClass.tvMonth4.setTextColor(Color.parseColor("#8D4AF8"))
+                homeClass.tvDay4.setTextColor(Color.parseColor("#8D4AF8"))
+                homeClass.tvMonth4.setTextColor(Color.parseColor("#8D4AF8"))
             }
             4 -> {
-                HomeClass.tvDay5.setTextColor(Color.parseColor("#8D4AF8"))
-                HomeClass.tvMonth5.setTextColor(Color.parseColor("#8D4AF8"))
+                homeClass.tvDay5.setTextColor(Color.parseColor("#8D4AF8"))
+                homeClass.tvMonth5.setTextColor(Color.parseColor("#8D4AF8"))
             }
             5 -> {
-                HomeClass.tvDay6.setTextColor(Color.parseColor("#8D4AF8"))
-                HomeClass.tvMonth6.setTextColor(Color.parseColor("#8D4AF8"))
+                homeClass.tvDay6.setTextColor(Color.parseColor("#8D4AF8"))
+                homeClass.tvMonth6.setTextColor(Color.parseColor("#8D4AF8"))
             }
             6 -> {
-                HomeClass.tvDay7.setTextColor(Color.parseColor("#8D4AF8"))
-                HomeClass.tvMonth7.setTextColor(Color.parseColor("#8D4AF8"))
+                homeClass.tvDay7.setTextColor(Color.parseColor("#8D4AF8"))
+                homeClass.tvMonth7.setTextColor(Color.parseColor("#8D4AF8"))
             }
         }
     }

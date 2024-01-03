@@ -3,16 +3,16 @@ package com.example.habitstracker.domain.useCase
 import java.util.*
 
 class GetWeeklyDateUseCase {
-    val cal: Calendar = Calendar.getInstance()
+    private val cal: Calendar = Calendar.getInstance()
 
     fun execute(): MutableList<Int> {
         val date = cal.get(Calendar.DATE)
 
-        var days = mutableListOf<Int>()
+        val days = mutableListOf<Int>()
         val sub = getDayInWeek()
 
 
-        (0..6).forEach { it ->
+        (0..6).forEach {
             days.add(it, date - sub + it)
         }
 

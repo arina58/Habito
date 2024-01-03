@@ -1,7 +1,5 @@
 package com.example.habitstracker
 
-
-import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -15,7 +13,7 @@ import com.example.habitstracker.domain.useCase.SwitchThemeUseCase
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var MainClass: ActivityMainBinding
+    private lateinit var mainClass: ActivityMainBinding
     lateinit var navController: NavController
     private val getUserName = GetUserNameUseCase()
     private val getNameTheme = GetNameThemeUseCase()
@@ -23,12 +21,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        MainClass = ActivityMainBinding.inflate(layoutInflater)
+        mainClass = ActivityMainBinding.inflate(layoutInflater)
 
         MAIN = this
 
         switchTheme.execute(getNameTheme.execute())
-        setContentView(MainClass.root)
+        setContentView(mainClass.root)
 
         navController = Navigation.findNavController(this, R.id.navHostFragment)
 
@@ -50,6 +48,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        setupWithNavController(MainClass.bottomNavigationView, navController)
+        setupWithNavController(mainClass.bottomNavigationView, navController)
     }
 }

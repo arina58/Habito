@@ -13,22 +13,22 @@ import com.example.habitstracker.domain.useCase.SaveUserNameUseCase
 
 class EnterNameFragment : Fragment() {
 
-    private lateinit var EnterNameClass: FragmentEnterNameBinding
+    private lateinit var enterNameClass: FragmentEnterNameBinding
     private val saveUserName = SaveUserNameUseCase()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        EnterNameClass = FragmentEnterNameBinding.inflate(layoutInflater, container, false)
-        return EnterNameClass.root
+    ): View {
+        enterNameClass = FragmentEnterNameBinding.inflate(layoutInflater, container, false)
+        return enterNameClass.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        EnterNameClass.nameEnterCont.setOnClickListener {
+        enterNameClass.nameEnterCont.setOnClickListener {
 
-            saveUserName.execute(EnterNameClass.EditUsername.text.toString())
+            saveUserName.execute(enterNameClass.EditUsername.text.toString())
             MAIN.navController.navigate(R.id.action_enterNameFragment_to_homeFragment)
         }
     }

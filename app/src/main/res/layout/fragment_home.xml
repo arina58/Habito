@@ -36,9 +36,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="40dp"
-                    android:fontFamily="@font/nunito_regular"
+                    style="@style/MyText"
                     android:text="Hello, User"
-                    android:textColor="?attr/colorOnPrimary"
                     android:textSize="16dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -48,9 +47,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="25dp"
-                    android:fontFamily="@font/nunito_regular"
+                    style="@style/MyText"
                     android:text="Good Morning"
-                    android:textColor="?attr/colorOnPrimary"
                     android:textSize="24dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/Hello" />
@@ -425,9 +423,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
-                            android:fontFamily="@font/nunito_regular"
+                            style="@style/MyText"
                             android:text="completed today!"
-                            android:textColor="?attr/colorOnPrimary"
                             android:textSize="20sp" />
                     </LinearLayout>
 

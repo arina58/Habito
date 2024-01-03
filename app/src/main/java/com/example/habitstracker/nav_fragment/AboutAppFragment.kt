@@ -9,26 +9,24 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.example.habitstracker.MAIN
 import com.example.habitstracker.R
 import com.example.habitstracker.databinding.FragmentAboutAppBinding
-import com.example.habitstracker.databinding.FragmentAnalysisBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class AboutAppFragment : Fragment() {
-    lateinit var AboutAppClass: FragmentAboutAppBinding
+    private lateinit var aboutAppClass: FragmentAboutAppBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        AboutAppClass = FragmentAboutAppBinding.inflate(layoutInflater, container, false)
+    ): View {
+        aboutAppClass = FragmentAboutAppBinding.inflate(layoutInflater, container, false)
 
-        return AboutAppClass.root
+        return aboutAppClass.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var main_coor = MAIN.findViewById<CoordinatorLayout>(R.id.main_coord_lay)
-        main_coor.visibility = View.GONE
-        AboutAppClass.BackButton.setOnClickListener {
+        val mainCoor = MAIN.findViewById<CoordinatorLayout>(R.id.main_coord_lay)
+        mainCoor.visibility = View.GONE
+        aboutAppClass.BackButton.setOnClickListener {
             MAIN.navController.navigate(R.id.action_aboutAppFragment_to_settingsFragment)
         }
     }

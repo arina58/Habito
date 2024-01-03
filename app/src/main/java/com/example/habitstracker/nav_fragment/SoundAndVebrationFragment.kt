@@ -11,21 +11,21 @@ import com.example.habitstracker.R
 import com.example.habitstracker.databinding.FragmentSoundAndVebrationBinding
 
 class SoundAndVebrationFragment : Fragment() {
-    lateinit var SaVClass: FragmentSoundAndVebrationBinding
+    private lateinit var saoundAndVebrationClass: FragmentSoundAndVebrationBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        SaVClass = FragmentSoundAndVebrationBinding.inflate(layoutInflater, container, false)
-        var main_coor = MAIN.findViewById<CoordinatorLayout>(R.id.main_coord_lay)
-        main_coor.visibility = View.GONE
-        return SaVClass.root
+    ): View {
+        saoundAndVebrationClass = FragmentSoundAndVebrationBinding.inflate(layoutInflater, container, false)
+        val mainCoor = MAIN.findViewById<CoordinatorLayout>(R.id.main_coord_lay)
+        mainCoor.visibility = View.GONE
+        return saoundAndVebrationClass.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        SaVClass.BackButton.setOnClickListener {
+        saoundAndVebrationClass.BackButton.setOnClickListener {
             MAIN.navController.navigate(R.id.action_soundAndVebrationFragment_to_settingsFragment)
         }
     }

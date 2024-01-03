@@ -7,10 +7,10 @@ import com.example.habitstracker.NAME_THEME
 class SaveNameThemeUseCase {
 
     fun execute(NameTheme: Boolean){
-        var pref = MAIN.getSharedPreferences("User", Context.MODE_PRIVATE)
-        var editor = pref?.edit()
+        val pref = MAIN.getSharedPreferences("User", Context.MODE_PRIVATE)
+        val editor = pref?.edit()
         editor?.putBoolean(NAME_THEME, NameTheme)
-        editor?.commit()
+        editor?.apply()
     }
 
 }

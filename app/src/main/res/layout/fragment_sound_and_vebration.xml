@@ -61,9 +61,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:fontFamily="@font/nunito_regular"
+                style="@style/MyText"
                 android:text="Sound"
-                android:textColor="?attr/colorOnPrimary"
                 android:textSize="20sp" />
 
             <androidx.appcompat.widget.SwitchCompat
@@ -72,8 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:trackTint="@color/grey_light"
-                android:theme="@style/MySwitch"
-                />
+                android:theme="@style/MySwitch" />
         </LinearLayout>
 
         <LinearLayout
@@ -92,9 +90,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:fontFamily="@font/nunito_regular"
+                style="@style/MyText"
                 android:text="Vebration"
-                android:textColor="?attr/colorOnPrimary"
                 android:textSize="20sp" />
 
             <androidx.appcompat.widget.SwitchCompat

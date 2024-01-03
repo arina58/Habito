@@ -11,7 +11,6 @@ import com.example.habitstracker.LIGHT_THEME
 import com.example.habitstracker.MAIN
 import com.example.habitstracker.R
 import com.example.habitstracker.databinding.FragmentThemeBinding
-import com.example.habitstracker.domain.useCase.GetNameThemeUseCase
 import com.example.habitstracker.domain.useCase.SaveNameThemeUseCase
 import com.example.habitstracker.domain.useCase.SwitchThemeUseCase
 
@@ -19,15 +18,14 @@ class ThemeFragment : Fragment() {
     private lateinit var themeClass: FragmentThemeBinding
     private val saveNameTheme = SaveNameThemeUseCase()
     private val switchTheme = SwitchThemeUseCase()
-    private val getNameTheme = GetNameThemeUseCase()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         themeClass = FragmentThemeBinding.inflate(layoutInflater, container, false)
-        val main_coor = MAIN.findViewById<CoordinatorLayout>(R.id.main_coord_lay)
-        main_coor.visibility = View.GONE
+        val mainCoor = MAIN.findViewById<CoordinatorLayout>(R.id.main_coord_lay)
+        mainCoor.visibility = View.GONE
         return themeClass.root
     }
 

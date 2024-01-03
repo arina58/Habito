@@ -27,10 +27,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:fontFamily="@font/nunito_regular"
+                style="@style/MyText"
                 android:text="Name Item"
                 android:layout_weight="1"
-                android:textColor="?attr/colorOnPrimary"
                 android:textSize="20sp" />
 
             <CheckBox
@@ -66,9 +65,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:fontFamily="@font/nunito_regular"
+                style="@style/MyText"
                 android:text="Current: 7"
-                android:textColor="?attr/colorOnPrimary"
                 android:textSize="16sp" />
 
             <TextView
@@ -76,10 +74,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:fontFamily="@font/nunito_regular"
+                style="@style/MyText"
                 android:text="Best: 11"
                 android:textAlignment="viewEnd"
-                android:textColor="?attr/colorOnPrimary"
                 android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>

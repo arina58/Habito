@@ -26,12 +26,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Your Goal"
-                android:fontFamily="@font/nunito_regular"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginLeft="5dp"
-                android:textColor="?attr/colorOnPrimary"/>
+                style="@style/MyText"/>
 
             <EditText
                 android:id="@+id/NameGoal"
@@ -61,11 +60,10 @@
                     android:id="@+id/textView10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunito_regular"
                     android:text="Period"
                     android:textSize="16sp"
                     android:layout_marginRight="80dp"
-                    android:textColor="?attr/colorOnPrimary"/>
+                    style="@style/MyText"/>
 
                 <Spinner
                     android:id="@+id/SpinnerPeriod"
@@ -89,11 +87,10 @@
                     android:id="@+id/textView11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunito_regular"
                     android:text="Type"
                     android:textSize="16sp"
                     android:layout_marginRight="91dp"
-                    android:textColor="?attr/colorOnPrimary"/>
+                    style="@style/MyText"/>
 
                 <Spinner
                     android:id="@+id/SpinnerType"

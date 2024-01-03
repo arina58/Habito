@@ -19,4 +19,8 @@
         <item name="colorOnSurface">@color/grey_light</item>
         <item name="colorSecondary">@color/purple_my</item>
     </style>
+    <style name="MyText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:fontFamily">@font/nunito_regular</item>
+    </style>
 </resources>
