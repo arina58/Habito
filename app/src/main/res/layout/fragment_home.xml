@@ -5,8 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity"
-        android:background="?attr/backgroundColor">
+        tools:context=".MainActivity" >
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -83,9 +82,8 @@
                             android:layout_marginTop="3dp"
                             android:text="1"
                             android:textAlignment="center"
-                            android:textColor="?attr/colorOnBackground"
+                            style="@style/MyTextBold"
                             android:textSize="13sp"
-                            android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -94,10 +92,9 @@
                             android:id="@+id/tvMonth1"
                             android:layout_width="47dp"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/nunito_bold"
                             android:text="Feb"
                             android:textAlignment="center"
-                            android:textColor="?attr/colorOnBackground"
+                            style="@style/MyTextBold"
                             android:textSize="13sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.538"
@@ -119,7 +116,7 @@
                             android:layout_marginTop="3dp"
                             android:text="2"
                             android:textAlignment="center"
-                            android:textColor="?attr/colorOnBackground"
+                            style="@style/MyTextBold"
                             android:textSize="13sp"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -130,11 +127,9 @@
                             android:id="@+id/tvMonth2"
                             android:layout_width="47dp"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/nunito_bold"
                             android:text="Feb"
                             android:textAlignment="center"
-                            android:textColor="?attr/colorOnBackground"
-                            android:textSize="13sp"
+                            style="@style/MyTextBold"                            android:textSize="13sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.538"
                             app:layout_constraintStart_toStartOf="parent"
@@ -155,9 +150,7 @@
                             android:layout_marginTop="3dp"
                             android:text="3"
                             android:textAlignment="center"
-                            android:textColor="?attr/colorOnBackground"
-                            android:textSize="13sp"
-                            android:textStyle="bold"
+                            style="@style/MyTextBold"                            android:textSize="13sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -166,11 +159,9 @@
                             android:id="@+id/tvMonth3"
                             android:layout_width="47dp"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/nunito_bold"
                             android:text="Feb"
                             android:textAlignment="center"
-                            android:textColor="?attr/colorOnBackground"
-                            android:textSize="13sp"
+                            style="@style/MyTextBold"                            android:textSize="13sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.538"
                             app:layout_constraintStart_toStartOf="parent"
@@ -191,10 +182,8 @@
                             android:layout_marginTop="3dp"
                             android:text="4"
                             android:textAlignment="center"
-                            android:textColor="?attr/colorOnBackground"
                             android:textSize="13sp"
-                            android:textStyle="bold"
-                            app:layout_constraintEnd_toEndOf="parent"
+                            style="@style/MyTextBold"                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -202,11 +191,9 @@
                             android:id="@+id/tvMonth4"
                             android:layout_width="47dp"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/nunito_bold"
                             android:text="Feb"
                             android:textAlignment="center"
-                            android:textColor="?attr/colorOnBackground"
-                            android:textSize="13sp"
+                            style="@style/MyTextBold"                            android:textSize="13sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.538"
                             app:layout_constraintStart_toStartOf="parent"
@@ -227,10 +214,8 @@
                             android:layout_marginTop="3dp"
                             android:text="5"
                             android:textAlignment="center"
-                            android:textColor="?attr/colorOnBackground"
                             android:textSize="13sp"
-                            android:textStyle="bold"
-                            app:layout_constraintEnd_toEndOf="parent"
+                            style="@style/MyTextBold"                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -238,11 +223,9 @@
                             android:id="@+id/tvMonth5"
                             android:layout_width="47dp"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/nunito_bold"
                             android:text="Feb"
                             android:textAlignment="center"
-                            android:textColor="?attr/colorOnBackground"
-                            android:textSize="13sp"
+                            style="@style/MyTextBold"                            android:textSize="13sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.538"
                             app:layout_constraintStart_toStartOf="parent"
@@ -263,10 +246,8 @@
                             android:layout_marginTop="3dp"
                             android:text="6"
                             android:textAlignment="center"
-                            android:textColor="?attr/colorOnBackground"
                             android:textSize="13sp"
-                            android:textStyle="bold"
-                            app:layout_constraintEnd_toEndOf="parent"
+                            style="@style/MyTextBold"                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -274,11 +255,9 @@
                             android:id="@+id/tvMonth6"
                             android:layout_width="47dp"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/nunito_bold"
                             android:text="Feb"
                             android:textAlignment="center"
-                            android:textColor="?attr/colorOnBackground"
-                            android:textSize="13sp"
+                            style="@style/MyTextBold"                            android:textSize="13sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.538"
                             app:layout_constraintStart_toStartOf="parent"
@@ -299,10 +278,8 @@
                             android:layout_marginTop="3dp"
                             android:text="7"
                             android:textAlignment="center"
-                            android:textColor="?attr/colorOnBackground"
                             android:textSize="13sp"
-                            android:textStyle="bold"
-                            app:layout_constraintEnd_toEndOf="parent"
+                            style="@style/MyTextBold"                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -310,11 +287,9 @@
                             android:id="@+id/tvMonth7"
                             android:layout_width="47dp"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/nunito_bold"
                             android:text="Feb"
                             android:textAlignment="center"
-                            android:textColor="?attr/colorOnBackground"
-                            android:textSize="13sp"
+                            style="@style/MyTextBold"                            android:textSize="13sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.538"
                             app:layout_constraintStart_toStartOf="parent"
@@ -353,9 +328,8 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
                         android:layout_weight="1"
-                        android:fontFamily="@font/nunito_bold"
                         android:text="Overall streak: 121 days "
-                        android:textColor="?attr/colorOnPrimary"
+                        style="@style/MyTextBold"
                         android:textSize="16sp" />
 
                     <TextView
@@ -366,9 +340,8 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
                         android:layout_weight="1"
-                        android:fontFamily="@font/nunito_bold"
                         android:text="Overall best streak: 121 days "
-                        android:textColor="?attr/colorOnPrimary"
+                        style="@style/MyTextBold"
                         android:textSize="16sp" />
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -393,11 +366,8 @@
                         android:layout_width="115dp"
                         android:layout_height="115dp"
                         android:layout_marginRight="30dp"
-                        android:background="?attr/backgroundColor"
-                        app:egInnerPaddingColor="?attr/backgroundColor"
-                        tools:ignore="MissingConstraints">
-
-                    </org.eazegraph.lib.charts.PieChart>
+                        tools:ignore="MissingConstraints"
+                        app:egInnerPaddingColor="?attr/colorContainer"/>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -413,9 +383,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="0dp"
-                            android:fontFamily="@font/nunito_bold"
                             android:text="1 of 3 habits"
-                            android:textColor="?attr/colorOnPrimary"
+                            style="@style/MyTextBold"
                             android:textSize="20sp" />
 
                         <TextView
@@ -477,7 +446,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/purple_my"
+        android:backgroundTint="?attr/colorPrimary"
         android:contentDescription="add_icon"
         android:src="@drawable/add_icon"
         app:layout_constraintBottom_toBottomOf="parent"

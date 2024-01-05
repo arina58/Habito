@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="5dp"
-    app:cardBackgroundColor="?attr/colorSecondary"
+    app:cardBackgroundColor="?attr/backgroundColor"
     app:cardCornerRadius="15dp">
 
     <LinearLayout
@@ -40,7 +40,7 @@
                 android:theme="@style/MyCheckBox"
                 android:checked="false"
                 android:textAlignment="viewEnd"
-                android:buttonTint="?attr/colorOnPrimary" />
+                android:buttonTint="?attr/textFillColor" />
 
             <ImageButton
                 android:id="@+id/moreButton"
