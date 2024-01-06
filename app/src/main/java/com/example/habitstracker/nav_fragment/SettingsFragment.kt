@@ -6,13 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import com.example.habitstracker.DARK_THEME
+import com.example.habitstracker.LIGHT_THEME
 import com.example.habitstracker.MAIN
 import com.example.habitstracker.R
 import com.example.habitstracker.databinding.FragmentSettingsBinding
+import com.example.habitstracker.domain.useCase.GetNameThemeUseCase
+import com.example.habitstracker.domain.useCase.SaveNameThemeUseCase
+import com.example.habitstracker.domain.useCase.SwitchThemeUseCase
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class SettingsFragment : Fragment() {
     private lateinit var settingsClass: FragmentSettingsBinding
+    private val saveNameTheme = SaveNameThemeUseCase()
+    private val switchTheme = SwitchThemeUseCase()
+    private val getNameTheme = GetNameThemeUseCase()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,15 +36,21 @@ class SettingsFragment : Fragment() {
         mainCoor.visibility = View.VISIBLE
         bar.background = null
 
-        settingsClass.SaV.setOnClickListener {
-            MAIN.navController.navigate(R.id.action_settingsFragment_to_soundAndVebrationFragment)
+        setSwitch()
 
+        settingsClass.SwitchTheme.setOnClickListener{
+            if(settingsClass.SwitchTheme.isChecked){
+                saveNameTheme.execute(DARK_THEME)
+                switchTheme.execute(DARK_THEME)
+            }else{
+                saveNameTheme.execute(LIGHT_THEME)
+                switchTheme.execute(LIGHT_THEME)
+            }
         }
-        settingsClass.Theme.setOnClickListener {
-            MAIN.navController.navigate(R.id.action_settingsFragment_to_themeFragment)
-        }
-        settingsClass.AboutApp.setOnClickListener {
-            MAIN.navController.navigate(R.id.action_settingsFragment_to_aboutAppFragment)
-        }
+    }
+
+    fun setSwitch(){
+        if(getNameTheme.execute() == DARK_THEME)
+            settingsClass.SwitchTheme.isChecked = true
     }
 }

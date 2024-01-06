@@ -6,9 +6,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity"
-        android:background="?attr/backgroundColor"
-    >
+        tools:context=".MainActivity">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -60,9 +58,8 @@
                         android:text="Goals"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:fontFamily="@font/nunito_bold"
                         android:textSize="30sp"
-                        android:textColor="?attr/colorOnPrimary"
+                        style="@style/MyTextBold"
                         android:layout_marginLeft="5dp"/>
 
                     <androidx.recyclerview.widget.RecyclerView
