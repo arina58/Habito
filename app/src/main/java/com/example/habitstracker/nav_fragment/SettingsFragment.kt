@@ -11,9 +11,7 @@ import com.example.habitstracker.LIGHT_THEME
 import com.example.habitstracker.MAIN
 import com.example.habitstracker.R
 import com.example.habitstracker.databinding.FragmentSettingsBinding
-import com.example.habitstracker.domain.useCase.GetNameThemeUseCase
-import com.example.habitstracker.domain.useCase.SaveNameThemeUseCase
-import com.example.habitstracker.domain.useCase.SwitchThemeUseCase
+import com.example.habitstracker.domain.useCase.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class SettingsFragment : Fragment() {
@@ -21,6 +19,8 @@ class SettingsFragment : Fragment() {
     private val saveNameTheme = SaveNameThemeUseCase()
     private val switchTheme = SwitchThemeUseCase()
     private val getNameTheme = GetNameThemeUseCase()
+    private val saveSoundAndVibration = SaveSoundAndVibrationUseCase()
+    private val getSoundAndVibration = GetSoundAndVibrationUseCase()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

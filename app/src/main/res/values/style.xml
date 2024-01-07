@@ -16,7 +16,6 @@
         <item name="android:textColor">?attr/textFillColor</item>
     </style>
     <style name="MySwitch" parent="Theme.MaterialComponents">
-        <item name="colorOnSurface">@color/purple_my</item>
         <item name="colorSecondary">@color/purple_my</item>
     </style>
     <style name="MyText" parent="TextAppearance.AppCompat">

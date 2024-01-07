@@ -5,9 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="?attr/backgroundColor"
-    >
+    tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -38,9 +36,10 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="44dp"
         android:layout_marginEnd="40dp"
-        android:background="@drawable/streak_background"
+        android:background="@drawable/home_calendar_background"
         android:ems="10"
         style="@style/MyText"
+        android:textColorHint="?attr/textFillColor"
         android:hint="Your name"
         android:inputType="textPersonName"
         android:paddingLeft="10dp"

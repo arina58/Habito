@@ -27,9 +27,10 @@ class EnterNameFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         enterNameClass.nameEnterCont.setOnClickListener {
-
-            saveUserName.execute(enterNameClass.EditUsername.text.toString())
-            MAIN.navController.navigate(R.id.action_enterNameFragment_to_homeFragment)
+            if(enterNameClass.EditUsername.text.toString() != "") {
+                saveUserName.execute(enterNameClass.EditUsername.text.toString())
+                MAIN.navController.navigate(R.id.action_enterNameFragment_to_homeFragment)
+            }
         }
     }
 }
