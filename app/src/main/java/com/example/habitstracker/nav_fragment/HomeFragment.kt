@@ -1,12 +1,17 @@
 package com.example.habitstracker.nav_fragment
 
+import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.Dialog
 import android.graphics.Color
 import android.os.Bundle
+import android.service.voice.VoiceInteractionSession.ActivityId
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.Spinner
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -72,6 +77,7 @@ class HomeFragment : Fragment() {
         homeClass.Hello.text = "Hello, ${getUserName.execute()}"
     }
 
+    @SuppressLint("ResourceType")
     private fun showAddDialog() {
         val dialog = Dialog(MAIN)
         dialog.setContentView(R.layout.new_goal)

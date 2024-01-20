@@ -75,7 +75,8 @@
                     android:layout_height="wrap_content"
                     android:contentDescription="sound slider"
                     android:valueFrom="0"
-                    android:valueTo="100" />
+                    android:valueTo="100"
+                    app:labelBehavior="gone"/>
             </LinearLayout>
 
             <LinearLayout

@@ -10,11 +10,11 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-
+        android:backgroundTint="?attr/backgroundColor"
         app:cardCornerRadius="20dp"
-        android:backgroundTint="?attr/backgroundColor">
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -23,27 +23,28 @@
 
             <TextView
                 android:id="@+id/textView9"
+                style="@style/MyText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Your Goal"
-                android:textSize="16sp"
+                android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginLeft="5dp"
-                style="@style/MyText"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/NameGoal"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:fontFamily="@font/nunito_regular"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView9"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/new_goal_item_back"
-                android:layout_marginTop="10dp"/>
+                android:ems="13"
+                android:inputType="textPersonName"
+                android:paddingLeft="5dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
             <LinearLayout
                 android:id="@+id/LinearPeriod"
@@ -58,59 +59,40 @@
 
                 <TextView
                     android:id="@+id/textView10"
+                    style="@style/MyText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Period"
-                    android:textSize="16sp"
                     android:layout_marginRight="80dp"
-                    style="@style/MyText"/>
+                    android:text="Period (days)"
+                    android:textSize="20sp" />
 
-                <Spinner
-                    android:id="@+id/SpinnerPeriod"
-                    android:layout_width="100dp"
-                    android:layout_height="35dp"
-                    android:background="@drawable/new_goal_item_back" />
-            </LinearLayout>
+                <EditText
+                    android:id="@+id/editTextNumber"
+                    style="@style/MyText"
+                    android:layout_width="115dp"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/new_goal_item_back"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:paddingLeft="5dp"
+                    android:textSize="20sp" />
 
-            <LinearLayout
-                android:id="@+id/LinearType"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/LinearPeriod">
 
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Type"
-                    android:textSize="16sp"
-                    android:layout_marginRight="91dp"
-                    style="@style/MyText"/>
-
-                <Spinner
-                    android:id="@+id/SpinnerType"
-                    android:layout_width="100dp"
-                    android:layout_height="35dp"
-                    android:background="@drawable/new_goal_item_back" />
             </LinearLayout>
 
             <Button
                 android:id="@+id/ButtonCreate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
                 android:background="@drawable/button_continue"
                 android:fontFamily="@font/nunito_bold"
                 android:text="Create New"
                 android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="@+id/LinearType"
-                app:layout_constraintStart_toStartOf="@+id/LinearType"
-                app:layout_constraintTop_toBottomOf="@+id/LinearType"
-                android:layout_marginTop="40dp"/>
+                app:layout_constraintEnd_toEndOf="@+id/LinearPeriod"
+                app:layout_constraintStart_toStartOf="@+id/LinearPeriod"
+                app:layout_constraintTop_toBottomOf="@+id/LinearPeriod" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
