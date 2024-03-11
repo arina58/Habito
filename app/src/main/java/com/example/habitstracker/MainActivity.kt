@@ -8,9 +8,8 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.habitstracker.databinding.ActivityMainBinding
-import com.example.habitstracker.domain.useCase.GetNameThemeUseCase
-import com.example.habitstracker.domain.useCase.GetUserNameUseCase
-import com.example.habitstracker.domain.useCase.SwitchThemeUseCase
+import com.example.habitstracker.domain.useCase.*
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -27,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         mainClass = ActivityMainBinding.inflate(layoutInflater)
 
         MAIN = this
+//        SaveCurrentStreakUseCase().execute(false)
 
         switchTheme.execute(getNameTheme.execute())
         setContentView(mainClass.root)
@@ -44,5 +44,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         mainClass.bottomNavigationView.setupWithNavController(navController)
+        SetTaskReceiverUseCase().execute()
+
     }
 }
