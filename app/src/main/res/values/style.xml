@@ -26,4 +26,8 @@
         <item name="android:textColor">?attr/textFillColor</item>
         <item name="android:fontFamily">@font/nunito_bold</item>
     </style>
+
+    <style name="MyBar" parent="@style/Widget.MaterialComponents.Toolbar.Primary">
+        <item name="android:background">?attr/backgroundColor</item>
+    </style>
 </resources>

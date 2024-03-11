@@ -1,0 +1,57 @@
+package com.example.habitstracker.domain.adapter
+
+import androidx.recyclerview.widget.RecyclerView
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.TextView
+import com.example.habitstracker.ID
+import com.example.habitstracker.databinding.FragmentFinishHabitsBinding
+import com.example.habitstracker.domain.model.HabitFinishItemModel
+import com.example.habitstracker.domain.useCase.GetHabitsFromDBUseCase
+import com.example.habitstracker.domain.useCase.UpdateHabitUseCase
+
+class FinishHabitsAdapter(
+    private var mList: List<HabitFinishItemModel>) : RecyclerView.Adapter<FinishHabitsAdapter.ViewHolder>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
+        return ViewHolder(
+            FragmentFinishHabitsBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false)
+        )
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = mList[position]
+        holder.title.text = item.title
+
+        holder.returnButton.setOnClickListener {
+            returnHabit(mList[position].id, position)
+        }
+    }
+
+    private fun returnHabit(id: Int, position: Int){
+        val item = GetHabitsFromDBUseCase().execute(ID, arrayOf(id.toString()))
+        item[0].status = 0
+        UpdateHabitUseCase().execute(item[0])
+
+        val mutableList = mList.toMutableList()
+        mutableList.removeAt(position)
+        mList = mutableList.toList()
+        notifyItemRemoved(position)
+        if (position != mList.size) {
+            notifyItemRangeChanged(position, mList.size - position)
+        }
+    }
+
+    override fun getItemCount(): Int = mList.size
+
+     class ViewHolder(binding: FragmentFinishHabitsBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        val title: TextView = binding.title
+        val returnButton: ImageButton = binding.returnButton
+    }
+}

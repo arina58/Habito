@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:backgroundTint="?attr/backgroundColor"
         app:cardCornerRadius="20dp"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -89,7 +88,7 @@
                 android:layout_marginTop="40dp"
                 android:background="@drawable/button_continue"
                 android:fontFamily="@font/nunito_bold"
-                android:text="Create New"
+                android:text="Update"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@+id/LinearPeriod"
                 app:layout_constraintStart_toStartOf="@+id/LinearPeriod"

@@ -1,15 +1,17 @@
 package com.example.habitstracker
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI.setupWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.habitstracker.databinding.ActivityMainBinding
 import com.example.habitstracker.domain.useCase.GetNameThemeUseCase
 import com.example.habitstracker.domain.useCase.GetUserNameUseCase
 import com.example.habitstracker.domain.useCase.SwitchThemeUseCase
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     private val getNameTheme = GetNameThemeUseCase()
     private val switchTheme = SwitchThemeUseCase()
 
+    @SuppressLint("WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainClass = ActivityMainBinding.inflate(layoutInflater)
@@ -30,24 +33,16 @@ class MainActivity : AppCompatActivity() {
 
         navController = Navigation.findNavController(this, R.id.navHostFragment)
 
-        if(getUserName.execute() != DEFAULT_NAME) {
-            (supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment).also { navHost ->
-                val navInflater = navHost.navController.navInflater
-                val navGraph = navInflater.inflate(R.navigation.nav_graph).apply {
-                    setStartDestination(R.id.homeFragment)
-                }
-                navHost.navController.graph = navGraph
+        val startDestination = if (getUserName.execute() != DEFAULT_NAME) R.id.homeFragment else R.id.enterNameFragment
+
+        (supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment).also { navHost ->
+            val navInflater = navHost.navController.navInflater
+            val navGraph = navInflater.inflate(R.navigation.nav_graph).apply {
+                setStartDestination(startDestination)
             }
-        }else {
-            (supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment).also { navHost ->
-                val navInflater = navHost.navController.navInflater
-                val navGraph = navInflater.inflate(R.navigation.nav_graph).apply {
-                    setStartDestination(R.id.enterNameFragment)
-                }
-                navHost.navController.graph = navGraph
-            }
+            navHost.navController.graph = navGraph
         }
 
-        setupWithNavController(mainClass.bottomNavigationView, navController)
+        mainClass.bottomNavigationView.setupWithNavController(navController)
     }
 }

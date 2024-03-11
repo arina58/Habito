@@ -22,12 +22,12 @@ class ProgressBarAdapter(private val mList: List<ProgressViewModel>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val ProgressViewModel = mList[position]
+        val progressViewModel = mList[position]
 
-        holder.nameItem.text = ProgressViewModel.ItemName
-        holder.Current.text = ProgressViewModel.Current
-        holder.Bar.max = 7
-        ObjectAnimator.ofInt(holder.Bar, "progress",ProgressViewModel.Num).setDuration(1000).start()
+        holder.nameItem.text = progressViewModel.ItemName
+        holder.description.text = progressViewModel.Num.toString() + progressViewModel.text
+        holder.bar.max = 7
+        ObjectAnimator.ofInt(holder.bar, "progress",progressViewModel.Num).setDuration(1000).start()
     }
 
     override fun getItemCount(): Int {
@@ -37,7 +37,7 @@ class ProgressBarAdapter(private val mList: List<ProgressViewModel>) :
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
 
         val nameItem: TextView = itemView.findViewById(R.id.NameItem)
-        val Current: TextView = itemView.findViewById(R.id.Current)
-        val Bar: ProgressBar = itemView.findViewById(R.id.progressBar)
+        val description: TextView = itemView.findViewById(R.id.Current)
+        val bar: ProgressBar = itemView.findViewById(R.id.progressBar)
     }
 }

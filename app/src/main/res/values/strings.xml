@@ -2,6 +2,7 @@
     <string name="app_name">Habito</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="error">Error</string>
+    <string name="description">description</string>
 
     <string-array name="GoalTypes">
         <item>1 time of week</item>

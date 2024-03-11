@@ -7,15 +7,17 @@
 
         <item name="colorSecondary">@color/purple_light</item>
         <item name="colorOnSecondary">@color/white</item>
+        <item name="colorAccent">@color/purple_my</item>
+
+        <item name="colorSecondaryVariant">@color/purple_my</item>
+
+        <item name="colorSurface">@color/grey_dark</item>
 
         <item name="textFillColor">@color/white</item>
-        <item name="colorAccent">@color/purple_my</item>
+        <item name="colorContainer">@color/grey_dark</item>
 
         <item name="android:statusBarColor">#343A40</item>
         <item name="backgroundColor">@color/grey_light</item>
         <item name="android:windowBackground">@color/grey_dark</item>
-
-        <item name="colorContainer">@color/grey_dark</item>
-
     </style>
 </resources>

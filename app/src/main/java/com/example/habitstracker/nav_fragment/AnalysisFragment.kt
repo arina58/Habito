@@ -10,6 +10,7 @@ import com.example.habitstracker.*
 import com.example.habitstracker.databinding.FragmentAnalysisBinding
 import com.example.habitstracker.domain.adapter.ProgressBarAdapter
 import com.example.habitstracker.domain.model.ProgressViewModel
+import com.example.habitstracker.domain.useCase.GetHabitsFromDBUseCase
 
 
 class AnalysisFragment : Fragment() {
@@ -35,11 +36,9 @@ class AnalysisFragment : Fragment() {
         recyclerview.layoutManager = LinearLayoutManager(MAIN)
         val data = ArrayList<ProgressViewModel>()
 
-
-        data.add(ProgressViewModel("Meditation", "3 from 7 days target", 3))
-        data.add(ProgressViewModel("Books",  "5 from 7 days target", 5))
-        data.add(ProgressViewModel("Running",  "1 from 7 days target", 1))
-
+        GetHabitsFromDBUseCase().execute(STATUS, arrayOf("0")).forEach {
+            data.add(ProgressViewModel(it.title, " from 7 days target", it.date_of_week))
+        }
 
         val adapter = ProgressBarAdapter(data)
         recyclerview.adapter = adapter

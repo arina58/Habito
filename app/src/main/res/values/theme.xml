@@ -10,6 +10,8 @@
         <item name="colorOnSecondary">@color/white</item>
         <item name="colorAccent">@color/purple_my</item>
 
+        <item name="colorSecondaryVariant">@color/purple_light</item>
+
         <item name="colorSurface">#343A40</item>
 
         <item name="textFillColor">@color/black</item>

@@ -1,454 +1,477 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity" >
-
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
     <ScrollView
-        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="57dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:id="@+id/scroll_view">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/Hello"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="40dp"
-                    style="@style/MyText"
-                    android:text="Hello, User"
-                    android:textSize="16dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/Hour"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    style="@style/MyText"
-                    android:text="Good Morning"
-                    android:textSize="24dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/Hello" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout2"
+            <LinearLayout
+                android:id="@+id/Linear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
+                android:orientation="vertical">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="43dp"
-                        android:layout_height="43dp"
-                        android:layout_marginLeft="7dp"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/home_calendar_background">
-
-                        <TextView
-                            android:id="@+id/tvDay1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            android:text="1"
-                            android:textAlignment="center"
-                            style="@style/MyTextBold"
-                            android:textSize="13sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/tvMonth1"
-                            android:layout_width="47dp"
-                            android:layout_height="wrap_content"
-                            android:text="Feb"
-                            android:textAlignment="center"
-                            style="@style/MyTextBold"
-                            android:textSize="13sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.538"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tvDay1" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="43dp"
-                        android:layout_height="43dp"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/home_calendar_background">
-
-                        <TextView
-                            android:id="@+id/tvDay2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            android:text="2"
-                            android:textAlignment="center"
-                            style="@style/MyTextBold"
-                            android:textSize="13sp"
-                            android:textStyle="bold"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/tvMonth2"
-                            android:layout_width="47dp"
-                            android:layout_height="wrap_content"
-                            android:text="Feb"
-                            android:textAlignment="center"
-                            style="@style/MyTextBold"                            android:textSize="13sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.538"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tvDay2" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="43dp"
-                        android:layout_height="43dp"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/home_calendar_background">
-
-                        <TextView
-                            android:id="@+id/tvDay3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            android:text="3"
-                            android:textAlignment="center"
-                            style="@style/MyTextBold"                            android:textSize="13sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/tvMonth3"
-                            android:layout_width="47dp"
-                            android:layout_height="wrap_content"
-                            android:text="Feb"
-                            android:textAlignment="center"
-                            style="@style/MyTextBold"                            android:textSize="13sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.538"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tvDay3" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="43dp"
-                        android:layout_height="43dp"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/home_calendar_background">
-
-                        <TextView
-                            android:id="@+id/tvDay4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            android:text="4"
-                            android:textAlignment="center"
-                            android:textSize="13sp"
-                            style="@style/MyTextBold"                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/tvMonth4"
-                            android:layout_width="47dp"
-                            android:layout_height="wrap_content"
-                            android:text="Feb"
-                            android:textAlignment="center"
-                            style="@style/MyTextBold"                            android:textSize="13sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.538"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tvDay4" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="43dp"
-                        android:layout_height="43dp"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/home_calendar_background">
-
-                        <TextView
-                            android:id="@+id/tvDay5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            android:text="5"
-                            android:textAlignment="center"
-                            android:textSize="13sp"
-                            style="@style/MyTextBold"                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/tvMonth5"
-                            android:layout_width="47dp"
-                            android:layout_height="wrap_content"
-                            android:text="Feb"
-                            android:textAlignment="center"
-                            style="@style/MyTextBold"                            android:textSize="13sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.538"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tvDay5" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="43dp"
-                        android:layout_height="43dp"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/home_calendar_background">
-
-                        <TextView
-                            android:id="@+id/tvDay6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            android:text="6"
-                            android:textAlignment="center"
-                            android:textSize="13sp"
-                            style="@style/MyTextBold"                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/tvMonth6"
-                            android:layout_width="47dp"
-                            android:layout_height="wrap_content"
-                            android:text="Feb"
-                            android:textAlignment="center"
-                            style="@style/MyTextBold"                            android:textSize="13sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.538"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tvDay6" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="43dp"
-                        android:layout_height="43dp"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/home_calendar_background">
-
-                        <TextView
-                            android:id="@+id/tvDay7"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            android:text="7"
-                            android:textAlignment="center"
-                            android:textSize="13sp"
-                            style="@style/MyTextBold"                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/tvMonth7"
-                            android:layout_width="47dp"
-                            android:layout_height="wrap_content"
-                            android:text="Feb"
-                            android:textAlignment="center"
-                            style="@style/MyTextBold"                            android:textSize="13sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.538"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tvDay7" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="13dp"
-                android:background="@drawable/home_calendar_background">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:divider="@drawable/separator"
-                    android:dividerPadding="13dp"
-                    android:orientation="vertical"
-                    android:showDividers="middle"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/textView6"
+                        android:id="@+id/Hello"
+                        style="@style/MyText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_weight="1"
-                        android:text="Overall streak: 121 days "
-                        style="@style/MyTextBold"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/textView7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_weight="1"
-                        android:text="Overall best streak: 121 days "
-                        style="@style/MyTextBold"
-                        android:textSize="16sp" />
-                </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="13dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <org.eazegraph.lib.charts.PieChart
-                        android:id="@+id/PieChart"
-                        android:layout_width="115dp"
-                        android:layout_height="115dp"
-                        android:layout_marginRight="30dp"
-                        tools:ignore="MissingConstraints"
-                        app:egInnerPaddingColor="?attr/colorContainer"/>
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="30dp"
+                        android:text="Hello, User"
+                        android:textSize="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:clipChildren="false"
-                        android:clipToPadding="false"
-                        android:foregroundGravity="center_vertical"
-                        android:orientation="vertical">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/Hello">
 
                         <TextView
-                            android:id="@+id/textView4"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/Hour"
+                            style="@style/MyText"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="0dp"
-                            android:text="1 of 3 habits"
-                            style="@style/MyTextBold"
-                            android:textSize="20sp" />
+                            android:layout_weight="1"
+                            android:text="Good Morning"
+                            android:textSize="24dp"
+                            android:layout_marginStart="0dp"/>
 
-                        <TextView
-                            android:id="@+id/textView5"
+                        <ImageButton
+                            android:id="@+id/FinishButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
-                            style="@style/MyText"
-                            android:text="completed today!"
-                            android:textSize="20sp" />
+                            app:srcCompat="@drawable/finish_icon"
+                            android:backgroundTint="@android:color/transparent"
+                            android:buttonTint="?attr/textFillColor"/>
                     </LinearLayout>
 
-                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="13dp"
-                android:layout_marginBottom="80dp">
-
-                <TextView
-                    android:id="@+id/textView8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Today’s Checklist"
-                    style="@style/MyText"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toTopOf="@+id/CheckList"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/CheckList"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
-                    android:isScrollContainer="false"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView8"
-                    tools:listitem="@layout/item_of_list" />
+                    android:layout_marginTop="20dp">
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="43dp"
+                            android:layout_height="43dp"
+                            android:layout_marginLeft="7dp"
+                            android:layout_marginRight="5dp"
+                            android:background="@drawable/home_calendar_background">
+
+                            <TextView
+                                android:id="@+id/tvDay1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="1"
+                                android:textAlignment="center"
+                                style="@style/MyTextBold"
+                                android:textSize="13sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tvMonth1"
+                                android:layout_width="47dp"
+                                android:layout_height="wrap_content"
+                                android:text="Feb"
+                                android:textAlignment="center"
+                                style="@style/MyTextBold"
+                                android:textSize="13sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.538"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/tvDay1" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="43dp"
+                            android:layout_height="43dp"
+                            android:layout_marginRight="5dp"
+                            android:background="@drawable/home_calendar_background">
+
+                            <TextView
+                                android:id="@+id/tvDay2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="2"
+                                android:textAlignment="center"
+                                style="@style/MyTextBold"
+                                android:textSize="13sp"
+                                android:textStyle="bold"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tvMonth2"
+                                android:layout_width="47dp"
+                                android:layout_height="wrap_content"
+                                android:text="Feb"
+                                android:textAlignment="center"
+                                style="@style/MyTextBold"                            android:textSize="13sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.538"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/tvDay2" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="43dp"
+                            android:layout_height="43dp"
+                            android:layout_marginRight="5dp"
+                            android:background="@drawable/home_calendar_background">
+
+                            <TextView
+                                android:id="@+id/tvDay3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="3"
+                                android:textAlignment="center"
+                                style="@style/MyTextBold"                            android:textSize="13sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tvMonth3"
+                                android:layout_width="47dp"
+                                android:layout_height="wrap_content"
+                                android:text="Feb"
+                                android:textAlignment="center"
+                                style="@style/MyTextBold"                            android:textSize="13sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.538"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/tvDay3" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="43dp"
+                            android:layout_height="43dp"
+                            android:layout_marginRight="5dp"
+                            android:background="@drawable/home_calendar_background">
+
+                            <TextView
+                                android:id="@+id/tvDay4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="4"
+                                android:textAlignment="center"
+                                android:textSize="13sp"
+                                style="@style/MyTextBold"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tvMonth4"
+                                android:layout_width="47dp"
+                                android:layout_height="wrap_content"
+                                android:text="Feb"
+                                android:textAlignment="center"
+                                style="@style/MyTextBold"
+                                android:textSize="13sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.538"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/tvDay4" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="43dp"
+                            android:layout_height="43dp"
+                            android:layout_marginRight="5dp"
+                            android:background="@drawable/home_calendar_background">
+
+                            <TextView
+                                android:id="@+id/tvDay5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="5"
+                                android:textAlignment="center"
+                                android:textSize="13sp"
+                                style="@style/MyTextBold"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tvMonth5"
+                                android:layout_width="47dp"
+                                android:layout_height="wrap_content"
+                                android:text="Feb"
+                                android:textAlignment="center"
+                                style="@style/MyTextBold"
+                                android:textSize="13sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.538"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/tvDay5" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="43dp"
+                            android:layout_height="43dp"
+                            android:layout_marginRight="5dp"
+                            android:background="@drawable/home_calendar_background">
+
+                            <TextView
+                                android:id="@+id/tvDay6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="6"
+                                android:textAlignment="center"
+                                android:textSize="13sp"
+                                style="@style/MyTextBold"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tvMonth6"
+                                android:layout_width="47dp"
+                                android:layout_height="wrap_content"
+                                android:text="Feb"
+                                android:textAlignment="center"
+                                style="@style/MyTextBold"
+                                android:textSize="13sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.538"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/tvDay6" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="43dp"
+                            android:layout_height="43dp"
+                            android:layout_marginRight="5dp"
+                            android:background="@drawable/home_calendar_background">
+
+                            <TextView
+                                android:id="@+id/tvDay7"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="7"
+                                android:textAlignment="center"
+                                android:textSize="13sp"
+                                style="@style/MyTextBold"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tvMonth7"
+                                android:layout_width="47dp"
+                                android:layout_height="wrap_content"
+                                android:text="Feb"
+                                android:textAlignment="center"
+                                style="@style/MyTextBold"
+                                android:textSize="13sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.538"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/tvDay7" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="13dp"
+                    android:background="@drawable/home_calendar_background">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:divider="@drawable/separator"
+                        android:dividerPadding="13dp"
+                        android:orientation="vertical"
+                        android:showDividers="middle"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/OverallStreak"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:layout_weight="1"
+                            style="@style/MyTextBold"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/BestStreak"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:layout_weight="1"
+                            style="@style/MyTextBold"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="13dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <org.eazegraph.lib.charts.PieChart
+                            android:id="@+id/PieChart"
+                            android:layout_width="115dp"
+                            android:layout_height="115dp"
+                            android:layout_marginRight="30dp"
+                            tools:ignore="MissingConstraints"
+                            app:egInnerPaddingColor="?attr/colorContainer"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:clipChildren="false"
+                            android:clipToPadding="false"
+                            android:foregroundGravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/DescDone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="0dp"
+                                android:text="1 of 3 habits"
+                                style="@style/MyTextBold"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:id="@+id/textView5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0"
+                                style="@style/MyText"
+                                android:text="completed today!"
+                                android:textSize="20sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="13dp"
+                    android:layout_marginBottom="80dp">
+
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Today’s Checklist"
+                        style="@style/MyText"
+                        android:textSize="24sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/CheckList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:isScrollContainer="false"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView8"
+                        tools:listitem="@layout/item_of_list" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </RelativeLayout>
     </ScrollView>
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/ActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/scrollView2"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
         android:backgroundTint="?attr/colorPrimary"
         android:contentDescription="add_icon"
         android:src="@drawable/add_icon"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:tint="@color/white" />
-    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
