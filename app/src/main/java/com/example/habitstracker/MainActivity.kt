@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         mainClass = ActivityMainBinding.inflate(layoutInflater)
 
         MAIN = this
-//        SaveCurrentStreakUseCase().execute(false)
 
         switchTheme.execute(getNameTheme.execute())
         setContentView(mainClass.root)

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.example.habitstracker.MAIN
 import com.example.habitstracker.R
 import com.example.habitstracker.STATUS
@@ -27,6 +28,9 @@ class FinishHabitsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        var mainCoordinator = MAIN.findViewById<CoordinatorLayout>(R.id.main_coord_lay)
+        mainCoordinator.visibility = View.GONE
 
         val recyclerview = finishHabitsClass.List
         recyclerview.layoutManager = LinearLayoutManager(MAIN)

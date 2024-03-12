@@ -36,6 +36,7 @@ class FinishHabitsAdapter(
     private fun returnHabit(id: Int, position: Int){
         val item = GetHabitsFromDBUseCase().execute(ID, arrayOf(id.toString()))
         item[0].status = 0
+        item[0].date_of_week -= 1
         UpdateHabitUseCase().execute(item[0])
 
         val mutableList = mList.toMutableList()

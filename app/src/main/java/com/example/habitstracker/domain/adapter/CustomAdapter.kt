@@ -47,6 +47,7 @@ class CustomAdapter(var mList: List<ItemsViewModel>) : RecyclerView.Adapter<Cust
     private fun markCompleted(position: Int, id: Int) {
         val item = GetHabitsFromDBUseCase().execute(ID, arrayOf(id.toString()))
         item[0].status = 1
+        item[0].date_of_week += 1
         UpdateHabitUseCase().execute(item[0])
 
         val mutableList = mList.toMutableList()

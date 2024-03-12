@@ -34,7 +34,7 @@ class DBManager(context: Context) {
     fun readData(column: String, args: Array<String>): ArrayList<HabitGetViewModel>{
         var result = ArrayList<HabitGetViewModel>()
 
-        val cursor = db?.query(DBObject.TABLE_NAME, null, "$column = ?", args, null, null, null)
+        val cursor = db?.query(DBObject.TABLE_NAME, null, "$column = ? OR $column = ?", args, null, null, null)
 
         while (cursor?.moveToNext()!!){
             val id = cursor.getInt(cursor.getColumnIndex(BaseColumns._ID))

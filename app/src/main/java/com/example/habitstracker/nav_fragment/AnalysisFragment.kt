@@ -36,7 +36,7 @@ class AnalysisFragment : Fragment() {
         recyclerview.layoutManager = LinearLayoutManager(MAIN)
         val data = ArrayList<ProgressViewModel>()
 
-        GetHabitsFromDBUseCase().execute(STATUS, arrayOf("0")).forEach {
+        GetHabitsFromDBUseCase().execute(STATUS, arrayOf("0", "1")).forEach {
             data.add(ProgressViewModel(it.title, " from 7 days target", it.date_of_week))
         }
 
