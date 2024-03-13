@@ -12,12 +12,11 @@ import android.widget.EditText
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.habitstracker.*
 import com.example.habitstracker.domain.adapter.CustomAdapter
 import com.example.habitstracker.domain.model.ItemsViewModel
-import com.example.habitstracker.MAIN
-import com.example.habitstracker.R
-import com.example.habitstracker.STATUS
 import com.example.habitstracker.databinding.FragmentHomeBinding
+import com.example.habitstracker.domain.model.HabitFinishItemModel
 import com.example.habitstracker.domain.model.HabitViewModel
 import com.example.habitstracker.domain.useCase.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -25,14 +24,9 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), DialogFinishHabit.OnDialogDismissListener {
     private lateinit var homeClass: FragmentHomeBinding
     lateinit var adapter: CustomAdapter
-    private val getWeeklyDate = GetWeeklyDateUseCase()
-    private val getCurrentMonth = GetCurrentMonthUseCase()
-    private val getUserName = GetUserNameUseCase()
-    private val addHabit = AddHabitUseCase()
-    private val getHabits = GetHabitsFromDBUseCase()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -54,7 +48,10 @@ class HomeFragment : Fragment() {
         createCalendar()
         homeClass.CheckList.isNestedScrollingEnabled = false
         addPieChart()
+
         addCheckList()
+        checkFinishedHabits()
+
         homeClass.ActionButton.setOnClickListener {
             showAddDialog()
         }
@@ -82,7 +79,7 @@ class HomeFragment : Fragment() {
         }
     }
     private fun setName(){
-        homeClass.Hello.text = "Hello, ${getUserName.execute()}"
+        homeClass.Hello.text = "Hello, ${GetUserNameUseCase().execute()}"
     }
 
     @SuppressLint("ResourceType")
@@ -96,14 +93,13 @@ class HomeFragment : Fragment() {
         createButton.setOnClickListener {
             val title = dialog.findViewById<EditText>(R.id.NameGoal).text.toString()
             val period = dialog.findViewById<EditText>(R.id.editTextNumber).text.toString().toInt()
-            if(title.length in 1..255 && period in 2..365) {
-                addHabit.execute(HabitViewModel(0, title, period, 0, 0, 0, 0))
+//            if(title.length in 1..255 && period in 2..365) {
+                AddHabitUseCase().execute(HabitViewModel(0, title, period, 0, 0, 0, 0))
                 dialog.cancel()
 
                 addCheckList()
                 addPieChart()
-            }
-
+//            }
         }
     }
 
@@ -120,7 +116,7 @@ class HomeFragment : Fragment() {
         recyclerview.layoutManager = LinearLayoutManager(MAIN)
 
         val data = ArrayList<ItemsViewModel>()
-        getHabits.execute(STATUS, arrayOf("0")).forEach {
+        GetHabitsFromDBUseCase().execute(STATUS, arrayOf("0")).forEach {
             data.add(ItemsViewModel(it.id, it.title, "Current: ${it.current}", "Best: ${it.best}"))
         }
 
@@ -128,12 +124,28 @@ class HomeFragment : Fragment() {
         recyclerview.adapter = adapter
     }
 
+    private fun checkFinishedHabits(){
+        val habits = GetHabitsFromDBUseCase().execute(PERIOD, arrayOf("0"))
+        habits.forEach {
+            showFinishDialog(it.id)
+        }
+    }
+
+    private fun showFinishDialog(id: Int){
+        val dialog = DialogFinishHabit.newInstance(id)
+        dialog.setOnDialogDismissListener(this)
+        dialog.show(MAIN.supportFragmentManager, "dialog")
+    }
+
+    override fun onDialogDismissed() {
+        adapter.notifyDataSetChanged()
+    }
     private fun createCalendar(){
 
-        val weeklyDate = getWeeklyDate.execute()
-        val currentMonth = getCurrentMonth.execute()
+        val weeklyDate = GetWeeklyDateUseCase().execute()
+        val currentMonth = GetCurrentMonthUseCase().execute()
 
-        setColorDate(getWeeklyDate.getDayInWeek())
+        setColorDate(GetWeeklyDateUseCase().getDayInWeek())
 
         homeClass.tvDay1.text = weeklyDate[0].toString()
         homeClass.tvDay2.text = weeklyDate[1].toString()
