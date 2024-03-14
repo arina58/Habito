@@ -1,13 +1,13 @@
-package com.example.habitstracker
+package com.example.habitstracker.domain.dialogs
 
-import android.app.Dialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.*
 import android.view.Gravity.CENTER
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.fragment.app.DialogFragment
+import com.example.habitstracker.ID
+import com.example.habitstracker.MAIN
 import com.example.habitstracker.databinding.WindowCompletedHabitBinding
 import com.example.habitstracker.domain.useCase.DeleteHabitUseCase
 import com.example.habitstracker.domain.useCase.GetHabitsFromDBUseCase
@@ -15,12 +15,6 @@ import com.example.habitstracker.domain.useCase.UpdateHabitUseCase
 
 class DialogFinishHabit: DialogFragment() {
     private lateinit var finishHabitClass : WindowCompletedHabitBinding
-
-    interface OnDialogDismissListener {
-        fun onDialogDismissed()
-    }
-
-    private var dismissListener: OnDialogDismissListener? = null
 
     companion object {
         fun newInstance(value: Int): DialogFinishHabit {
@@ -66,7 +60,10 @@ class DialogFinishHabit: DialogFragment() {
         finishHabitClass.NameGoal.text = habit[0].title
 
         finishHabitClass.ButtonFinish.setOnClickListener {
+            MAIN.vmHome.updateData(-1, GetHabitsFromDBUseCase().execute(ID, arrayOf("$id"))[0])
+            MAIN.vmHome.updateChart(-1)
             DeleteHabitUseCase().execute(id)
+
             dismiss()
         }
 
@@ -85,14 +82,5 @@ class DialogFinishHabit: DialogFragment() {
                 dismiss()
             }
         }
-    }
-
-    fun setOnDialogDismissListener(listener: OnDialogDismissListener) {
-        dismissListener = listener
-    }
-
-    override fun onDismiss(dialog: DialogInterface) {
-        super.onDismiss(dialog)
-        dismissListener?.onDialogDismissed()
     }
 }

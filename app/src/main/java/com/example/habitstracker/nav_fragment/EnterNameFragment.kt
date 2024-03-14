@@ -5,16 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.habitstracker.MAIN
-import com.example.habitstracker.R
+import androidx.lifecycle.ViewModelProvider
 import com.example.habitstracker.databinding.FragmentEnterNameBinding
-import com.example.habitstracker.domain.useCase.SaveUserNameUseCase
-
+import com.example.habitstracker.viewModel.UserNameViewModel
 
 class EnterNameFragment : Fragment() {
 
     private lateinit var enterNameClass: FragmentEnterNameBinding
-    private val saveUserName = SaveUserNameUseCase()
+    private lateinit var vm: UserNameViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,12 +23,9 @@ class EnterNameFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        vm = ViewModelProvider(this)[UserNameViewModel::class.java]
         enterNameClass.nameEnterCont.setOnClickListener {
-            if(enterNameClass.EditUsername.text.toString() != "") {
-                saveUserName.execute(enterNameClass.EditUsername.text.toString())
-                MAIN.navController.navigate(R.id.action_enterNameFragment_to_homeFragment)
-            }
+            vm.saveUserName(enterNameClass.EditUsername.text.toString())
         }
     }
 }
