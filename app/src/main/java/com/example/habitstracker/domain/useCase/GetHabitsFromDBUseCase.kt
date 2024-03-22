@@ -1,20 +1,22 @@
 package com.example.habitstracker.domain.useCase
 
-import com.example.habitstracker.MAIN
+import android.content.Context
 import com.example.habitstracker.data.DBManager
-import com.example.habitstracker.domain.model.HabitViewModel
+import com.example.habitstracker.domain.model.HabitData
 
 class GetHabitsFromDBUseCase {
-    fun execute(column: String, args: Array<String>): ArrayList<HabitViewModel> {
-        val db = DBManager(MAIN)
+    fun execute(column: String, args: Array<String>, context: Context): ArrayList<HabitData> {
+        val db = DBManager(context)
         db.openDB()
         val result = db.readData(column, args)
         db.closeDB()
-        val habitsArray = ArrayList<HabitViewModel>()
+        val habitsArray = ArrayList<HabitData>()
         result.forEach {
-            val value = HabitViewModel(it.id, it.title, it.period, it.status, it.date_of_week, it.current, it.best)
+            val value = HabitData(it.id, it.title, it.period,
+                it.status, it.date_of_week, it.current, it.best, it.description)
             habitsArray.add(value)
         }
+
         return habitsArray
     }
 }

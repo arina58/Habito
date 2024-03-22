@@ -8,10 +8,20 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.habitstracker.R
-import com.example.habitstracker.domain.model.ProgressViewModel
+import com.example.habitstracker.domain.model.ProgressData
 
-class ProgressBarAdapter(private val mList: List<ProgressViewModel>) :
+class ProgressBarAdapter(private var mList: List<ProgressData>) :
     RecyclerView.Adapter<ProgressBarAdapter.ViewHolder>() {
+
+    private var clickListener: ((ProgressData) -> Unit)? = null
+
+    fun setOnItemClickListener(listener: (ProgressData) -> Unit) {
+        clickListener = listener
+    }
+
+    fun setData(data: List<ProgressData>){
+        mList = data
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         val view = LayoutInflater.from(parent.context)
@@ -25,9 +35,13 @@ class ProgressBarAdapter(private val mList: List<ProgressViewModel>) :
         val progressViewModel = mList[position]
 
         holder.nameItem.text = progressViewModel.ItemName
-        holder.description.text = progressViewModel.Num.toString() + progressViewModel.text
+        holder.description.text = progressViewModel.Count.toString() + progressViewModel.text
         holder.bar.max = 7
-        ObjectAnimator.ofInt(holder.bar, "progress",progressViewModel.Num).setDuration(1000).start()
+        ObjectAnimator.ofInt(holder.bar, "progress",progressViewModel.Count).setDuration(1000).start()
+
+        holder.itemView.setOnClickListener {
+            clickListener?.invoke(progressViewModel)
+        }
     }
 
     override fun getItemCount(): Int {

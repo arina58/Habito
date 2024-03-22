@@ -55,12 +55,12 @@ class DialogFinishHabit: DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val id = arguments!!.getInt("id", 0)
-        var habit = GetHabitsFromDBUseCase().execute(ID, arrayOf("$id"))
+        val habit = GetHabitsFromDBUseCase().execute(ID, arrayOf("$id"), MAIN)
 
         finishHabitClass.NameGoal.text = habit[0].title
 
         finishHabitClass.ButtonFinish.setOnClickListener {
-            MAIN.vmHome.updateData(-1, GetHabitsFromDBUseCase().execute(ID, arrayOf("$id"))[0])
+            MAIN.vmHome.updateData(-1, GetHabitsFromDBUseCase().execute(ID, arrayOf("$id"), MAIN)[0])
             MAIN.vmHome.updateChart(-1)
             DeleteHabitUseCase().execute(id)
 
@@ -77,7 +77,7 @@ class DialogFinishHabit: DialogFragment() {
         finishHabitClass.ButtonProlong.setOnClickListener {
             if(finishHabitClass.editTextNumber.text.toString().toInt() in 2..365){
                 habit[0].period = finishHabitClass.editTextNumber.text.toString().toInt()
-                UpdateHabitUseCase().execute(habit[0])
+                UpdateHabitUseCase().execute(habit[0], MAIN)
 
                 dismiss()
             }

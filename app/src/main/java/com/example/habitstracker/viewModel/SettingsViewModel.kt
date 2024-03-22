@@ -7,17 +7,18 @@ import com.example.habitstracker.domain.useCase.*
 
 class SettingsViewModel: ViewModel() {
     var stateSwitchTheme = MutableLiveData<Boolean>()
-    var stateSwitchVibration = MutableLiveData<Boolean>()
-    var valueSoundSlider = MutableLiveData<Float>()
+    var stateNotification = MutableLiveData<Boolean>()
 
     init{
-        setSwitch()
-        setSoundAndVibration()
-    }
+        stateNotification.value = GetReceiveNotificationsUseCase().execute()
 
-    private fun setSwitch(){
         if(GetNameThemeUseCase().execute() == DARK_THEME)
             stateSwitchTheme.value = true
+    }
+
+    fun changeNotification(state: Boolean){
+        SaveReceiveNotificationsUseCase().execute(state)
+        SetNotificationUseCase().execute()
     }
 
     fun changeTheme (state: Boolean){
@@ -29,21 +30,5 @@ class SettingsViewModel: ViewModel() {
             SaveNameThemeUseCase().execute(LIGHT_THEME)
             SwitchThemeUseCase().execute(LIGHT_THEME)
         }
-    }
-
-    fun changeVibration (state: Boolean){
-        if(state){
-            SaveVibrationUseCase().execute(true)
-        }else{
-            SaveVibrationUseCase().execute(false)
-        }
-    }
-    fun saveSound(value: Float){
-        SaveSoundUseCase().execute(value)
-    }
-
-    private fun setSoundAndVibration(){
-        stateSwitchVibration.value = GetSoundAndVibrationUseCase().getVibration()
-        valueSoundSlider.value = GetSoundAndVibrationUseCase().getSound()
     }
 }

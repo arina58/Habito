@@ -51,17 +51,27 @@ class DialogChangeHabit: DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val id = arguments!!.getInt("id", 0)
-        val item = GetHabitsFromDBUseCase().execute(ID, arrayOf("$id"))
+        val item = GetHabitsFromDBUseCase().execute(ID, arrayOf("$id"), MAIN)
 
         changeHabitClass.NameGoal.text = Editable.Factory.getInstance().newEditable(item[0].title)
         changeHabitClass.editTextNumber.text = Editable.Factory.getInstance().newEditable(item[0].period.toString())
+        changeHabitClass.description.text = Editable.Factory.getInstance().newEditable(item[0].description)
 
         changeHabitClass.ButtonCreate.setOnClickListener {
-            if (changeHabitClass.NameGoal.text.toString().length in 1..50 && changeHabitClass.editTextNumber.text.toString() != "" && changeHabitClass.editTextNumber.text.toString().length < 4 && changeHabitClass.editTextNumber.text.toString().toInt() in 2..365) {
+            if (changeHabitClass.NameGoal.text.toString().length in 1..50 &&
+                changeHabitClass.editTextNumber.text.toString() != "" &&
+                changeHabitClass.editTextNumber.text.toString().length < 4 &&
+                changeHabitClass.editTextNumber.text.toString().toInt() in 2..365 &&
+                changeHabitClass.description.text.length <= 100) {
                 item[0].period = changeHabitClass.editTextNumber.text.toString().toInt()
                 item[0].title = changeHabitClass.NameGoal.text.toString()
-                UpdateHabitUseCase().execute(item[0])
+                item[0].description = changeHabitClass.description.text.toString()
+                UpdateHabitUseCase().execute(item[0], MAIN)
                 MAIN.vmHome.updateData(0, item[0])
+
+                if(MAIN.vmAnalysis != null){
+                    MAIN.vmAnalysis?.updateData(item[0].id)
+                }
                 dismiss()
             }
         }

@@ -12,19 +12,19 @@ import com.example.habitstracker.ID
 import com.example.habitstracker.MAIN
 import com.example.habitstracker.R
 import com.example.habitstracker.domain.dialogs.DialogChangeHabit
-import com.example.habitstracker.domain.model.ItemsViewModel
+import com.example.habitstracker.domain.model.ItemsData
 import com.example.habitstracker.domain.useCase.DeleteHabitUseCase
 import com.example.habitstracker.domain.useCase.GetHabitsFromDBUseCase
 import com.example.habitstracker.domain.useCase.UpdateHabitUseCase
 
-class CustomAdapter(var mList: List<ItemsViewModel>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class CustomAdapter(private var mList: List<ItemsData>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_of_list, parent, false)
         return ViewHolder(view)
     }
 
-    fun setData(data: List<ItemsViewModel>){
+    fun setData(data: List<ItemsData>){
         mList = data
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -44,13 +44,14 @@ class CustomAdapter(var mList: List<ItemsViewModel>) : RecyclerView.Adapter<Cust
         }
     }
     private fun markCompleted(id: Int) {
-        val item = GetHabitsFromDBUseCase().execute(ID, arrayOf(id.toString()))
+        val item = GetHabitsFromDBUseCase().execute(ID, arrayOf(id.toString()), MAIN)
         item[0].status = 1
         item[0].date_of_week += 1
-        UpdateHabitUseCase().execute(item[0])
+        UpdateHabitUseCase().execute(item[0], MAIN)
 
         MAIN.vmHome.updateData(-1, item[0])
         MAIN.vmHome.updateDone()
+        MAIN.vmAnalysis?.updateData(id)
     }
 
     override fun getItemCount(): Int {
@@ -77,11 +78,12 @@ class CustomAdapter(var mList: List<ItemsViewModel>) : RecyclerView.Adapter<Cust
                     true
                 }
                 R.id.delete -> {
-                    val item = GetHabitsFromDBUseCase().execute(ID, arrayOf("${mList[position].id}"))
+                    val item = GetHabitsFromDBUseCase().execute(ID, arrayOf("${mList[position].id}"), MAIN)
                     DeleteHabitUseCase().execute(mList[position].id)
                     MAIN.vmHome.updateData(-1, item[0])
 
                     MAIN.vmHome.updateChart(-1)
+                    MAIN.vmAnalysis?.deleteItem(item[0].id)
                     true
                 }
                 else -> false

@@ -8,6 +8,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.habitstracker.databinding.ActivityMainBinding
 import com.example.habitstracker.domain.useCase.*
+import com.example.habitstracker.viewModel.AnalysisViewModel
 import com.example.habitstracker.viewModel.HomeViewModel
 import com.example.habitstracker.viewModel.MainViewModel
 import java.util.*
@@ -15,6 +16,7 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mainClass: ActivityMainBinding
+    var vmAnalysis: AnalysisViewModel? = null
     lateinit var navController: NavController
     private lateinit var vm: MainViewModel
     lateinit var vmHome: HomeViewModel
@@ -24,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mainClass = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mainClass.root)
-
         MAIN = this
         vm = ViewModelProvider(this)[MainViewModel::class.java]
         navController = Navigation.findNavController(this, R.id.navHostFragment)

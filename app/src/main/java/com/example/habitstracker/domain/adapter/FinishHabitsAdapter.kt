@@ -6,13 +6,14 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import com.example.habitstracker.ID
+import com.example.habitstracker.MAIN
 import com.example.habitstracker.databinding.FragmentFinishHabitsBinding
-import com.example.habitstracker.domain.model.HabitFinishItemModel
+import com.example.habitstracker.domain.model.HabitFinishItemData
 import com.example.habitstracker.domain.useCase.GetHabitsFromDBUseCase
 import com.example.habitstracker.domain.useCase.UpdateHabitUseCase
 
 class FinishHabitsAdapter(
-    private var mList: List<HabitFinishItemModel>) : RecyclerView.Adapter<FinishHabitsAdapter.ViewHolder>() {
+    private var mList: List<HabitFinishItemData>) : RecyclerView.Adapter<FinishHabitsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -34,10 +35,10 @@ class FinishHabitsAdapter(
     }
 
     private fun returnHabit(id: Int, position: Int){
-        val item = GetHabitsFromDBUseCase().execute(ID, arrayOf(id.toString()))
+        val item = GetHabitsFromDBUseCase().execute(ID, arrayOf(id.toString()), MAIN)
         item[0].status = 0
         item[0].date_of_week -= 1
-        UpdateHabitUseCase().execute(item[0])
+        UpdateHabitUseCase().execute(item[0], MAIN)
 
         val mutableList = mList.toMutableList()
         mutableList.removeAt(position)
@@ -46,6 +47,8 @@ class FinishHabitsAdapter(
         if (position != mList.size) {
             notifyItemRangeChanged(position, mList.size - position)
         }
+
+        MAIN.vmAnalysis?.updateData(id)
     }
 
     override fun getItemCount(): Int = mList.size

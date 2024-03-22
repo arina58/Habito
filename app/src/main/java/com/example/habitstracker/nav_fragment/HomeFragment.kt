@@ -8,9 +8,12 @@ import android.view.ViewGroup
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.habitstracker.*
 import com.example.habitstracker.databinding.FragmentHomeBinding
+import com.example.habitstracker.domain.adapter.CustomAdapter
 import com.example.habitstracker.domain.dialogs.DialogAddHabit
+import com.example.habitstracker.domain.useCase.AddPieChartUseCase
 import com.example.habitstracker.viewModel.HomeViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -22,9 +25,9 @@ class HomeFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View {
         homeClass = FragmentHomeBinding.inflate(layoutInflater, container, false)
-        val mainCoor = MAIN.findViewById<CoordinatorLayout>(R.id.main_coord_lay)
+        val mainCoordination = MAIN.findViewById<CoordinatorLayout>(R.id.main_coord_lay)
         val bar = MAIN.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        mainCoor.visibility = View.VISIBLE
+        mainCoordination.visibility = View.VISIBLE
         bar.background = null
         return homeClass.root
     }
@@ -37,13 +40,24 @@ class HomeFragment : Fragment(){
         setMainParam()
         createCalendar()
         addPieChart()
-        vm.addCheckList(homeClass.CheckList)
+        addCheckList()
 
         homeClass.ActionButton.setOnClickListener {
             DialogAddHabit().show(MAIN.supportFragmentManager, "dialogAdd")
         }
         homeClass.FinishButton.setOnClickListener {
             MAIN.navController.navigate(R.id.action_homeFragment_to_finishHabitsFragment)
+        }
+    }
+
+    private fun addCheckList(){
+        homeClass.CheckList.layoutManager = LinearLayoutManager(MAIN)
+        homeClass.CheckList.adapter = CustomAdapter(vm.data.value!!)
+
+        vm.updateCheckList.observe(this){
+            val adapter =  homeClass.CheckList.adapter as CustomAdapter
+            adapter.setData(vm.data.value!!)
+            homeClass.CheckList.adapter?.notifyDataSetChanged()
         }
     }
     private fun setMainParam(){
@@ -54,10 +68,10 @@ class HomeFragment : Fragment(){
     }
     private fun addPieChart(){
         vm.notDoneHabits.observe(this){
-            vm.addPieChart(homeClass.PieChart)
+            AddPieChartUseCase().execute(homeClass.PieChart, vm.doneHabits.value!!, vm.data.value!!.size)
         }
         vm.doneHabits.observe(MAIN){
-            vm.addPieChart(homeClass.PieChart)
+            AddPieChartUseCase().execute(homeClass.PieChart, vm.doneHabits.value!!, vm.data.value!!.size)
         }
         vm.label.observe(this){
             homeClass.DescDone.text = it

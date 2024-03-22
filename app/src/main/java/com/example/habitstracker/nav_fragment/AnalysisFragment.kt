@@ -6,7 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.habitstracker.MAIN
 import com.example.habitstracker.databinding.FragmentAnalysisBinding
+import com.example.habitstracker.domain.adapter.ProgressBarAdapter
 import com.example.habitstracker.viewModel.AnalysisViewModel
 
 class AnalysisFragment : Fragment() {
@@ -21,8 +24,35 @@ class AnalysisFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        vm = ViewModelProvider(this)[AnalysisViewModel::class.java]
+        MAIN.vmAnalysis = ViewModelProvider(this)[AnalysisViewModel::class.java]
+        vm = MAIN.vmAnalysis!!
         analysisClass.ProgressList.isNestedScrollingEnabled = false
-        vm.addProgressList(analysisClass.ProgressList)
+
+        analysisClass.ProgressList.layoutManager = LinearLayoutManager(MAIN)
+        val adapter = ProgressBarAdapter(vm.data.value!!)
+
+        adapter.setOnItemClickListener { progressData ->
+            vm.updateLabel(progressData)
+        }
+
+        analysisClass.ProgressList.adapter = adapter
+
+        vm.data.observe(this){
+            val adapter = analysisClass.ProgressList.adapter as ProgressBarAdapter
+            adapter.setData(vm.data.value!!)
+            analysisClass.ProgressList.adapter?.notifyDataSetChanged()
+        }
+
+        vm.title.observe(this){
+            analysisClass.Title.text = vm.title.value!!
+        }
+
+        vm.description.observe(this){
+            analysisClass.Description.text = vm.description.value!!
+        }
+
+        vm.days.observe(this){
+            analysisClass.DaysLeft.text = vm.days.value!!
+        }
     }
 }

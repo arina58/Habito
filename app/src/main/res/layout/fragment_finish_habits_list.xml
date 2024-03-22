@@ -38,6 +38,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-        tools:context=".nav_fragment.FinishHabitsFragment"
+        tools:context=".nav_fragment.FinishFragment"
         tools:listitem="@layout/fragment_finish_habits" />
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -7,16 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.lifecycle.ViewModelProvider
 import com.example.habitstracker.MAIN
 import com.example.habitstracker.R
-import com.example.habitstracker.STATUS
 import com.example.habitstracker.databinding.FragmentFinishHabitsListBinding
 import com.example.habitstracker.domain.adapter.FinishHabitsAdapter
-import com.example.habitstracker.domain.model.HabitFinishItemModel
-import com.example.habitstracker.domain.useCase.GetHabitsFromDBUseCase
+import com.example.habitstracker.viewModel.FinishViewModel
 
-class FinishHabitsFragment : Fragment() {
+class FinishFragment : Fragment() {
     private lateinit var finishHabitsClass: FragmentFinishHabitsListBinding
+    private lateinit var vm: FinishViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,19 +29,13 @@ class FinishHabitsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var mainCoordinator = MAIN.findViewById<CoordinatorLayout>(R.id.main_coord_lay)
+        val mainCoordinator = MAIN.findViewById<CoordinatorLayout>(R.id.main_coord_lay)
         mainCoordinator.visibility = View.GONE
 
-        val recyclerview = finishHabitsClass.List
-        recyclerview.layoutManager = LinearLayoutManager(MAIN)
+        vm = ViewModelProvider(this)[FinishViewModel::class.java]
 
-        val data = ArrayList<HabitFinishItemModel>()
-        GetHabitsFromDBUseCase().execute(STATUS, arrayOf("1")).forEach {
-            data.add(HabitFinishItemModel(it.id, it.title))
-        }
-
-        val adapter = FinishHabitsAdapter(data)
-        recyclerview.adapter = adapter
+        finishHabitsClass.List.layoutManager = LinearLayoutManager(MAIN)
+        finishHabitsClass.List.adapter = vm.data.value?.let { FinishHabitsAdapter(it) }
 
         finishHabitsClass.topAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {

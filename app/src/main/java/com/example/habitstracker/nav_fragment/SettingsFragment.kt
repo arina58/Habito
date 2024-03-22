@@ -12,7 +12,6 @@ import com.example.habitstracker.R
 import com.example.habitstracker.databinding.FragmentSettingsBinding
 import com.example.habitstracker.viewModel.SettingsViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.slider.Slider
 
 class SettingsFragment : Fragment() {
     private lateinit var settingsClass: FragmentSettingsBinding
@@ -27,26 +26,22 @@ class SettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val mainCoor = MAIN.findViewById<CoordinatorLayout>(R.id.main_coord_lay)
+        val mainCoordination = MAIN.findViewById<CoordinatorLayout>(R.id.main_coord_lay)
         val bar = MAIN.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        mainCoor.visibility = View.VISIBLE
+        mainCoordination.visibility = View.VISIBLE
         bar.background = null
 
         vm = ViewModelProvider(this)[SettingsViewModel::class.java]
 
         settingsClass.SwitchTheme.isChecked = vm.stateSwitchTheme.value == true
-        settingsClass.SwitchVibration.isChecked = vm.stateSwitchVibration.value!!
-        settingsClass.soundSlider.value = vm.valueSoundSlider.value!!
+        settingsClass.NotificationSwitch.isChecked = vm.stateNotification.value!!
+
+        settingsClass.NotificationSwitch.setOnClickListener{
+            vm.changeNotification(settingsClass.NotificationSwitch.isChecked)
+        }
 
         settingsClass.SwitchTheme.setOnClickListener{
             vm.changeTheme(settingsClass.SwitchTheme.isChecked)
         }
-
-        settingsClass.SwitchVibration.setOnClickListener {
-            vm.changeVibration(settingsClass.SwitchVibration.isChecked)
-        }
-
-        settingsClass.soundSlider.addOnChangeListener(Slider.OnChangeListener { slider, value, fromUser ->
-            vm.saveSound(value)})
     }
 }

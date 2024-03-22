@@ -5,8 +5,8 @@ import com.example.habitstracker.*
 
 class SaveCurrentStreakUseCase {
 
-    fun execute(flag: Boolean){
-        val pref = MAIN.getSharedPreferences("User", Context.MODE_PRIVATE)
+    fun execute(flag: Boolean, context: Context){
+        val pref = context.getSharedPreferences("User", Context.MODE_PRIVATE)
         var currentStreak = pref.getInt(CURRENT_STREAK, 0)
         val editor = pref?.edit()
         if(flag){

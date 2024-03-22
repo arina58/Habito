@@ -35,7 +35,7 @@
         tools:layout="@layout/fragment_settings"/>
     <fragment
         android:id="@+id/finishHabitsFragment"
-        android:name="com.example.habitstracker.nav_fragment.FinishHabitsFragment"
+        android:name="com.example.habitstracker.nav_fragment.FinishFragment"
         android:label="FinishHabitsFragment"
         tools:layout="@layout/fragment_finish_habits_list">
         <action

@@ -6,69 +6,91 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="13dp"
     tools:context=".MainActivity">
-    <ScrollView
+
+    <LinearLayout
+        android:id="@+id/infoLinear"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="57dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
+        android:divider="@drawable/separator"
+        android:background="@drawable/info_background"
+        android:dividerPadding="13dp"
+        android:orientation="vertical"
+        android:showDividers="middle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        <RelativeLayout
-            android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="30dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+
+        <TextView
+            android:id="@+id/Title"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="13dp">
-            <LinearLayout
-                android:id="@+id/Linear"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="0dp"
-                android:layout_marginLeft="0dp">
-                <CalendarView
-                    android:id="@+id/calendarView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:dateTextAppearance="@style/MyCalendarText"
-                    android:theme="@style/MyCalendar"
-                    android:weekDayTextAppearance="@style/MyCalendarText"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp">
-                    <TextView
-                        android:id="@+id/textView12"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Goals"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="30sp"
-                        style="@style/MyTextBold"
-                        android:layout_marginLeft="5dp"/>
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/ProgressList"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView12"
-                        android:layout_marginTop="10dp"
-                        tools:listitem="@layout/progress_bar"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </LinearLayout>
-        </RelativeLayout>
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            style="@style/MyTextBold"
+            android:textSize="16sp"
+            android:text="Habit name:"/>
+
+        <TextView
+            android:id="@+id/Description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            style="@style/MyTextBold"
+            android:textSize="16sp"
+            android:text="Description:"/>
+
+        <TextView
+            android:id="@+id/DaysLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            style="@style/MyTextBold"
+            android:textSize="16sp"
+            android:text="Days left:"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text2"
+        style="@style/MyTextBold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Habits progress"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/infoLinear" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text2">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ProgressList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            tools:listitem="@layout/progress_bar" />
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

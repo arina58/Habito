@@ -8,19 +8,12 @@ import com.example.habitstracker.*
 import com.example.habitstracker.domain.dialogs.DialogFinishHabit
 import com.example.habitstracker.domain.useCase.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import java.util.Calendar
 
 class MainViewModel: ViewModel() {
     init{
-        checkDate()
+        SetNotificationUseCase().execute()
+        SetMidnightProgressUseCase().execute()
         checkFinishedHabits()
-    }
-
-    private fun checkDate(){
-        if(GetLastDateUseCase().execute() < Calendar.DAY_OF_MONTH){
-            SaveCurrentDateUseCase().execute(Calendar.DAY_OF_MONTH)
-            ProgressHabitsUseCase().execute()
-        }
     }
 
     fun setNavController(navController: NavController, bottomNavigationView: BottomNavigationView){
@@ -45,7 +38,7 @@ class MainViewModel: ViewModel() {
     }
 
     private fun checkFinishedHabits(){
-        val habits = GetHabitsFromDBUseCase().execute(PERIOD, arrayOf("0"))
+        val habits = GetHabitsFromDBUseCase().execute(PERIOD, arrayOf("0"), MAIN)
         habits.forEach {
             showFinishDialog(it.id)
         }

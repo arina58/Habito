@@ -13,10 +13,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="30dp">
+            android:layout_margin="30dp"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView9"
@@ -47,7 +48,7 @@
                 android:id="@+id/LinearPeriod"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -75,9 +76,30 @@
                     android:inputType="number"
                     android:paddingLeft="5dp"
                     android:textSize="20sp" />
-
-
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView11"
+                style="@style/MyText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Description"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/description"
+                style="@style/MyText"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:background="@drawable/new_goal_item_back"
+                android:ems="10"
+                android:textColor="@color/black"
+                android:inputType="textMultiLine"
+                android:paddingLeft="5dp"
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/ButtonCreate"
@@ -91,7 +113,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/LinearPeriod"
                 app:layout_constraintStart_toStartOf="@+id/LinearPeriod"
                 app:layout_constraintTop_toBottomOf="@+id/LinearPeriod" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,6 @@
 package com.example.habitstracker.domain.useCase
 
 import java.util.*
-import java.util.Calendar.DAY_OF_MONTH
 
 class GetWeeklyDateUseCase {
     private val cal: Calendar = Calendar.getInstance()
@@ -9,12 +8,12 @@ class GetWeeklyDateUseCase {
     fun execute(): MutableList<Int> {
 
 
-        var days = mutableListOf<Int>()
-        cal.add(Calendar.DAY_OF_WEEK, Calendar.MONDAY - dayOfWeek)
+        val days = mutableListOf<Int>()
 
+        cal.add(Calendar.DAY_OF_MONTH, -(dayOfWeek - 1))
         for(i in 1..7){
-            days.add(cal[DAY_OF_MONTH])
-            cal.add(Calendar.DAY_OF_WEEK, 1)
+            days.add(cal.get(Calendar.DAY_OF_MONTH))
+            cal.add(Calendar.DAY_OF_MONTH, 1)
         }
 
         return days

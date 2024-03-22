@@ -5,8 +5,8 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.provider.BaseColumns
-import com.example.habitstracker.data.model.HabitGetViewModel
-import com.example.habitstracker.data.model.HabitInsertViewModel
+import com.example.habitstracker.data.model.HabitGetData
+import com.example.habitstracker.data.model.HabitInsertData
 
 class DBManager(context: Context) {
     private val myDBHelper = DBHelper(context)
@@ -16,7 +16,7 @@ class DBManager(context: Context) {
         db = myDBHelper.writableDatabase
     }
 
-    fun insertToDB(habit: HabitInsertViewModel){
+    fun insertToDB(habit: HabitInsertData){
         val values = ContentValues().apply {
             put(DBObject.COLUMN_NAME_TITLE, habit.title)
             put(DBObject.COLUMN_NAME_PERIOD, habit.period)
@@ -24,6 +24,7 @@ class DBManager(context: Context) {
             put(DBObject.COLUMN_NAME_DAYS_OF_WEEK, 0)
             put(DBObject.COLUMN_NAME_CURRENT, 0)
             put(DBObject.COLUMN_NAME_BEST, 0)
+            put(DBObject.COLUMN_DESCRIPTION, habit.description)
         }
 
         db?.insert(DBObject.TABLE_NAME, null, values)
@@ -31,8 +32,8 @@ class DBManager(context: Context) {
     }
 
     @SuppressLint("Range")
-    fun readData(column: String, args: Array<String>): ArrayList<HabitGetViewModel>{
-        var result = ArrayList<HabitGetViewModel>()
+    fun readData(column: String, args: Array<String>): ArrayList<HabitGetData>{
+        val result = ArrayList<HabitGetData>()
 
         val cursor = db?.query(DBObject.TABLE_NAME, null, "$column = ? OR $column = ?", args, null, null, null)
 
@@ -44,8 +45,9 @@ class DBManager(context: Context) {
             val dayOfWeek = cursor.getInt(cursor.getColumnIndex(DBObject.COLUMN_NAME_DAYS_OF_WEEK))
             val current = cursor.getInt(cursor.getColumnIndex(DBObject.COLUMN_NAME_CURRENT))
             val best = cursor.getInt(cursor.getColumnIndex(DBObject.COLUMN_NAME_BEST))
+            val description = cursor.getString(cursor.getColumnIndex(DBObject.COLUMN_DESCRIPTION))
 
-            val user = HabitGetViewModel(id, title, period, status, dayOfWeek, current, best)
+            val user = HabitGetData(id, title, period, status, dayOfWeek, current, best, description)
             result.add(user)
         }
         cursor.close()
@@ -53,8 +55,8 @@ class DBManager(context: Context) {
     }
 
     @SuppressLint("Range")
-    fun readLastRecord(): HabitGetViewModel? {
-        var result: HabitGetViewModel? = null
+    fun readLastRecord(): HabitGetData? {
+        var result: HabitGetData? = null
 
         val query = "SELECT * FROM ${DBObject.TABLE_NAME} WHERE ${BaseColumns._ID} = (SELECT MAX(${BaseColumns._ID}) FROM ${DBObject.TABLE_NAME})"
         val cursor = db?.rawQuery(query, null)
@@ -68,8 +70,9 @@ class DBManager(context: Context) {
                 val dayOfWeek = cursor.getInt(cursor.getColumnIndex(DBObject.COLUMN_NAME_DAYS_OF_WEEK))
                 val current = cursor.getInt(cursor.getColumnIndex(DBObject.COLUMN_NAME_CURRENT))
                 val best = cursor.getInt(cursor.getColumnIndex(DBObject.COLUMN_NAME_BEST))
+                val description = cursor.getString(cursor.getColumnIndex(DBObject.COLUMN_DESCRIPTION))
 
-                result = HabitGetViewModel(id, title, period, status, dayOfWeek, current, best)
+                result = HabitGetData(id, title, period, status, dayOfWeek, current, best, description)
             }
         }
         return result

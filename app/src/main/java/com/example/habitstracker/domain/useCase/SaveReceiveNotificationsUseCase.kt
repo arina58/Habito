@@ -2,15 +2,13 @@ package com.example.habitstracker.domain.useCase
 
 import android.content.Context
 import com.example.habitstracker.MAIN
-import com.example.habitstracker.SOUND
+import com.example.habitstracker.RECEIVE_NOTIFICATION
 
-class SaveSoundUseCase {
-
-    fun execute(Value: Float){
+class SaveReceiveNotificationsUseCase {
+    fun execute(state: Boolean){
         val pref = MAIN.getSharedPreferences("User", Context.MODE_PRIVATE)
         val editor = pref?.edit()
-        editor?.putFloat(SOUND, Value)
+        editor?.putBoolean(RECEIVE_NOTIFICATION, state)
         editor?.apply()
     }
-
 }
