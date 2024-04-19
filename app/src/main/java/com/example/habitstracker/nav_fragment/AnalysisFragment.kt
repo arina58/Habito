@@ -29,9 +29,9 @@ class AnalysisFragment : Fragment() {
         analysisClass.ProgressList.isNestedScrollingEnabled = false
 
         analysisClass.ProgressList.layoutManager = LinearLayoutManager(MAIN)
-        val adapter = ProgressBarAdapter(vm.data.value!!)
+        val adapter = vm.data.value?.let { ProgressBarAdapter(it) }
 
-        adapter.setOnItemClickListener { progressData ->
+        adapter?.setOnItemClickListener { progressData ->
             vm.updateLabel(progressData)
         }
 
@@ -44,15 +44,15 @@ class AnalysisFragment : Fragment() {
         }
 
         vm.title.observe(this){
-            analysisClass.Title.text = vm.title.value!!
+            analysisClass.Title.text = vm.title.value
         }
 
         vm.description.observe(this){
-            analysisClass.Description.text = vm.description.value!!
+            analysisClass.Description.text = vm.description.value
         }
 
         vm.days.observe(this){
-            analysisClass.DaysLeft.text = vm.days.value!!
+            analysisClass.DaysLeft.text = vm.days.value
         }
     }
 }

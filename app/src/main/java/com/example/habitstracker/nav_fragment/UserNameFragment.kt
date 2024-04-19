@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.habitstracker.databinding.FragmentEnterNameBinding
 import com.example.habitstracker.viewModel.UserNameViewModel
 
-class EnterNameFragment : Fragment() {
+class UserNameFragment : Fragment() {
 
     private lateinit var enterNameClass: FragmentEnterNameBinding
     private lateinit var vm: UserNameViewModel
@@ -25,7 +25,7 @@ class EnterNameFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         vm = ViewModelProvider(this)[UserNameViewModel::class.java]
         enterNameClass.nameEnterCont.setOnClickListener {
-            vm.saveUserName(enterNameClass.EditUsername.text.toString())
+            vm.saveUserName(enterNameClass.EditUsername.text)
         }
     }
 }

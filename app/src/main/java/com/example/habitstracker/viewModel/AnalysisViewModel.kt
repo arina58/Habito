@@ -21,13 +21,20 @@ class AnalysisViewModel: ViewModel() {
         val dataStart = ArrayList<ProgressData>()
 
         GetHabitsFromDBUseCase().execute(STATUS, arrayOf("0", "1"), MAIN).forEach {
-            dataStart.add(ProgressData(it.id, it.title, " from 7 days target", it.date_of_week, it.description, it.period))
+            dataStart.add(ProgressData(it.id, it.title, " from 7 days target",
+                it.date_of_week, it.description, it.period))
         }
 
         data.value = dataStart
     }
 
-    fun updateData(id: Int) {
+    fun updateLabel(progressData: ProgressData){
+        id = progressData.id
+        title.value = "Habit name: ${progressData.ItemName}"
+        description.value = "Description: ${progressData.Description}"
+        days.value = "Days left: ${progressData.Period}"
+    }
+    fun updateItem(id: Int) {
         val item = GetHabitsFromDBUseCase().execute(ID, arrayOf("$id"), MAIN)
         data.value?.forEach {
             if(it.id == item[0].id){
@@ -42,13 +49,6 @@ class AnalysisViewModel: ViewModel() {
                 }
             }
         }
-    }
-
-    fun updateLabel(progressData: ProgressData){
-        id = progressData.id
-        title.value = "Habit name: ${progressData.ItemName}"
-        description.value = "Description: ${progressData.Description}"
-        days.value = "Days left: ${progressData.Period}"
     }
 
     fun deleteItem(id: Int){

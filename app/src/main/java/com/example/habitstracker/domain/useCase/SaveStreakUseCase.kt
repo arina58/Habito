@@ -3,7 +3,7 @@ package com.example.habitstracker.domain.useCase
 import android.content.Context
 import com.example.habitstracker.*
 
-class SaveCurrentStreakUseCase {
+class SaveStreakUseCase {
 
     fun execute(flag: Boolean, context: Context){
         val pref = context.getSharedPreferences("User", Context.MODE_PRIVATE)

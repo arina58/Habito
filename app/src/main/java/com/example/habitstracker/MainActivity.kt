@@ -6,9 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.example.habitstracker.databinding.ActivityMainBinding
 import com.example.habitstracker.domain.useCase.*
 import com.example.habitstracker.viewModel.AnalysisViewModel
+import com.example.habitstracker.viewModel.FinishViewModel
 import com.example.habitstracker.viewModel.HomeViewModel
 import com.example.habitstracker.viewModel.MainViewModel
 import java.util.*
@@ -17,6 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mainClass: ActivityMainBinding
     var vmAnalysis: AnalysisViewModel? = null
+    var vmFinish: FinishViewModel? = null
     lateinit var navController: NavController
     private lateinit var vm: MainViewModel
     lateinit var vmHome: HomeViewModel
@@ -29,6 +33,16 @@ class MainActivity : AppCompatActivity() {
         MAIN = this
         vm = ViewModelProvider(this)[MainViewModel::class.java]
         navController = Navigation.findNavController(this, R.id.navHostFragment)
-        vm.setNavController(navController, mainClass.bottomNavigationView)
+
+        (supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment)
+            .also { navHost ->
+            val navInflater = navHost.navController.navInflater
+            val navGraph = navInflater.inflate(R.navigation.nav_graph).apply {
+                vm.startDestination.value?.let { setStartDestination(it) }
+            }
+            navHost.navController.graph = navGraph
+        }
+
+        mainClass.bottomNavigationView.setupWithNavController(navController)
     }
 }

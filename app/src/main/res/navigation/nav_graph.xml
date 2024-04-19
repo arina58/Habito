@@ -7,7 +7,7 @@
     app:startDestination="@id/enterNameFragment">
     <fragment
         android:id="@+id/enterNameFragment"
-        android:name="com.example.habitstracker.nav_fragment.EnterNameFragment"
+        android:name="com.example.habitstracker.nav_fragment.UserNameFragment"
         android:label="EnterNameFragment"
         tools:layout="@layout/fragment_enter_name">
         <action

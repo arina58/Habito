@@ -1,6 +1,7 @@
 package com.example.habitstracker.nav_fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import com.example.habitstracker.MAIN
 import com.example.habitstracker.R
 import com.example.habitstracker.databinding.FragmentFinishHabitsListBinding
 import com.example.habitstracker.domain.adapter.FinishHabitsAdapter
+import com.example.habitstracker.domain.model.HabitFinishItemData
 import com.example.habitstracker.viewModel.FinishViewModel
 
 class FinishFragment : Fragment() {
@@ -32,7 +34,8 @@ class FinishFragment : Fragment() {
         val mainCoordinator = MAIN.findViewById<CoordinatorLayout>(R.id.main_coord_lay)
         mainCoordinator.visibility = View.GONE
 
-        vm = ViewModelProvider(this)[FinishViewModel::class.java]
+        MAIN.vmFinish = ViewModelProvider(this)[FinishViewModel::class.java]
+        vm = MAIN.vmFinish!!
 
         finishHabitsClass.List.layoutManager = LinearLayoutManager(MAIN)
         finishHabitsClass.List.adapter = vm.data.value?.let { FinishHabitsAdapter(it) }
@@ -45,6 +48,15 @@ class FinishFragment : Fragment() {
                 }
                 else -> false
             }
+        }
+
+        vm.update.observe(this){
+            var data: ArrayList<HabitFinishItemData> = arrayListOf()
+            val adapter = finishHabitsClass.List.adapter as FinishHabitsAdapter
+            vm.data.value?.let { data = it }
+            adapter.setData(data)
+            Log.d("MY", "update")
+            finishHabitsClass.List.adapter?.notifyDataSetChanged()
         }
     }
 }

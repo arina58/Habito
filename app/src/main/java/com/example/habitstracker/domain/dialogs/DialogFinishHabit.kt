@@ -45,12 +45,6 @@ class DialogFinishHabit: DialogFragment() {
 
         return finishHabitClass.root
     }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        dialog?.setCancelable(false)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -60,7 +54,8 @@ class DialogFinishHabit: DialogFragment() {
         finishHabitClass.NameGoal.text = habit[0].title
 
         finishHabitClass.ButtonFinish.setOnClickListener {
-            MAIN.vmHome.updateData(-1, GetHabitsFromDBUseCase().execute(ID, arrayOf("$id"), MAIN)[0])
+            MAIN.vmHome.updateData(-1,
+                GetHabitsFromDBUseCase().execute(ID, arrayOf("$id"), MAIN)[0])
             MAIN.vmHome.updateChart(-1)
             DeleteHabitUseCase().execute(id)
 

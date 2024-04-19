@@ -20,4 +20,7 @@
         <item>3 week</item>
         <item>1 month</item>
     </string-array>
+
+    <string name="about_app">Habit Tracker is a simple app for tracking habits, to-do lists and self-development that helps you manage habits, set goals, make to-do lists and develop intelligence and productivity.
+    </string>
 </resources>

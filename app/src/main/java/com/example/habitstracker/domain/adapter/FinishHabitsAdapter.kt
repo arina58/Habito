@@ -12,8 +12,7 @@ import com.example.habitstracker.domain.model.HabitFinishItemData
 import com.example.habitstracker.domain.useCase.GetHabitsFromDBUseCase
 import com.example.habitstracker.domain.useCase.UpdateHabitUseCase
 
-class FinishHabitsAdapter(
-    private var mList: List<HabitFinishItemData>) : RecyclerView.Adapter<FinishHabitsAdapter.ViewHolder>() {
+class FinishHabitsAdapter(private var mList: List<HabitFinishItemData>) : RecyclerView.Adapter<FinishHabitsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -40,15 +39,8 @@ class FinishHabitsAdapter(
         item[0].date_of_week -= 1
         UpdateHabitUseCase().execute(item[0], MAIN)
 
-        val mutableList = mList.toMutableList()
-        mutableList.removeAt(position)
-        mList = mutableList.toList()
-        notifyItemRemoved(position)
-        if (position != mList.size) {
-            notifyItemRangeChanged(position, mList.size - position)
-        }
-
-        MAIN.vmAnalysis?.updateData(id)
+        MAIN.vmFinish?.deleteItem(item[0].id)
+        MAIN.vmAnalysis?.updateItem(id)
     }
 
     override fun getItemCount(): Int = mList.size
@@ -57,5 +49,9 @@ class FinishHabitsAdapter(
         RecyclerView.ViewHolder(binding.root) {
         val title: TextView = binding.title
         val returnButton: ImageButton = binding.returnButton
+    }
+
+    fun setData(data: List<HabitFinishItemData>){
+        mList = data
     }
 }

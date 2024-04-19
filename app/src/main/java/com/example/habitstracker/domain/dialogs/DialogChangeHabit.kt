@@ -12,18 +12,6 @@ import com.example.habitstracker.domain.useCase.UpdateHabitUseCase
 
 class DialogChangeHabit: DialogFragment() {
     private lateinit var changeHabitClass: ChangeGoalBinding
-
-    override fun onStart() {
-        super.onStart()
-        dialog?.window?.setLayout(
-            WindowManager.LayoutParams.MATCH_PARENT,
-            WindowManager.LayoutParams.WRAP_CONTENT
-        )
-
-        dialog?.window?.setGravity(Gravity.CENTER)
-        dialog?.setCanceledOnTouchOutside(false)
-    }
-
     companion object {
         fun newInstance(value: Int): DialogChangeHabit {
             val args = Bundle()
@@ -43,11 +31,6 @@ class DialogChangeHabit: DialogFragment() {
         return changeHabitClass.root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        dialog?.setCancelable(false)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val id = arguments!!.getInt("id", 0)
@@ -63,6 +46,7 @@ class DialogChangeHabit: DialogFragment() {
                 changeHabitClass.editTextNumber.text.toString().length < 4 &&
                 changeHabitClass.editTextNumber.text.toString().toInt() in 2..365 &&
                 changeHabitClass.description.text.length <= 100) {
+
                 item[0].period = changeHabitClass.editTextNumber.text.toString().toInt()
                 item[0].title = changeHabitClass.NameGoal.text.toString()
                 item[0].description = changeHabitClass.description.text.toString()
@@ -70,10 +54,20 @@ class DialogChangeHabit: DialogFragment() {
                 MAIN.vmHome.updateData(0, item[0])
 
                 if(MAIN.vmAnalysis != null){
-                    MAIN.vmAnalysis?.updateData(item[0].id)
+                    MAIN.vmAnalysis?.updateItem(item[0].id)
                 }
                 dismiss()
             }
         }
+    }
+    override fun onStart() {
+        super.onStart()
+        dialog?.window?.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
+
+        dialog?.window?.setGravity(Gravity.CENTER)
+        dialog?.setCanceledOnTouchOutside(false)
     }
 }

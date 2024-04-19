@@ -10,18 +10,6 @@ import com.example.habitstracker.domain.useCase.AddHabitUseCase
 
 class DialogAddHabit: DialogFragment() {
     private lateinit var addHabitClass: NewGoalBinding
-
-    override fun onStart() {
-        super.onStart()
-        dialog?.window?.setLayout(
-            WindowManager.LayoutParams.MATCH_PARENT,
-            WindowManager.LayoutParams.WRAP_CONTENT
-        )
-
-        dialog?.window?.setGravity(Gravity.CENTER)
-        dialog?.setCanceledOnTouchOutside(false)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,11 +17,6 @@ class DialogAddHabit: DialogFragment() {
         addHabitClass = NewGoalBinding.inflate(layoutInflater, container, false)
 
         return addHabitClass.root
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        dialog?.setCancelable(false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -55,5 +38,16 @@ class DialogAddHabit: DialogFragment() {
                 dismiss()
             }
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        dialog?.window?.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
+
+        dialog?.window?.setGravity(Gravity.CENTER)
+        dialog?.setCanceledOnTouchOutside(false)
     }
 }

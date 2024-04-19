@@ -12,6 +12,7 @@ import com.example.habitstracker.ID
 import com.example.habitstracker.MAIN
 import com.example.habitstracker.R
 import com.example.habitstracker.domain.dialogs.DialogChangeHabit
+import com.example.habitstracker.domain.model.HabitFinishItemData
 import com.example.habitstracker.domain.model.ItemsData
 import com.example.habitstracker.domain.useCase.DeleteHabitUseCase
 import com.example.habitstracker.domain.useCase.GetHabitsFromDBUseCase
@@ -51,7 +52,8 @@ class CustomAdapter(private var mList: List<ItemsData>) : RecyclerView.Adapter<C
 
         MAIN.vmHome.updateData(-1, item[0])
         MAIN.vmHome.updateDone()
-        MAIN.vmAnalysis?.updateData(id)
+        MAIN.vmAnalysis?.updateItem(id)
+        MAIN.vmFinish?.addItem(HabitFinishItemData(item[0].id, item[0].title))
     }
 
     override fun getItemCount(): Int {
