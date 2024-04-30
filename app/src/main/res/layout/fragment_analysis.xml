@@ -36,7 +36,7 @@
             android:layout_weight="1"
             style="@style/MyTextBold"
             android:textSize="16sp"
-            android:text="Habit name:"/>
+            android:text="@string/card_name_goal"/>
 
         <TextView
             android:id="@+id/Description"
@@ -48,7 +48,7 @@
             android:layout_weight="1"
             style="@style/MyTextBold"
             android:textSize="16sp"
-            android:text="Description:"/>
+            android:text="@string/card_description_goal"/>
 
         <TextView
             android:id="@+id/DaysLeft"
@@ -60,7 +60,7 @@
             android:layout_weight="1"
             style="@style/MyTextBold"
             android:textSize="16sp"
-            android:text="Days left:"/>
+            android:text="@string/card_days_goal"/>
     </LinearLayout>
 
     <TextView
@@ -69,28 +69,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="Habits progress"
+        android:text="@string/header_analysis_fragment"
         android:textSize="30sp"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/infoLinear" />
 
     <ScrollView
-        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text2">
+        app:layout_constraintTop_toBottomOf="@id/text2">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/ProgressList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:isScrollContainer="false"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent"
             tools:listitem="@layout/progress_bar" />
+
     </ScrollView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

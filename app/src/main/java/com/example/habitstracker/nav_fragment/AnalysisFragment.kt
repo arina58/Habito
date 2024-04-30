@@ -26,7 +26,6 @@ class AnalysisFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         MAIN.vmAnalysis = ViewModelProvider(this)[AnalysisViewModel::class.java]
         vm = MAIN.vmAnalysis!!
-        analysisClass.ProgressList.isNestedScrollingEnabled = false
 
         analysisClass.ProgressList.layoutManager = LinearLayoutManager(MAIN)
         val adapter = vm.data.value?.let { ProgressBarAdapter(it) }

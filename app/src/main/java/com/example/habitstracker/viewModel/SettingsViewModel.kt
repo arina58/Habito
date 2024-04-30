@@ -22,7 +22,6 @@ class SettingsViewModel: ViewModel() {
     }
 
     fun changeTheme (state: Boolean){
-        SaveNavLocationUseCase().execute(true)
         if(state){
             SaveNameThemeUseCase().execute(DARK_THEME)
             SwitchThemeUseCase().execute(DARK_THEME)
@@ -30,5 +29,7 @@ class SettingsViewModel: ViewModel() {
             SaveNameThemeUseCase().execute(LIGHT_THEME)
             SwitchThemeUseCase().execute(LIGHT_THEME)
         }
+
+        MAIN.vm.theme.value = MAIN.vm.theme.value?.plus(1)
     }
 }

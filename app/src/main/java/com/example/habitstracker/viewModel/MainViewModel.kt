@@ -8,6 +8,7 @@ import com.example.habitstracker.domain.useCase.*
 
 class MainViewModel: ViewModel() {
     var startDestination = MutableLiveData<Int>()
+    var theme = MutableLiveData<Int>()
     init{
         SetNotificationUseCase().execute()
         SetMidnightProgressUseCase().execute()
@@ -19,12 +20,6 @@ class MainViewModel: ViewModel() {
     private fun setStartDestination(){
         startDestination.value = if (GetUserNameUseCase().execute() != DEFAULT_NAME)
             R.id.homeFragment else R.id.enterNameFragment
-
-        if(startDestination.value == R.id.homeFragment){
-            if(GetNavLocationUseCase().execute())
-                startDestination.value = R.id.settingsFragment
-            SaveNavLocationUseCase().execute(false)
-        }
     }
 
     private fun checkFinishedHabits(){

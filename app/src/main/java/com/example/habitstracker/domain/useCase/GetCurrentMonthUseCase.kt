@@ -1,5 +1,7 @@
 package com.example.habitstracker.domain.useCase
 
+import com.example.habitstracker.MAIN
+import com.example.habitstracker.R
 import java.util.*
 
 class GetCurrentMonthUseCase {
@@ -19,8 +21,7 @@ class GetCurrentMonthUseCase {
         while(monthsI.size < 7) {
             monthsI.add(cal.get(Calendar.MONTH))
         }
-
-        val titles = listOf("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+        val titles = MAIN.resources.getStringArray(R.array.month)
         monthsI.forEach {
             months.add(titles[it])
         }

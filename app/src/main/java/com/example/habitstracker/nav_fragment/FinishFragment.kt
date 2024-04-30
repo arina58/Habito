@@ -40,14 +40,8 @@ class FinishFragment : Fragment() {
         finishHabitsClass.List.layoutManager = LinearLayoutManager(MAIN)
         finishHabitsClass.List.adapter = vm.data.value?.let { FinishHabitsAdapter(it) }
 
-        finishHabitsClass.topAppBar.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.back -> {
-                    MAIN.navController.navigate(R.id.action_finishHabitsFragment_to_homeFragment)
-                    true
-                }
-                else -> false
-            }
+        finishHabitsClass.BackButton.setOnClickListener {
+            MAIN.navController.navigate(R.id.action_finishHabitsFragment_to_homeFragment)
         }
 
         vm.update.observe(this){

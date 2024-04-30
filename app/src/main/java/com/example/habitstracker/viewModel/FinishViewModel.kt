@@ -1,6 +1,5 @@
 package com.example.habitstracker.viewModel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.habitstracker.MAIN
@@ -34,6 +33,5 @@ class FinishViewModel: ViewModel() {
         }
         data.value?.remove(item)
         update.value = update.value?.plus(1)
-        Log.d("MY", "-1")
     }
 }

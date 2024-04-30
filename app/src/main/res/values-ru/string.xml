@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Habito</string>
+    <string name="error">Error</string>
+    <string name="description">description</string>
+    <string name="about_app">Habit Tracker - это простое приложение для отслеживания привычек и саморазвития, которое помогает вам ставить цели, развивать интеллект и продуктивность.
+    </string>
+
+    <string name="welcome">Добро пожаловать!</string>
+
+    <!-- Menu -->
+    <string name="menu_home">Дом</string>
+    <string name="menu_analysis">Анализ</string>
+    <string name="menu_settings">Настройки</string>
+    <string name="menu_change">Изменить</string>
+    <string name="menu_delete">Удалить</string>
+
+    <!-- General dialogs -->
+    <string name="hint_name_goal">Название</string>
+    <string name="hint_days">Количество дней</string>
+    <string name="hint_description">Описание</string>
+    <string name="helper_text">*обязательно</string>
+    <string name="error_validate_number">число должно быть от 2 до 255</string>
+    <string name="error_validate_description">длина не должна превышать 255</string>
+    <string name="error_validate_name_goal">длина от 1 до 30 символов</string>
+
+    <!-- Fragment enter name -->
+    <string name="button_continue">Продолжить</string>
+
+    <!-- Dialog change goal -->
+    <string name="header_change_goal">Изменить цель</string>
+    <string name="button_update">Обновить</string>
+
+    <!-- Dialog create goal -->
+    <string name="header_create_goal">Новая цель</string>
+    <string name="button_create_goal">Создать</string>
+
+    <!-- Dialog finish goal -->
+    <string name="header_finish_goal">Завершить цель</string>
+    <string name="button_prolong">Продлить</string>
+    <string name="button_finish">Завершить</string>
+
+    <!-- Fragment analysis -->
+    <string name="header_analysis_fragment">Прогресс</string>
+    <string name="card_name_goal">Название:</string>
+    <string name="card_description_goal">Описание:</string>
+    <string name="card_days_goal">Оставшиеся дни:</string>
+    <string name="progress_bar_text"> из 7 дней цель была выполнена</string>
+
+    <!-- Fragment finish habits -->
+    <string name="header_finish_habits">Выполненные привычки</string>
+
+    <!-- Fragment home -->
+    <string name="hello">Здравствуйте, </string>
+    <string-array name="time_text">
+        <item>Доброй ночи</item>
+        <item>Доброго утра</item>
+        <item>Доброго дня</item>
+        <item>Доброго вечера</item>
+    </string-array>
+    <string-array name="month">
+        <item>Янв</item>
+        <item>Фев</item>
+        <item>Март</item>
+        <item>Апр</item>
+        <item>Май</item>
+        <item>Июнь</item>
+        <item>Июль</item>
+        <item>Авг</item>
+        <item>Сен</item>
+        <item>Окт</item>
+        <item>Нояб</item>
+        <item>Дек</item>
+    </string-array>
+    <string name="overall_streak">Общий счет:</string>
+    <string name="best_streak">Лучший счет:</string>
+    <string-array name="days">
+        <item>день</item>
+        <item>дня</item>
+        <item>дней</item>
+    </string-array>
+    <string name="current">Текущий:</string>
+    <string name="best">Лучший: </string>
+    <string-array name="chart_text">
+        <item>из</item>
+        <item>привычек</item>
+        <item>выполнены сегодня!</item>
+    </string-array>
+    <string name="header_home_checklist">Чек-лист</string>
+
+    <!-- Fragment settings -->
+    <string name="header_fragment_settings">Настройки</string>
+    <string name="notification_header">Уведомления</string>
+    <string name="notification_switch">Присылать уведомления</string>
+    <string name="theme_header">Тема</string>
+    <string name="theme_switch">Темная тема</string>
+    <string name="about_app_header">О приложении</string>
+</resources>

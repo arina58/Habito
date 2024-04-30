@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     var vmAnalysis: AnalysisViewModel? = null
     var vmFinish: FinishViewModel? = null
     lateinit var navController: NavController
-    private lateinit var vm: MainViewModel
+     lateinit var vm: MainViewModel
     lateinit var vmHome: HomeViewModel
 
     @SuppressLint("WrongViewCast")
@@ -44,5 +44,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         mainClass.bottomNavigationView.setupWithNavController(navController)
+
+        vm.theme.observe(this){
+            (supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment)
+                .also { navHost ->
+                    val navInflater = navHost.navController.navInflater
+                    val navGraph = navInflater.inflate(R.navigation.nav_graph).apply {
+                        setStartDestination(R.id.settingsFragment)
+                    }
+                    navHost.navController.graph = navGraph
+                }
+            mainClass.bottomNavigationView.setupWithNavController(navController)
+        }
     }
 }

@@ -1,6 +1,10 @@
 package com.example.habitstracker.domain.dialogs
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.*
 import android.view.Gravity.CENTER
 import android.view.View.GONE
@@ -8,13 +12,15 @@ import android.view.View.VISIBLE
 import androidx.fragment.app.DialogFragment
 import com.example.habitstracker.ID
 import com.example.habitstracker.MAIN
-import com.example.habitstracker.databinding.WindowCompletedHabitBinding
+import com.example.habitstracker.R
+import com.example.habitstracker.databinding.FinishGoalBinding
 import com.example.habitstracker.domain.useCase.DeleteHabitUseCase
 import com.example.habitstracker.domain.useCase.GetHabitsFromDBUseCase
 import com.example.habitstracker.domain.useCase.UpdateHabitUseCase
+import com.example.habitstracker.domain.useCase.ValidateUseCase
 
 class DialogFinishHabit: DialogFragment() {
-    private lateinit var finishHabitClass : WindowCompletedHabitBinding
+    private lateinit var finishHabitClass : FinishGoalBinding
 
     companion object {
         fun newInstance(value: Int): DialogFinishHabit {
@@ -33,15 +39,18 @@ class DialogFinishHabit: DialogFragment() {
             WindowManager.LayoutParams.WRAP_CONTENT
         )
 
+        dialog?.window?.attributes?.width = (resources.displayMetrics.widthPixels - 40)
+
         dialog?.window?.setGravity(CENTER)
         dialog?.setCanceledOnTouchOutside(false)
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        finishHabitClass = WindowCompletedHabitBinding.inflate(layoutInflater, container, false)
+        finishHabitClass = FinishGoalBinding.inflate(layoutInflater, container, false)
 
         return finishHabitClass.root
     }
@@ -51,7 +60,8 @@ class DialogFinishHabit: DialogFragment() {
         val id = arguments!!.getInt("id", 0)
         val habit = GetHabitsFromDBUseCase().execute(ID, arrayOf("$id"), MAIN)
 
-        finishHabitClass.NameGoal.text = habit[0].title
+        finishHabitClass.NameGoalText.text = Editable.Factory.getInstance().newEditable(habit[0].title)
+        finishHabitClass.NumberText.text = Editable.Factory.getInstance().newEditable(habit[0].period.toString())
 
         finishHabitClass.ButtonFinish.setOnClickListener {
             MAIN.vmHome.updateData(-1,
@@ -65,17 +75,37 @@ class DialogFinishHabit: DialogFragment() {
         finishHabitClass.ButtonContinue.setOnClickListener {
             finishHabitClass.ButtonFinish.visibility = GONE
             finishHabitClass.ButtonContinue.visibility = GONE
-            finishHabitClass.LinearPeriod.visibility = VISIBLE
+            finishHabitClass.Number.visibility = VISIBLE
+            finishHabitClass.NameGoal.isEnabled = true
+            finishHabitClass.NameGoal.helperText = MAIN.resources.getString(R.string.helper_text)
             finishHabitClass.ButtonProlong.visibility = VISIBLE
         }
 
         finishHabitClass.ButtonProlong.setOnClickListener {
-            if(finishHabitClass.editTextNumber.text.toString().toInt() in 2..365){
-                habit[0].period = finishHabitClass.editTextNumber.text.toString().toInt()
+            if(ValidateUseCase().validateName(finishHabitClass.NameGoalText, finishHabitClass.NameGoal) &&
+                ValidateUseCase().validateNumber(finishHabitClass.NumberText, finishHabitClass.Number)){
+                habit[0].title = finishHabitClass.NameGoalText.text.toString()
+                habit[0].period = finishHabitClass.NumberText.text.toString().toInt()
                 UpdateHabitUseCase().execute(habit[0], MAIN)
 
                 dismiss()
             }
         }
+
+        finishHabitClass.NameGoalText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun afterTextChanged(p0: Editable?) {
+                ValidateUseCase().validateName(finishHabitClass.NameGoalText, finishHabitClass.NameGoal)
+            }
+        })
+
+        finishHabitClass.NumberText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun afterTextChanged(p0: Editable?) {
+                ValidateUseCase().validateNumber(finishHabitClass.NumberText, finishHabitClass.Number)
+            }
+        })
     }
 }

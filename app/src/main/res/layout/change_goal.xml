@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
     android:layout_gravity="center">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="?attr/backgroundColor"
+        app:strokeColor="?attr/colorPrimary"
+        app:strokeWidth="3dp"
         app:cardCornerRadius="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -26,81 +25,72 @@
                 style="@style/MyText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Your Goal"
+                android:layout_gravity="center"
+                android:text="@string/header_change_goal"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/NameGoal"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/new_goal_item_back"
-                android:ems="13"
-                android:inputType="textPersonName"
-                android:paddingLeft="5dp"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView9" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:helperTextEnabled="true"
+                app:errorEnabled="true"
+                app:helperText="@string/helper_text"
+                android:hint="@string/hint_name_goal">
 
-            <LinearLayout
-                android:id="@+id/LinearPeriod"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="30dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/NameGoal">
-
-                <TextView
-                    android:id="@+id/textView10"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/NameGoalText"
                     style="@style/MyText"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="80dp"
-                    android:text="Period (days)"
+                    android:inputType="textShortMessage|text"
                     android:textSize="20sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                <EditText
-                    android:id="@+id/editTextNumber"
-                    style="@style/MyText"
-                    android:layout_width="115dp"
-                    android:layout_height="45dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/new_goal_item_back"
-                    android:ems="10"
-                    android:textColor="@color/black"
-                    android:inputType="number"
-                    android:paddingLeft="5dp"
-                    android:textSize="20sp" />
-            </LinearLayout>
-            <TextView
-                android:id="@+id/textView11"
-                style="@style/MyText"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/Number"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="Description"
-                android:textSize="20sp" />
+                android:layout_weight="2"
+                android:hint="@string/hint_days"
+                app:errorEnabled="true"
+                app:helperTextEnabled="true"
+                app:helperText="@string/helper_text">
 
-            <EditText
-                android:id="@+id/description"
-                style="@style/MyText"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/NumberText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:textSize="20sp"
+                    style="@style/MyText"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/Description"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_weight="1"
-                android:background="@drawable/new_goal_item_back"
-                android:ems="10"
-                android:textColor="@color/black"
-                android:inputType="textMultiLine"
-                android:paddingLeft="5dp"
-                android:textSize="20sp" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_weight="2"
+                android:hint="@string/hint_description"
+                app:errorEnabled="true"
+                app:helperTextEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/DescriptionText"
+                    style="@style/MyText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textLongMessage|textMultiLine"
+                    android:textSize="20sp" />
+            </com.google.android.material.textfield.TextInputLayout>
             <Button
                 android:id="@+id/ButtonCreate"
                 android:layout_width="match_parent"
@@ -108,7 +98,7 @@
                 android:layout_marginTop="40dp"
                 android:background="@drawable/button_continue"
                 android:fontFamily="@font/nunito_bold"
-                android:text="Update"
+                android:text="@string/button_update"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@+id/LinearPeriod"
                 app:layout_constraintStart_toStartOf="@+id/LinearPeriod"

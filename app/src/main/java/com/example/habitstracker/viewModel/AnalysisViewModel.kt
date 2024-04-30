@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.habitstracker.ID
 import com.example.habitstracker.MAIN
+import com.example.habitstracker.R
 import com.example.habitstracker.STATUS
 import com.example.habitstracker.domain.model.ProgressData
 import com.example.habitstracker.domain.useCase.GetHabitsFromDBUseCase
@@ -17,11 +18,12 @@ class AnalysisViewModel: ViewModel() {
     var days = MutableLiveData<String>()
 
     var id: Int? = null
+    val res = MAIN.resources
     init{
         val dataStart = ArrayList<ProgressData>()
 
         GetHabitsFromDBUseCase().execute(STATUS, arrayOf("0", "1"), MAIN).forEach {
-            dataStart.add(ProgressData(it.id, it.title, " from 7 days target",
+            dataStart.add(ProgressData(it.id, it.title, " ${res.getString(R.string.progress_bar_text)}",
                 it.date_of_week, it.description, it.period))
         }
 
@@ -30,9 +32,9 @@ class AnalysisViewModel: ViewModel() {
 
     fun updateLabel(progressData: ProgressData){
         id = progressData.id
-        title.value = "Habit name: ${progressData.ItemName}"
-        description.value = "Description: ${progressData.Description}"
-        days.value = "Days left: ${progressData.Period}"
+        title.value = "${res.getString(R.string.card_name_goal)} ${progressData.ItemName}"
+        description.value = "${res.getString(R.string.card_description_goal)} ${progressData.Description}"
+        days.value = "${res.getString(R.string.card_days_goal)} ${progressData.Period}"
     }
     fun updateItem(id: Int) {
         val item = GetHabitsFromDBUseCase().execute(ID, arrayOf("$id"), MAIN)
@@ -43,9 +45,9 @@ class AnalysisViewModel: ViewModel() {
                 it.Description = item[0].description
                 it.Period = item[0].period
                 if (id == item[0].id) {
-                    title.value = "Habit name: ${it.ItemName}"
-                    description.value = "Description: ${it.Description}"
-                    days.value = "Days left: ${it.Period}"
+                    title.value = "${res.getString(R.string.card_name_goal)} ${it.ItemName}"
+                    description.value = "${res.getString(R.string.card_description_goal)} ${it.Description}"
+                    days.value = "${res.getString(R.string.card_days_goal)} ${it.Period}"
                 }
             }
         }
@@ -60,14 +62,14 @@ class AnalysisViewModel: ViewModel() {
         data.value?.remove(position)
 
         if(id == this.id){
-            title.value = "Habit name:"
-            description.value = "Description:"
-            days.value = "Days left:"
+            title.value = res.getString(R.string.card_name_goal)
+            description.value = res.getString(R.string.card_description_goal)
+            days.value = res.getString(R.string.card_days_goal)
         }
     }
     fun addItem(){
         val item = GetLastHabitFromDBUseCase().execute()
-        data.value?.add(ProgressData(item.id, item.title, " from 7 days target",
+        data.value?.add(ProgressData(item.id, item.title, " ${res.getString(R.string.progress_bar_text)}",
             item.date_of_week, item.description, item.period))
     }
 }

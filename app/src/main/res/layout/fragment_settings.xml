@@ -13,8 +13,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginRight="13dp"
-        android:layout_marginLeft="15dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="20dp">
 
         <TextView
@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:text="Settings"
+            android:text="@string/header_fragment_settings"
             style="@style/MyTextBold"
             android:textSize="30sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +35,7 @@
             android:layout_marginTop="15dp"
             android:paddingLeft="15dp"
             android:paddingBottom="5dp"
-            android:background="@drawable/home_calendar_background"
+            android:background="@drawable/background_all"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Settings">
 
@@ -45,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Notification"
+                android:text="@string/notification_header"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -65,7 +65,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     style="@style/MyText"
-                    android:text="Receive notifications"
+                    android:text="@string/notification_switch"
                     android:textSize="20sp"/>
 
                 <androidx.appcompat.widget.SwitchCompat
@@ -73,8 +73,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:trackTint="@color/purple_my"
-                    android:theme="@style/MySwitch" />
+                    app:trackTint="?attr/colorPrimary"
+                    app:thumbTint="@drawable/switch_color"/>
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -85,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:paddingBottom="5dp"
-            android:background="@drawable/home_calendar_background"
+            android:background="@drawable/background_all"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/SaV">
 
@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
-                android:text="Theme"
+                android:text="@string/theme_header"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -118,7 +118,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     style="@style/MyText"
-                    android:text="Dark theme"
+                    android:text="@string/theme_switch"
                     android:textSize="20sp"/>
 
                 <androidx.appcompat.widget.SwitchCompat
@@ -126,8 +126,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:trackTint="@color/purple_my"
-                    android:theme="@style/MySwitch" />
+                    app:trackTint="?attr/colorPrimary"
+                    app:thumbTint="@drawable/switch_color"/>
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -137,7 +137,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/home_calendar_background"
+            android:background="@drawable/background_all"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Theme">
@@ -149,7 +149,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
-                android:text="About App"
+                android:text="@string/about_app_header"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -162,8 +162,10 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
                 android:text="@string/about_app"
                 android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/textView15"
                 app:layout_constraintTop_toBottomOf="@+id/textView15" />

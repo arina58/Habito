@@ -8,24 +8,35 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/topAppBar"
-        style="@style/MyBar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:menu="@menu/back_menu"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingEnd="15dp"
+        android:paddingStart="15dp"
         android:layout_marginBottom="15dp"
-        android:paddingEnd="15dp">
+        android:background="?attr/colorSecondary">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Finish Habits"
-            android:textSize="30sp"
             style="@style/MyTextBold"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="left"
-            android:paddingLeft="5dp"/>
-    </androidx.appcompat.widget.Toolbar>
+            android:layout_marginBottom="0dp"
+            android:paddingLeft="5dp"
+            android:text="@string/header_finish_habits"
+            android:textSize="30sp"
+            android:gravity="center_vertical"
+            android:layout_weight="1"/>
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/BackButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/back_icon"
+            android:background="@android:color/transparent"/>
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/List"

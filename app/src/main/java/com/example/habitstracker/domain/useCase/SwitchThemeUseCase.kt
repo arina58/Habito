@@ -8,5 +8,4 @@ class SwitchThemeUseCase {
         if (NameTheme) AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
     }
-
 }

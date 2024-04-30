@@ -37,6 +37,9 @@ class HomeFragment : Fragment(){
         homeClass.CheckList.isNestedScrollingEnabled = false
         MAIN.vmHome = ViewModelProvider(this)[HomeViewModel::class.java]
         vm = MAIN.vmHome
+
+        homeClass.ChartText3.text = MAIN.resources.getStringArray(R.array.chart_text)[2]
+
         setMainParam()
         createCalendar()
         addPieChart()
@@ -80,6 +83,15 @@ class HomeFragment : Fragment(){
 
     private fun createCalendar(){
         vm.dayInWeek.value?.let { setColorDate(it) }
+        if (vm.currentMonth.value?.get(0)?.length == 4){
+            homeClass.tvMonth1.textSize = 11F
+            homeClass.tvMonth2.textSize = 11F
+            homeClass.tvMonth3.textSize = 11F
+            homeClass.tvMonth4.textSize = 11F
+            homeClass.tvMonth5.textSize = 11F
+            homeClass.tvMonth6.textSize = 11F
+            homeClass.tvMonth7.textSize = 11F
+        }
 
         homeClass.tvDay1.text = vm.weeklyDate.value?.get(0).toString()
         homeClass.tvDay2.text = vm.weeklyDate.value?.get(1).toString()
@@ -99,7 +111,17 @@ class HomeFragment : Fragment(){
     }
 
     private fun setColorDate(currentDate: Int) {
-        val textColor = Color.parseColor("#8D4AF8")
+        val items = listOf(
+            homeClass.CalendarItem1,
+            homeClass.CalendarItem2,
+            homeClass.CalendarItem3,
+            homeClass.CalendarItem4,
+            homeClass.CalendarItem5,
+            homeClass.CalendarItem6,
+            homeClass.CalendarItem7
+        )
+        items[currentDate - 1].setBackgroundResource(R.drawable.calendar_background_colored)
+
         val days = listOf(
             homeClass.tvDay1,
             homeClass.tvDay2,
@@ -118,8 +140,8 @@ class HomeFragment : Fragment(){
             homeClass.tvMonth6,
             homeClass.tvMonth7
         )
-
-        days[currentDate - 1].setTextColor(textColor)
-        months[currentDate - 1].setTextColor(textColor)
+        val color = Color.parseColor("#FFFFFF")
+        days[currentDate - 1].setTextColor(color)
+        months[currentDate - 1].setTextColor(color)
     }
 }

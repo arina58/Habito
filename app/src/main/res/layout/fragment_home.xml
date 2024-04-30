@@ -17,7 +17,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/scroll_view">
 
-
             <LinearLayout
                 android:id="@+id/Linear"
                 android:layout_width="match_parent"
@@ -36,7 +35,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
                         android:layout_marginTop="30dp"
-                        android:text="Hello, User"
+                        android:text="@string/hello"
                         android:textSize="16dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -58,7 +57,6 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Good Morning"
                             android:textSize="24dp"
                             android:layout_marginStart="0dp"/>
 
@@ -89,20 +87,20 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/CalendarItem1"
                             android:layout_width="43dp"
                             android:layout_height="43dp"
                             android:layout_marginLeft="7dp"
                             android:layout_marginRight="5dp"
-                            android:background="@drawable/home_calendar_background">
+                            android:background="@drawable/calendar_background">
 
                             <TextView
                                 android:id="@+id/tvDay1"
+                                style="@style/MyTextBold"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="3dp"
-                                android:text="1"
+                                android:layout_marginTop="4dp"
                                 android:textAlignment="center"
-                                style="@style/MyTextBold"
                                 android:textSize="13sp"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -110,31 +108,32 @@
 
                             <TextView
                                 android:id="@+id/tvMonth1"
+                                style="@style/MyTextBold"
                                 android:layout_width="47dp"
                                 android:layout_height="wrap_content"
-                                android:text="Feb"
                                 android:textAlignment="center"
-                                style="@style/MyTextBold"
                                 android:textSize="13sp"
+                                android:layout_marginBottom="6dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.538"
+                                app:layout_constraintHorizontal_bias="0.5"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/tvDay1" />
+                                app:layout_constraintTop_toBottomOf="@+id/tvDay1"/>
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/CalendarItem2"
                             android:layout_width="43dp"
                             android:layout_height="43dp"
                             android:layout_marginRight="5dp"
-                            android:background="@drawable/home_calendar_background">
+                            android:background="@drawable/calendar_background">
 
                             <TextView
                                 android:id="@+id/tvDay2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="3dp"
-                                android:text="2"
+                                android:layout_marginTop="4dp"
                                 android:textAlignment="center"
                                 style="@style/MyTextBold"
                                 android:textSize="13sp"
@@ -145,62 +144,68 @@
 
                             <TextView
                                 android:id="@+id/tvMonth2"
+                                style="@style/MyTextBold"
                                 android:layout_width="47dp"
                                 android:layout_height="wrap_content"
-                                android:text="Feb"
                                 android:textAlignment="center"
-                                style="@style/MyTextBold"                            android:textSize="13sp"
+                                android:textSize="13sp"
+                                android:layout_marginBottom="6dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.538"
+                                app:layout_constraintHorizontal_bias="0.5"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/tvDay2" />
+                                app:layout_constraintTop_toBottomOf="@+id/tvDay2"
+                                />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/CalendarItem3"
                             android:layout_width="43dp"
                             android:layout_height="43dp"
                             android:layout_marginRight="5dp"
-                            android:background="@drawable/home_calendar_background">
+                            android:background="@drawable/calendar_background">
 
                             <TextView
                                 android:id="@+id/tvDay3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="3dp"
-                                android:text="3"
+                                android:layout_marginTop="4dp"
                                 android:textAlignment="center"
-                                style="@style/MyTextBold"                            android:textSize="13sp"
+                                style="@style/MyTextBold"
+                                android:textSize="13sp"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
                                 android:id="@+id/tvMonth3"
+                                style="@style/MyTextBold"
                                 android:layout_width="47dp"
                                 android:layout_height="wrap_content"
-                                android:text="Feb"
                                 android:textAlignment="center"
-                                style="@style/MyTextBold"                            android:textSize="13sp"
+                                android:textSize="13sp"
+                                android:layout_marginBottom="6dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.538"
+                                app:layout_constraintHorizontal_bias="0.5"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/tvDay3" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/CalendarItem4"
                             android:layout_width="43dp"
                             android:layout_height="43dp"
                             android:layout_marginRight="5dp"
-                            android:background="@drawable/home_calendar_background">
+                            android:background="@drawable/calendar_background">
 
                             <TextView
                                 android:id="@+id/tvDay4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="3dp"
-                                android:text="4"
+                                android:layout_marginTop="4dp"
                                 android:textAlignment="center"
                                 android:textSize="13sp"
                                 style="@style/MyTextBold"
@@ -210,31 +215,32 @@
 
                             <TextView
                                 android:id="@+id/tvMonth4"
+                                style="@style/MyTextBold"
                                 android:layout_width="47dp"
                                 android:layout_height="wrap_content"
-                                android:text="Feb"
                                 android:textAlignment="center"
-                                style="@style/MyTextBold"
                                 android:textSize="13sp"
+                                android:layout_marginBottom="6dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.538"
+                                app:layout_constraintHorizontal_bias="0.5"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/tvDay4" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/CalendarItem5"
                             android:layout_width="43dp"
                             android:layout_height="43dp"
                             android:layout_marginRight="5dp"
-                            android:background="@drawable/home_calendar_background">
+                            android:background="@drawable/calendar_background">
 
                             <TextView
                                 android:id="@+id/tvDay5"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="3dp"
-                                android:text="5"
+                                android:layout_marginTop="4dp"
                                 android:textAlignment="center"
                                 android:textSize="13sp"
                                 style="@style/MyTextBold"
@@ -244,31 +250,32 @@
 
                             <TextView
                                 android:id="@+id/tvMonth5"
+                                style="@style/MyTextBold"
                                 android:layout_width="47dp"
                                 android:layout_height="wrap_content"
-                                android:text="Feb"
                                 android:textAlignment="center"
-                                style="@style/MyTextBold"
                                 android:textSize="13sp"
+                                android:layout_marginBottom="6dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.538"
+                                app:layout_constraintHorizontal_bias="0.5"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/tvDay5" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/CalendarItem6"
                             android:layout_width="43dp"
                             android:layout_height="43dp"
                             android:layout_marginRight="5dp"
-                            android:background="@drawable/home_calendar_background">
+                            android:background="@drawable/calendar_background">
 
                             <TextView
                                 android:id="@+id/tvDay6"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="3dp"
-                                android:text="6"
+                                android:layout_marginTop="4dp"
                                 android:textAlignment="center"
                                 android:textSize="13sp"
                                 style="@style/MyTextBold"
@@ -278,31 +285,32 @@
 
                             <TextView
                                 android:id="@+id/tvMonth6"
+                                style="@style/MyTextBold"
                                 android:layout_width="47dp"
                                 android:layout_height="wrap_content"
-                                android:text="Feb"
                                 android:textAlignment="center"
-                                style="@style/MyTextBold"
                                 android:textSize="13sp"
+                                android:layout_marginBottom="6dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.538"
+                                app:layout_constraintHorizontal_bias="0.5"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/tvDay6" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/CalendarItem7"
                             android:layout_width="43dp"
                             android:layout_height="43dp"
                             android:layout_marginRight="5dp"
-                            android:background="@drawable/home_calendar_background">
+                            android:background="@drawable/calendar_background">
 
                             <TextView
                                 android:id="@+id/tvDay7"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="3dp"
-                                android:text="7"
+                                android:layout_marginTop="4dp"
                                 android:textAlignment="center"
                                 android:textSize="13sp"
                                 style="@style/MyTextBold"
@@ -312,14 +320,15 @@
 
                             <TextView
                                 android:id="@+id/tvMonth7"
+                                style="@style/MyTextBold"
                                 android:layout_width="47dp"
                                 android:layout_height="wrap_content"
-                                android:text="Feb"
                                 android:textAlignment="center"
-                                style="@style/MyTextBold"
                                 android:textSize="13sp"
+                                android:layout_marginBottom="6dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.538"
+                                app:layout_constraintHorizontal_bias="0.5"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/tvDay7" />
 
@@ -335,7 +344,7 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="13dp"
-                    android:background="@drawable/home_calendar_background">
+                    android:background="@drawable/background_all">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -393,7 +402,7 @@
                             android:layout_height="115dp"
                             android:layout_marginRight="30dp"
                             tools:ignore="MissingConstraints"
-                            app:egInnerPaddingColor="?attr/colorContainer"/>
+                            app:egInnerPaddingColor="?attr/colorSurface"/>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -409,17 +418,15 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="0dp"
-                                android:text="1 of 3 habits"
                                 style="@style/MyTextBold"
                                 android:textSize="20sp" />
 
                             <TextView
-                                android:id="@+id/textView5"
+                                android:id="@+id/ChartText3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0"
                                 style="@style/MyText"
-                                android:text="completed today!"
                                 android:textSize="20sp" />
                         </LinearLayout>
 
@@ -440,7 +447,7 @@
                         android:id="@+id/textView8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Today’s Checklist"
+                        android:text="@string/header_home_checklist"
                         style="@style/MyText"
                         android:textSize="24sp"
                         app:layout_constraintStart_toStartOf="parent"
