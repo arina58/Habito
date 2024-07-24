@@ -11,16 +11,31 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.fragment.app.DialogFragment
 import com.example.habitstracker.ID
-import com.example.habitstracker.MAIN
 import com.example.habitstracker.R
+import com.example.habitstracker.data.HabitRepositoryImpl
 import com.example.habitstracker.databinding.FinishGoalBinding
+import com.example.habitstracker.domain.model.HabitItem
 import com.example.habitstracker.domain.useCase.DeleteHabitUseCase
+import com.example.habitstracker.domain.useCase.GetHabitItemUseCase
 import com.example.habitstracker.domain.useCase.GetHabitsFromDBUseCase
 import com.example.habitstracker.domain.useCase.UpdateHabitUseCase
 import com.example.habitstracker.domain.useCase.ValidateUseCase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class DialogFinishHabit: DialogFragment() {
     private lateinit var finishHabitClass : FinishGoalBinding
+
+    private val habitRepository by lazy {
+        HabitRepositoryImpl(requireActivity().application)
+    }
+
+    private val getHabitItemUseCase = GetHabitItemUseCase(habitRepository)
+    private val deleteHabitUseCase = DeleteHabitUseCase(habitRepository)
+    private val updateHabitUseCase = UpdateHabitUseCase(habitRepository)
+
+    private val scope = CoroutineScope(Dispatchers.IO)
 
     companion object {
         fun newInstance(value: Int): DialogFinishHabit {
@@ -57,17 +72,24 @@ class DialogFinishHabit: DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val id = arguments!!.getInt("id", 0)
-        val habit = GetHabitsFromDBUseCase().execute(ID, arrayOf("$id"), MAIN)
+        val id = requireArguments().getInt("id", 0)
+        var habit: HabitItem? = null
+        scope.launch {
+            habit = getHabitItemUseCase(id)
 
-        finishHabitClass.NameGoalText.text = Editable.Factory.getInstance().newEditable(habit[0].title)
-        finishHabitClass.NumberText.text = Editable.Factory.getInstance().newEditable(habit[0].period.toString())
+            finishHabitClass.NameGoalText.text = Editable.Factory.getInstance().newEditable(habit?.title)
+            finishHabitClass.NumberText.text = Editable.Factory.getInstance().newEditable(habit?.period.toString())
+        }
+
 
         finishHabitClass.ButtonFinish.setOnClickListener {
-            MAIN.vmHome.updateData(-1,
-                GetHabitsFromDBUseCase().execute(ID, arrayOf("$id"), MAIN)[0])
-            MAIN.vmHome.updateChart(-1)
-            DeleteHabitUseCase().execute(id)
+//            MAIN.vmHome.updateData(-1,
+//                GetHabitsFromDBUseCase().execute(ID, arrayOf("$id"), MAIN)[0])
+//            MAIN.vmHome.updateChart(-1)
+
+            scope.launch {
+                deleteHabitUseCase(id)
+            }
 
             dismiss()
         }
@@ -77,16 +99,19 @@ class DialogFinishHabit: DialogFragment() {
             finishHabitClass.ButtonContinue.visibility = GONE
             finishHabitClass.Number.visibility = VISIBLE
             finishHabitClass.NameGoal.isEnabled = true
-            finishHabitClass.NameGoal.helperText = MAIN.resources.getString(R.string.helper_text)
+            finishHabitClass.NameGoal.helperText = resources.getString(R.string.helper_text)
             finishHabitClass.ButtonProlong.visibility = VISIBLE
         }
 
         finishHabitClass.ButtonProlong.setOnClickListener {
-            if(ValidateUseCase().validateName(finishHabitClass.NameGoalText, finishHabitClass.NameGoal) &&
-                ValidateUseCase().validateNumber(finishHabitClass.NumberText, finishHabitClass.Number)){
-                habit[0].title = finishHabitClass.NameGoalText.text.toString()
-                habit[0].period = finishHabitClass.NumberText.text.toString().toInt()
-                UpdateHabitUseCase().execute(habit[0], MAIN)
+            if(ValidateUseCase(requireActivity()).validateName(finishHabitClass.NameGoalText, finishHabitClass.NameGoal) &&
+                ValidateUseCase(requireActivity()).validateNumber(finishHabitClass.NumberText, finishHabitClass.Number)){
+                habit?.title = finishHabitClass.NameGoalText.text.toString()
+                habit?.period = finishHabitClass.NumberText.text.toString().toInt()
+                scope.launch {
+                    habit?.let { updateHabitUseCase(it) }
+
+                }
 
                 dismiss()
             }
@@ -96,7 +121,7 @@ class DialogFinishHabit: DialogFragment() {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun afterTextChanged(p0: Editable?) {
-                ValidateUseCase().validateName(finishHabitClass.NameGoalText, finishHabitClass.NameGoal)
+                ValidateUseCase(requireActivity()).validateName(finishHabitClass.NameGoalText, finishHabitClass.NameGoal)
             }
         })
 
@@ -104,7 +129,7 @@ class DialogFinishHabit: DialogFragment() {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun afterTextChanged(p0: Editable?) {
-                ValidateUseCase().validateNumber(finishHabitClass.NumberText, finishHabitClass.Number)
+                ValidateUseCase(requireActivity()).validateNumber(finishHabitClass.NumberText, finishHabitClass.Number)
             }
         })
     }

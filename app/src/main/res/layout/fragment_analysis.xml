@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="15dp"
     android:layout_marginRight="13dp"
-    tools:context=".MainActivity">
+    tools:context=".presentation.mainActivity.MainActivity">
 
     <LinearLayout
         android:id="@+id/infoLinear"
@@ -92,7 +92,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent"
-            tools:listitem="@layout/progress_bar" />
+            tools:listitem="@layout/progress_bar"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
     </ScrollView>
 

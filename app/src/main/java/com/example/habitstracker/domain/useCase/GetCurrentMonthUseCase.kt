@@ -1,12 +1,12 @@
 package com.example.habitstracker.domain.useCase
 
-import com.example.habitstracker.MAIN
+import android.content.Context
 import com.example.habitstracker.R
 import java.util.*
 
 class GetCurrentMonthUseCase {
 
-    fun execute(): MutableList<String> {
+    operator fun invoke(context: Context): List<String> {
         val cal: Calendar = Calendar.getInstance()
         val date = cal.get(Calendar.DATE)
         val dayOfWeek = cal.get(Calendar.DAY_OF_WEEK)
@@ -21,10 +21,10 @@ class GetCurrentMonthUseCase {
         while(monthsI.size < 7) {
             monthsI.add(cal.get(Calendar.MONTH))
         }
-        val titles = MAIN.resources.getStringArray(R.array.month)
+        val titles = context.resources.getStringArray(R.array.month)
         monthsI.forEach {
             months.add(titles[it])
         }
-        return months
+        return months.toList()
     }
 }

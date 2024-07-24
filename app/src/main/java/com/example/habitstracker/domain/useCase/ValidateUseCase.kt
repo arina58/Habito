@@ -1,11 +1,11 @@
 package com.example.habitstracker.domain.useCase
 
-import com.example.habitstracker.MAIN
+import android.content.Context
 import com.example.habitstracker.R
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
-class ValidateUseCase {
+class ValidateUseCase(private val context: Context) {
 
     fun validateName(text: TextInputEditText, layout: TextInputLayout): Boolean{
         return when (text.text?.length){
@@ -14,7 +14,7 @@ class ValidateUseCase {
                 true
             }
             else -> {
-                layout.error = MAIN.resources.getString(R.string.error_validate_name_goal)
+                layout.error = context.resources.getString(R.string.error_validate_name_goal)
                 false
             }
         }
@@ -27,7 +27,7 @@ class ValidateUseCase {
                 true
             }
             else -> {
-                layout.error = MAIN.resources.getString(R.string.error_validate_description)
+                layout.error = context.resources.getString(R.string.error_validate_description)
                 false
             }
         }
@@ -41,12 +41,12 @@ class ValidateUseCase {
                     true
                 }
                 else -> {
-                    layout.error = MAIN.resources.getString(R.string.error_validate_number)
+                    layout.error = context.resources.getString(R.string.error_validate_number)
                     false
                 }
             }
         }else{
-            layout.error = MAIN.resources.getString(R.string.error_validate_number)
+            layout.error = context.resources.getString(R.string.error_validate_number)
             false
         }
     }

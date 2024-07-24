@@ -1,0 +1,40 @@
+package com.example.habitstracker.presentation.registerFragment
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.habitstracker.R
+import com.example.habitstracker.databinding.FragmentEnterNameBinding
+
+class UserNameFragment : Fragment() {
+
+    private val enterNameClass: FragmentEnterNameBinding by lazy {
+        FragmentEnterNameBinding.inflate(layoutInflater)
+    }
+
+    private val vm: UserNameViewModel by lazy {
+        ViewModelProvider(this)[UserNameViewModel::class.java]
+    }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        return enterNameClass.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        enterNameClass.nameEnterCont.setOnClickListener {
+            vm.saveUserName(requireActivity(), enterNameClass.EditUsername.text)
+        }
+
+        vm.changeFragment.observe(viewLifecycleOwner){
+            findNavController().navigate(R.id.action_enterNameFragment_to_homeFragment)
+        }
+    }
+}

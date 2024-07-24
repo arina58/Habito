@@ -12,11 +12,10 @@ import android.os.Build
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.example.habitstracker.MAIN
 import com.example.habitstracker.R
 
-class Notifications:BroadcastReceiver() {
-    private var notification = NotificationCompat.Builder(MAIN, "1")
+class Notifications(private val context: Context) : BroadcastReceiver() {
+    private var notification = NotificationCompat.Builder(context, "1")
         .setSmallIcon(R.drawable.icon)
         .setContentTitle("Habito")
         .setContentText("You have uncompleted tasks")

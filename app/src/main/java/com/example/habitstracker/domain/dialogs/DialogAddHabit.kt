@@ -7,14 +7,27 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
 import androidx.fragment.app.DialogFragment
-import com.example.habitstracker.MAIN
+import com.example.habitstracker.data.HabitRepositoryImpl
 import com.example.habitstracker.databinding.NewGoalBinding
-import com.example.habitstracker.domain.model.HabitData
+import com.example.habitstracker.domain.model.HabitItem
 import com.example.habitstracker.domain.useCase.AddHabitUseCase
 import com.example.habitstracker.domain.useCase.ValidateUseCase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class DialogAddHabit: DialogFragment() {
+class DialogAddHabit : DialogFragment() {
     private lateinit var addHabitClass: NewGoalBinding
+
+    private val habitRepository by lazy {
+        HabitRepositoryImpl(requireActivity().application)
+    }
+    private val addHabitUseCase by lazy {
+        AddHabitUseCase(habitRepository)
+    }
+
+    private val scope = CoroutineScope(Dispatchers.IO)
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,20 +40,26 @@ class DialogAddHabit: DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        addHabitClass.NameGoalText.addTextChangedListener(object : TextWatcher{
+        addHabitClass.NameGoalText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun afterTextChanged(p0: Editable?) {
-                ValidateUseCase().validateName(addHabitClass.NameGoalText, addHabitClass.NameGoal)
+                ValidateUseCase(requireActivity()).validateName(
+                    addHabitClass.NameGoalText,
+                    addHabitClass.NameGoal
+                )
             }
 
         })
 
-        addHabitClass.DescriptionText.addTextChangedListener(object : TextWatcher{
+        addHabitClass.DescriptionText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun afterTextChanged(p0: Editable?) {
-                ValidateUseCase().validateDescription(addHabitClass.DescriptionText, addHabitClass.Description)
+                ValidateUseCase(requireActivity()).validateDescription(
+                    addHabitClass.DescriptionText,
+                    addHabitClass.Description
+                )
             }
         })
 
@@ -48,24 +67,40 @@ class DialogAddHabit: DialogFragment() {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun afterTextChanged(p0: Editable?) {
-                ValidateUseCase().validateNumber(addHabitClass.NumberText, addHabitClass.Number)
+                ValidateUseCase(requireActivity()).validateNumber(
+                    addHabitClass.NumberText,
+                    addHabitClass.Number
+                )
             }
         })
 
         addHabitClass.ButtonCreate.setOnClickListener {
 
-            if (ValidateUseCase().validateName(addHabitClass.NameGoalText, addHabitClass.NameGoal) &&
-                ValidateUseCase().validateNumber(addHabitClass.NumberText, addHabitClass.Number) &&
-                ValidateUseCase().validateDescription(addHabitClass.DescriptionText, addHabitClass.Description)
-            ) {
-                AddHabitUseCase().execute(
-                    HabitData(0, addHabitClass.NameGoalText.text.toString(),
-                    addHabitClass.NumberText.text.toString().toInt(), 0, 0, 0, 0,
-                    addHabitClass.DescriptionText.text.toString())
+            if (ValidateUseCase(requireActivity()).validateName(
+                    addHabitClass.NameGoalText,
+                    addHabitClass.NameGoal
+                ) &&
+                ValidateUseCase(requireActivity()).validateNumber(
+                    addHabitClass.NumberText,
+                    addHabitClass.Number
+                ) &&
+                ValidateUseCase(requireActivity()).validateDescription(
+                    addHabitClass.DescriptionText,
+                    addHabitClass.Description
                 )
+            ) {
+                scope.launch {
+                    addHabitUseCase(
+                        HabitItem(
+                            0, addHabitClass.NameGoalText.text.toString(),
+                            addHabitClass.NumberText.text.toString().toInt(), 0, 0, 0, 0,
+                            addHabitClass.DescriptionText.text.toString()
+                        )
+                    )
+                }
 
-                MAIN.vmHome.updateData(1, null)
-                MAIN.vmAnalysis?.addItem()
+//                MAIN.vmHome.updateData(1, null)
+//                MAIN.vmAnalysis?.addItem()
                 dismiss()
             }
         }

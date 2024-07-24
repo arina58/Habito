@@ -4,16 +4,15 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import com.example.habitstracker.MAIN
 import com.example.habitstracker.domain.MidnightProgress
 import java.util.*
 
 class SetMidnightProgressUseCase {
 
-    fun execute(){
-        val alarmManager = MAIN.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val alarmIntent = Intent(MAIN, MidnightProgress::class.java).let { intent ->
-            PendingIntent.getBroadcast(MAIN, 0, intent,0)
+    operator fun invoke(context: Context){
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val alarmIntent = Intent(context, MidnightProgress::class.java).let { intent ->
+            PendingIntent.getBroadcast(context, 0, intent,0)
         }
 
         val midnight = Calendar.getInstance().apply {
