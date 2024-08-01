@@ -4,10 +4,9 @@ import java.util.*
 
 class GetWeeklyDateUseCase {
     private val cal: Calendar = Calendar.getInstance()
-    private val dayOfWeek: Int = cal.get(Calendar.DAY_OF_WEEK) - 1
+    private var dayOfWeek: Int = cal.get(Calendar.DAY_OF_WEEK) - 1
     fun execute(): MutableList<Int> {
-
-
+        if(dayOfWeek == 0) dayOfWeek = 7
         val days = mutableListOf<Int>()
 
         cal.add(Calendar.DAY_OF_MONTH, -(dayOfWeek - 1))
@@ -20,6 +19,7 @@ class GetWeeklyDateUseCase {
     }
 
     fun getDayInWeek(): Int {
+        if(dayOfWeek == 0) dayOfWeek = 7
         return dayOfWeek
     }
 }

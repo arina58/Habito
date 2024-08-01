@@ -36,7 +36,7 @@ class ValidateUseCase {
     fun validateNumber(text: TextInputEditText, layout: TextInputLayout): Boolean{
         return if (text.text?.length != 0) {
             when (text.text.toString().toInt()) {
-                in 2..255 -> {
+                in 2..365 -> {
                     layout.error = null
                     true
                 }

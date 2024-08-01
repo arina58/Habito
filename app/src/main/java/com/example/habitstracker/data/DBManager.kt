@@ -15,7 +15,6 @@ class DBManager(context: Context) {
     fun openDB(){
         db = myDBHelper.writableDatabase
     }
-
     fun insertToDB(habit: HabitInsertData){
         val values = ContentValues().apply {
             put(DBObject.COLUMN_NAME_TITLE, habit.title)
@@ -30,7 +29,6 @@ class DBManager(context: Context) {
         db?.insert(DBObject.TABLE_NAME, null, values)
 
     }
-
     @SuppressLint("Range")
     fun readData(column: String, args: Array<String>): ArrayList<HabitGetData>{
         val result = ArrayList<HabitGetData>()
@@ -53,7 +51,6 @@ class DBManager(context: Context) {
         cursor.close()
         return result
     }
-
     @SuppressLint("Range")
     fun readLastRecord(): HabitGetData? {
         var result: HabitGetData? = null
@@ -77,15 +74,12 @@ class DBManager(context: Context) {
         }
         return result
     }
-
     fun updateData(id: Int, value: ContentValues){
         db?.update(DBObject.TABLE_NAME, value, BaseColumns._ID + "=" + id, null)
     }
-
     fun closeDB(){
         myDBHelper.close()
     }
-
     fun deleteItem(itemId: Int) {
         val selection = "${BaseColumns._ID} = ?"
         val selectionArgs = arrayOf(itemId.toString())

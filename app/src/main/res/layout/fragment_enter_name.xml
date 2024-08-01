@@ -29,24 +29,27 @@
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <EditText
-        android:id="@+id/EditUsername"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/Name"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/background_all"
-        android:ems="10"
-        style="@style/MyText"
-        android:textColorHint="?attr/textFillColor"
-        android:hint="Your name"
-        android:inputType="textPersonName"
-        android:paddingLeft="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/textView3"
-        app:layout_constraintHorizontal_bias="0.44"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:hint="@string/hint_user_name"
+        app:helperTextEnabled="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView3">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/NameText"
+            style="@style/MyText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textShortMessage|text"
+            android:textSize="20sp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/nameEnterCont"
@@ -60,7 +63,7 @@
         android:text="@string/button_continue"
         android:textSize="17sp"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/EditUsername"
-        app:layout_constraintStart_toStartOf="@+id/EditUsername"
-        app:layout_constraintTop_toBottomOf="@+id/EditUsername" />
+        app:layout_constraintEnd_toEndOf="@+id/Name"
+        app:layout_constraintStart_toStartOf="@+id/Name"
+        app:layout_constraintTop_toBottomOf="@+id/Name" />
 </androidx.constraintlayout.widget.ConstraintLayout>

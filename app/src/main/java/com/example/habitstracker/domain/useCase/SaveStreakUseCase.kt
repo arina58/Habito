@@ -17,7 +17,6 @@ class SaveStreakUseCase {
             editor?.putInt(CURRENT_STREAK, 0)
             editor?.apply()
         }
-
         val bestStreak = pref.getInt(BEST_STREAK, 0)
         if(currentStreak > bestStreak){
             editor?.putInt(BEST_STREAK, currentStreak)

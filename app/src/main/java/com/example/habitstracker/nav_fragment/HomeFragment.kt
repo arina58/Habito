@@ -71,7 +71,8 @@ class HomeFragment : Fragment(){
     }
     private fun addPieChart(){
         vm.notDoneHabits.observe(this){
-            AddPieChartUseCase().execute(homeClass.PieChart, vm.doneHabits.value!!, vm.data.value!!.size)
+            AddPieChartUseCase().execute(homeClass.PieChart,
+                vm.doneHabits.value!!, vm.data.value!!.size)
         }
         vm.doneHabits.observe(MAIN){
             AddPieChartUseCase().execute(homeClass.PieChart, vm.doneHabits.value!!, vm.data.value!!.size)

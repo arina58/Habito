@@ -20,7 +20,6 @@ class SettingsViewModel: ViewModel() {
         SaveReceiveNotificationsUseCase().execute(state)
         SetNotificationUseCase().execute()
     }
-
     fun changeTheme (state: Boolean){
         if(state){
             SaveNameThemeUseCase().execute(DARK_THEME)

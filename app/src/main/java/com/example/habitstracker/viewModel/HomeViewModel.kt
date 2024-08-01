@@ -31,10 +31,11 @@ class HomeViewModel: ViewModel(){
 
     init{
         userName.value = "${res.getString(R.string.hello)} ${GetUserNameUseCase().execute()}"
+        timeTitle.value = getTimeTitle()
+
         weeklyDate.value = GetWeeklyDateUseCase().execute()
         currentMonth.value = GetCurrentMonthUseCase().execute()
         dayInWeek.value = GetWeeklyDateUseCase().getDayInWeek()
-        timeTitle.value = getTimeTitle()
         overallStreak.value = "${res.getString(R.string.overall_streak)} ${streaks[0]} ${getTextDay(streaks[0])}"
         bestStreak.value = "${res.getString(R.string.best_streak)} ${streaks[1]} ${getTextDay(streaks[1])}"
         updateCheckList.value = 0
@@ -92,7 +93,8 @@ class HomeViewModel: ViewModel(){
             data.value?.forEach{
                 if(it.id == item?.id) it.NameItem = item.title
             }
-        }else if(action == -1){
+        }
+        else if(action == -1){
             var itemR: ItemsData? = null
             data.value?.forEach{
                 if(it.id == item?.id) itemR = it

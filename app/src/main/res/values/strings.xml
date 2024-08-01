@@ -19,12 +19,13 @@
     <string name="hint_days">Days</string>
     <string name="hint_description">Description</string>
     <string name="helper_text">*required</string>
-    <string name="error_validate_number">days count must be 2 to 255</string>
+    <string name="error_validate_number">days count must be 2 to 365</string>
     <string name="error_validate_description">length must not exceed 255</string>
     <string name="error_validate_name_goal">length must be 1 to 30 symbols</string>
 
     <!-- Fragment enter name -->
     <string name="button_continue">Continue</string>
+    <string name="hint_user_name">Your name</string>
 
     <!-- Dialog change goal -->
     <string name="header_change_goal">Change Goal</string>
@@ -47,7 +48,7 @@
     <string name="progress_bar_text"> from 7 days target</string>
 
     <!-- Fragment finish habits -->
-    <string name="header_finish_habits">Finish Habits</string>
+    <string name="header_finish_habits">Finish</string>
 
     <!-- Fragment home -->
     <string name="hello">Hello, </string>

@@ -26,10 +26,10 @@ class SettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val mainCoordination = MAIN.findViewById<CoordinatorLayout>(R.id.main_coord_lay)
-        val bar = MAIN.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        mainCoordination.visibility = View.VISIBLE
-        bar.background = null
+//        val mainCoordination = MAIN.findViewById<CoordinatorLayout>(R.id.main_coord_lay)
+//        val bar = MAIN.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+//        mainCoordination.visibility = View.VISIBLE
+//        bar.background = null
 
         vm = ViewModelProvider(this)[SettingsViewModel::class.java]
 

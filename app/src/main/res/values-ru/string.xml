@@ -20,23 +20,24 @@
     <string name="hint_days">Количество дней</string>
     <string name="hint_description">Описание</string>
     <string name="helper_text">*обязательно</string>
-    <string name="error_validate_number">число должно быть от 2 до 255</string>
+    <string name="error_validate_number">число должно быть от 2 до 365</string>
     <string name="error_validate_description">длина не должна превышать 255</string>
     <string name="error_validate_name_goal">длина от 1 до 30 символов</string>
 
     <!-- Fragment enter name -->
     <string name="button_continue">Продолжить</string>
+    <string name="hint_user_name">Ваше имя</string>
 
     <!-- Dialog change goal -->
-    <string name="header_change_goal">Изменить цель</string>
+    <string name="header_change_goal">Изменить привычку</string>
     <string name="button_update">Обновить</string>
 
     <!-- Dialog create goal -->
-    <string name="header_create_goal">Новая цель</string>
+    <string name="header_create_goal">Новая привычка</string>
     <string name="button_create_goal">Создать</string>
 
     <!-- Dialog finish goal -->
-    <string name="header_finish_goal">Завершить цель</string>
+    <string name="header_finish_goal">Завершить привычку</string>
     <string name="button_prolong">Продлить</string>
     <string name="button_finish">Завершить</string>
 
@@ -45,10 +46,10 @@
     <string name="card_name_goal">Название:</string>
     <string name="card_description_goal">Описание:</string>
     <string name="card_days_goal">Оставшиеся дни:</string>
-    <string name="progress_bar_text"> из 7 дней цель была выполнена</string>
+    <string name="progress_bar_text"> из 7 дней привычка была выполнена</string>
 
     <!-- Fragment finish habits -->
-    <string name="header_finish_habits">Выполненные привычки</string>
+    <string name="header_finish_habits">Выполненные</string>
 
     <!-- Fragment home -->
     <string name="hello">Здравствуйте, </string>

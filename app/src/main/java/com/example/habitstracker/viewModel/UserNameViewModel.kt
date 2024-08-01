@@ -1,15 +1,18 @@
 package com.example.habitstracker.viewModel
 
-import android.text.Editable
 import androidx.lifecycle.ViewModel
 import com.example.habitstracker.MAIN
 import com.example.habitstracker.R
 import com.example.habitstracker.domain.useCase.SaveUserNameUseCase
+import com.example.habitstracker.domain.useCase.ValidateUseCase
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 
 class UserNameViewModel: ViewModel() {
-    fun saveUserName(name: Editable){
-        if(name.length in 1..20) {
-            SaveUserNameUseCase().execute(name.toString())
+
+    fun checkName(NameText: TextInputEditText, Name: TextInputLayout){
+        if (ValidateUseCase().validateName(NameText, Name)){
+            SaveUserNameUseCase().execute(NameText.text.toString())
             MAIN.navController.navigate(R.id.action_enterNameFragment_to_homeFragment)
         }
     }

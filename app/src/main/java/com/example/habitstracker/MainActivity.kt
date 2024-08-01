@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         mainClass = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mainClass.root)
         MAIN = this
+
         vm = ViewModelProvider(this)[MainViewModel::class.java]
         navController = Navigation.findNavController(this, R.id.navHostFragment)
 
