@@ -10,13 +10,19 @@ import com.example.habitstracker.domain.useCase.*
 import kotlinx.coroutines.launch
 import java.util.*
 
-class HomeViewModel(application: Application): AndroidViewModel(application){
+class HomeViewModel(
+    application: Application,
+    private val getStreakUseCase: GetStreakUseCase,
+    private val getUserNameUseCase: GetUserNameUseCase,
+    private val getCurrentMonthUseCase: GetCurrentMonthUseCase,
+    private val getWeeklyDateUseCase: GetWeeklyDateUseCase,
+    private val updateHabitUseCase: UpdateHabitUseCase,
+    private val deleteHabitUseCase: DeleteHabitUseCase,
+    private val getHabitItem: GetHabitItemUseCase,
+    private val getHabitsFromDBUseCase: GetHabitsFromDBUseCase
+): AndroidViewModel(application){
 
-    private val getStreakUseCase = GetStreakUseCase()
     private val streaks = getStreakUseCase(application)
-    private val getUserNameUseCase = GetUserNameUseCase()
-    private val getCurrentMonthUseCase = GetCurrentMonthUseCase()
-    private val getWeeklyDateUseCase = GetWeeklyDateUseCase()
     private val res = application.resources
 
     var userName = "${res.getString(R.string.hello)} ${getUserNameUseCase(application)}"
@@ -27,12 +33,9 @@ class HomeViewModel(application: Application): AndroidViewModel(application){
     var overallStreak = "${res.getString(R.string.overall_streak)} ${streaks[0]} ${getTextDay(streaks[0])}"
     var bestStreak = "${res.getString(R.string.best_streak)} ${streaks[1]} ${getTextDay(streaks[1])}"
 
-    private val habitRepository = HabitRepositoryImpl(application)
 
-    var data =  GetHabitsFromDBUseCase(habitRepository).invoke()
-    private val updateHabitUseCase = UpdateHabitUseCase(habitRepository)
-    private val deleteHabitUseCase = DeleteHabitUseCase(habitRepository)
-    private val getHabitItem = GetHabitItemUseCase(habitRepository)
+    var data =  getHabitsFromDBUseCase.invoke()
+
 
 //    var label = MutableLiveData<String>()
 //    var doneHabits = MutableLiveData<Int>()

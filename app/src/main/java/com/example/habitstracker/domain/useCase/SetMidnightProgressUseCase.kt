@@ -7,8 +7,9 @@ import android.content.Intent
 
 import com.example.habitstracker.domain.MidnightProgress
 import java.util.*
+import javax.inject.Inject
 
-class SetMidnightProgressUseCase {
+class SetMidnightProgressUseCase @Inject constructor() {
 
     operator fun invoke(context: Context){
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager

@@ -18,16 +18,16 @@ import com.example.habitstracker.domain.useCase.ValidateUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class DialogChangeHabit: DialogFragment() {
     private lateinit var changeHabitClass: ChangeGoalBinding
 
-    private val habitRepository by lazy {
-        HabitRepositoryImpl(requireActivity().application)
-    }
+    @Inject
+    lateinit var getHabitItemUseCase: GetHabitItemUseCase
 
-    private val getHabitItemUseCase = GetHabitItemUseCase(habitRepository)
-    private val updateHabitUseCase = UpdateHabitUseCase(habitRepository)
+    @Inject
+    lateinit var updateHabitUseCase: UpdateHabitUseCase
 
     private val scope = CoroutineScope(Dispatchers.IO)
 
@@ -57,7 +57,6 @@ class DialogChangeHabit: DialogFragment() {
         scope.launch {
             item = getHabitItemUseCase(id)
         }
-
 
         changeHabitClass.NameGoalText.text = Editable.Factory.getInstance().newEditable(item?.title)
         changeHabitClass.NumberText.text = Editable.Factory.getInstance().newEditable(item?.period.toString())

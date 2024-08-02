@@ -4,8 +4,9 @@ import android.content.Context
 import com.example.habitstracker.R
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import javax.inject.Inject
 
-class ValidateUseCase(private val context: Context) {
+class ValidateUseCase @Inject constructor(private val context: Context) {
 
     fun validateName(text: TextInputEditText, layout: TextInputLayout): Boolean{
         return when (text.text?.length){

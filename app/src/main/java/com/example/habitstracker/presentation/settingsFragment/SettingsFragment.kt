@@ -7,22 +7,28 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.habitstracker.databinding.FragmentSettingsBinding
+import com.example.habitstracker.presentation.ViewModelFactory
+import javax.inject.Inject
 
 class SettingsFragment : Fragment() {
-    private lateinit var settingsClass: FragmentSettingsBinding
-    private lateinit var vm: SettingsViewModel
+    private val settingsClass by lazy {
+        FragmentSettingsBinding.inflate(layoutInflater)
+    }
+    @Inject
+    lateinit var vmFactory: ViewModelFactory
+
+    private val vm by lazy {
+        ViewModelProvider(this, vmFactory)[SettingsViewModel::class.java]
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        settingsClass = FragmentSettingsBinding.inflate(layoutInflater, container, false)
         return settingsClass.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        vm = ViewModelProvider(this)[SettingsViewModel::class.java]
 
         settingsClass.SwitchTheme.isChecked = vm.stateSwitchTheme.value == true
         settingsClass.NotificationSwitch.isChecked = vm.stateNotification.value!!

@@ -15,16 +15,13 @@ import com.example.habitstracker.domain.useCase.ValidateUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class DialogAddHabit : DialogFragment() {
     private lateinit var addHabitClass: NewGoalBinding
 
-    private val habitRepository by lazy {
-        HabitRepositoryImpl(requireActivity().application)
-    }
-    private val addHabitUseCase by lazy {
-        AddHabitUseCase(habitRepository)
-    }
+    @Inject
+    lateinit var addHabitUseCase: AddHabitUseCase
 
     private val scope = CoroutineScope(Dispatchers.IO)
 

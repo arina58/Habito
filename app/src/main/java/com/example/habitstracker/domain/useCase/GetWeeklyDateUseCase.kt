@@ -1,8 +1,9 @@
 package com.example.habitstracker.domain.useCase
 
 import java.util.*
+import javax.inject.Inject
 
-class GetWeeklyDateUseCase {
+class GetWeeklyDateUseCase @Inject constructor() {
     private val cal: Calendar = Calendar.getInstance()
     private var dayOfWeek: Int = cal.get(Calendar.DAY_OF_WEEK) - 1
     fun execute(): MutableList<Int> {

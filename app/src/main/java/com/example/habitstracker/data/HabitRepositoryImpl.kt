@@ -5,8 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import com.example.habitstracker.domain.HabitRepository
 import com.example.habitstracker.domain.model.HabitItem
+import javax.inject.Inject
 
-class HabitRepositoryImpl(application: Application) : HabitRepository {
+class HabitRepositoryImpl @Inject constructor(application: Application) : HabitRepository {
 
     private val habitListDao = AppDatabase.getInstance(application).habitListDao()
     private val mapper = HabitListMapper()

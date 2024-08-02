@@ -7,16 +7,18 @@ import androidx.lifecycle.MutableLiveData
 import com.example.habitstracker.*
 import com.example.habitstracker.domain.useCase.*
 
-class SettingsViewModel(application: Application): AndroidViewModel(application) {
+class SettingsViewModel(
+    application: Application,
+    private val getReceiveNotificationsUseCase: GetReceiveNotificationsUseCase,
+    private val getNameThemeUseCase: GetNameThemeUseCase,
+    private val saveReceiveNotificationsUseCase: SaveReceiveNotificationsUseCase,
+    private val setNotificationUseCase: SetNotificationUseCase,
+    private val saveNameThemeUseCase: SaveNameThemeUseCase,
+    private val switchThemeUseCase: SwitchThemeUseCase,
+): AndroidViewModel(application) {
+
     var stateSwitchTheme = MutableLiveData<Boolean>()
     var stateNotification = MutableLiveData<Boolean>()
-
-    private val getReceiveNotificationsUseCase = GetReceiveNotificationsUseCase()
-    private val getNameThemeUseCase = GetNameThemeUseCase()
-    private val saveReceiveNotificationsUseCase = SaveReceiveNotificationsUseCase()
-    private val setNotificationUseCase = SetNotificationUseCase(application)
-    private val saveNameThemeUseCase = SaveNameThemeUseCase()
-    private val switchThemeUseCase = SwitchThemeUseCase()
 
     init{
         stateNotification.value = getReceiveNotificationsUseCase(application)

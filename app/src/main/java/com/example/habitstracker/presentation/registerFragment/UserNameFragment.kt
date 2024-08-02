@@ -9,6 +9,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.habitstracker.R
 import com.example.habitstracker.databinding.FragmentEnterNameBinding
+import com.example.habitstracker.presentation.ViewModelFactory
+import javax.inject.Inject
 
 class UserNameFragment : Fragment() {
 
@@ -16,8 +18,11 @@ class UserNameFragment : Fragment() {
         FragmentEnterNameBinding.inflate(layoutInflater)
     }
 
+    @Inject
+    lateinit var vmFactory: ViewModelFactory
+
     private val vm: UserNameViewModel by lazy {
-        ViewModelProvider(this)[UserNameViewModel::class.java]
+        ViewModelProvider(this, vmFactory)[UserNameViewModel::class.java]
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

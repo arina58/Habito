@@ -5,14 +5,16 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import com.example.habitstracker.domain.Notifications
+import javax.inject.Inject
 
-class SetNotificationUseCase(private val context: Context) {
+class SetNotificationUseCase @Inject constructor(
+    private val context: Context,
+    private val getReceiveNotificationsUseCase: GetReceiveNotificationsUseCase
+) {
     private val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
     private val alarmIntent = Intent(context, Notifications::class.java).let { intent ->
         PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
     }
-
-    private val getReceiveNotificationsUseCase = GetReceiveNotificationsUseCase()
 
     operator fun invoke(){
        if(getReceiveNotificationsUseCase(context)) setNotification()

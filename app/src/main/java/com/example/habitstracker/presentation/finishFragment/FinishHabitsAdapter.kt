@@ -10,7 +10,7 @@ import com.example.habitstracker.databinding.FragmentFinishHabitsBinding
 import com.example.habitstracker.domain.model.HabitItem
 
 
-class FinishHabitsAdapter() :
+class FinishHabitsAdapter :
     ListAdapter<HabitItem, FinishHabitsAdapter.FinishHabitViewHolder>(
         FinishItemDiffCallback()
     ) {

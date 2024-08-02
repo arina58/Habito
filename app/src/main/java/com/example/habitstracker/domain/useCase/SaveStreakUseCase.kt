@@ -2,8 +2,9 @@ package com.example.habitstracker.domain.useCase
 
 import android.content.Context
 import com.example.habitstracker.*
+import javax.inject.Inject
 
-class SaveStreakUseCase {
+class SaveStreakUseCase @Inject constructor() {
 
     operator fun invoke(flag: Boolean, context: Context){
         val pref = context.getSharedPreferences("User", Context.MODE_PRIVATE)

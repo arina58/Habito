@@ -14,20 +14,23 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import java.util.*
+import javax.inject.Inject
 
-class MidnightProgress(private val application: Application) : BroadcastReceiver() {
+class MidnightProgress @Inject constructor(
+    private val saveStreakUseCase: SaveStreakUseCase,
+    private val updateHabitUseCase: UpdateHabitUseCase,
+    private val getHabitsFromDBUseCase: GetHabitsFromDBUseCase
+) : BroadcastReceiver() {
 
-    private val habitRepository = HabitRepositoryImpl(application)
-    private val data = GetHabitsFromDBUseCase(habitRepository).invoke().value
-    private val saveStreakUseCase = SaveStreakUseCase()
-    private val updateHabitUseCase = UpdateHabitUseCase(habitRepository)
+    private val data = getHabitsFromDBUseCase.invoke().value
+
 
     private val scope = CoroutineScope(Dispatchers.IO)
 
     override fun onReceive(context: Context, intent: Intent) {
         checkStreak(context)
         updateHabits()
-        checkSunday(context)
+        checkSunday()
     }
 
     private fun checkStreak(context: Context) {
@@ -55,7 +58,7 @@ class MidnightProgress(private val application: Application) : BroadcastReceiver
         }
     }
 
-    private fun checkSunday(context: Context) {
+    private fun checkSunday() {
         val cal = Calendar.getInstance()
         if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
             data?.forEach {

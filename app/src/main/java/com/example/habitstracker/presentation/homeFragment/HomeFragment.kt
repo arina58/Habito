@@ -13,17 +13,25 @@ import com.example.habitstracker.databinding.FragmentHomeBinding
 import com.example.habitstracker.domain.dialogs.DialogAddHabit
 import com.example.habitstracker.domain.dialogs.DialogChangeHabit
 import com.example.habitstracker.domain.useCase.AddPieChartUseCase
+import com.example.habitstracker.presentation.ViewModelFactory
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import javax.inject.Inject
 
 class HomeFragment : Fragment() {
+
     private val homeClass: FragmentHomeBinding by lazy {
         FragmentHomeBinding.inflate(layoutInflater)
     }
+
+    @Inject
+    lateinit var vmFactory: ViewModelFactory
+
     private val vm: HomeViewModel by lazy {
-        ViewModelProvider(this)[HomeViewModel::class.java]
+        ViewModelProvider(this, vmFactory)[HomeViewModel::class.java]
     }
 
-    private val addPieChartUseCase = AddPieChartUseCase()
+    @Inject
+    lateinit var addPieChartUseCase: AddPieChartUseCase
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

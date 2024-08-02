@@ -7,13 +7,19 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.habitstracker.databinding.FragmentAnalysisBinding
+import com.example.habitstracker.presentation.ViewModelFactory
+import javax.inject.Inject
 
 class AnalysisFragment : Fragment() {
     private val analysisClass: FragmentAnalysisBinding by lazy {
         FragmentAnalysisBinding.inflate(layoutInflater)
     }
+
+    @Inject
+    lateinit var vmFactory: ViewModelFactory
+
     private val vm: AnalysisViewModel by lazy {
-        ViewModelProvider(this)[AnalysisViewModel::class.java]
+        ViewModelProvider(this, vmFactory)[AnalysisViewModel::class.java]
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -9,13 +9,19 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.habitstracker.R
 import com.example.habitstracker.databinding.FragmentFinishHabitsListBinding
+import com.example.habitstracker.presentation.ViewModelFactory
+import javax.inject.Inject
 
 class FinishFragment : Fragment() {
     private val finishHabitsClass: FragmentFinishHabitsListBinding by lazy {
         FragmentFinishHabitsListBinding.inflate(layoutInflater)
     }
+
+    @Inject
+    lateinit var vmFactory: ViewModelFactory
+
     private val vm: FinishViewModel by lazy {
-        ViewModelProvider(this)[FinishViewModel::class.java]
+        ViewModelProvider(this, vmFactory)[FinishViewModel::class.java]
     }
 
     override fun onCreateView(

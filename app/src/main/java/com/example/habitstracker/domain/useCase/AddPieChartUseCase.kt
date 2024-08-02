@@ -3,8 +3,9 @@ package com.example.habitstracker.domain.useCase
 import android.graphics.Color
 import org.eazegraph.lib.charts.PieChart
 import org.eazegraph.lib.models.PieModel
+import javax.inject.Inject
 
-class AddPieChartUseCase {
+class AddPieChartUseCase @Inject constructor() {
     operator fun invoke(item: PieChart, value1: Int, value2: Int){
         item.clearChart()
         var v2 = value2

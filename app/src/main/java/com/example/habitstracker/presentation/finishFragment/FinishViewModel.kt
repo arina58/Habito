@@ -14,15 +14,14 @@ import com.example.habitstracker.domain.useCase.GetHabitsFromDBUseCase
 import com.example.habitstracker.domain.useCase.UpdateHabitUseCase
 import kotlinx.coroutines.launch
 
-class FinishViewModel(application: Application): AndroidViewModel(application) {
+class FinishViewModel(
+    application: Application,
+    private val getHabitsFromDBUseCase: GetHabitsFromDBUseCase,
+    private val updateHabitUseCase: UpdateHabitUseCase,
+    private val getHabitItemUseCase: GetHabitItemUseCase
+): AndroidViewModel(application) {
 
-    private val habitRepository = HabitRepositoryImpl(application)
-
-    var data = GetHabitsFromDBUseCase(habitRepository).invoke()
-
-    private val updateHabitUseCase = UpdateHabitUseCase(habitRepository)
-    private val getHabitItemUseCase = GetHabitItemUseCase(habitRepository)
-
+    var data = getHabitsFromDBUseCase.invoke()
 
 //    fun addItem(habit: HabitFinishItemData){
 //        data.value?.add(habit)

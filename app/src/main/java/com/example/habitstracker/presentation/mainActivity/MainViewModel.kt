@@ -6,14 +6,20 @@ import androidx.lifecycle.MutableLiveData
 import com.example.habitstracker.*
 import com.example.habitstracker.data.HabitRepositoryImpl
 import com.example.habitstracker.domain.useCase.*
+import javax.inject.Inject
 
-class MainViewModel(application: Application): AndroidViewModel(application) {
+class MainViewModel @Inject constructor(
+    application: Application,
+    private val getUserNameUseCase: GetUserNameUseCase,
+    private val getHabitsFromDBUseCase: GetHabitsFromDBUseCase,
+    private val setNotificationUseCase: SetNotificationUseCase,
+    private val setMidnightProgressUseCase: SetMidnightProgressUseCase,
+    private val switchThemeUseCase: SwitchThemeUseCase
+): AndroidViewModel(application) {
     var startDestination = MutableLiveData<Int>()
     var theme = MutableLiveData<Int>()
 
-    private val getUserNameUseCase = GetUserNameUseCase()
-    private val habitRepository = HabitRepositoryImpl(application)
-    var data =  GetHabitsFromDBUseCase(habitRepository).invoke().value
+    var data =  getHabitsFromDBUseCase.invoke().value
 
     init{
 //        SetNotificationUseCase().execute()

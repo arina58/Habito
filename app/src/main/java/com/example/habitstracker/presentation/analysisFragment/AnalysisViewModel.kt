@@ -12,11 +12,12 @@ import com.example.habitstracker.domain.useCase.GetHabitItemUseCase
 import com.example.habitstracker.domain.useCase.GetHabitsFromDBUseCase
 import com.example.habitstracker.domain.useCase.UpdateHabitUseCase
 
-class AnalysisViewModel(application: Application): AndroidViewModel(application) {
+class AnalysisViewModel(
+    application: Application,
+    private val getHabitsFromDBUseCase: GetHabitsFromDBUseCase
+): AndroidViewModel(application) {
 
-    private val habitRepository = HabitRepositoryImpl(application)
-
-    var data =  GetHabitsFromDBUseCase(habitRepository).invoke()
+    var data =  getHabitsFromDBUseCase.invoke()
 //    private val updateHabitUseCase = UpdateHabitUseCase(habitRepository)
 //    private val deleteHabitUseCase = DeleteHabitUseCase(habitRepository)
 //    private val getHabitItem = GetHabitItemUseCase(habitRepository)

@@ -3,8 +3,9 @@ package com.example.habitstracker.domain.useCase
 import android.content.Context
 import com.example.habitstracker.R
 import java.util.*
+import javax.inject.Inject
 
-class GetCurrentMonthUseCase {
+class GetCurrentMonthUseCase @Inject constructor() {
 
     operator fun invoke(context: Context): List<String> {
         val cal: Calendar = Calendar.getInstance()

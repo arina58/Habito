@@ -10,24 +10,33 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.habitstracker.R
 import com.example.habitstracker.databinding.ActivityMainBinding
+import com.example.habitstracker.di.DaggerAppComponent
+import com.example.habitstracker.presentation.ViewModelFactory
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
+
+    private val component = DaggerAppComponent.factory().create(application, applicationContext)
+
 
     private val mainClass: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
-    private lateinit var navController: NavController
+
+    @Inject
+    lateinit var vmFactory: ViewModelFactory
 
     private val vm: MainViewModel by lazy {
-        ViewModelProvider(this)[MainViewModel::class.java]
+        ViewModelProvider(this, vmFactory)[MainViewModel::class.java]
     }
 
     @SuppressLint("WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(mainClass.root)
 
-        navController = Navigation.findNavController(this, R.id.navHostFragment)
+        val navController = Navigation.findNavController(this, R.id.navHostFragment)
 
         (supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment)
             .also { navHost ->
