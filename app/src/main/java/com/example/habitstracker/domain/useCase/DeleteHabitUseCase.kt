@@ -1,13 +1,9 @@
 package com.example.habitstracker.domain.useCase
 
-import com.example.habitstracker.MAIN
-import com.example.habitstracker.data.DBManager
+import com.example.habitstracker.domain.HabitRepository
 
-class DeleteHabitUseCase {
-    fun execute(id: Int){
-        val db = DBManager(MAIN)
-        db.openDB()
-        db.deleteItem(id)
-        db.closeDB()
+class DeleteHabitUseCase(private val habitRepository: HabitRepository) {
+    suspend operator fun invoke(habitItemId: Int){
+        habitRepository.deleteHabitItem(habitItemId)
     }
 }

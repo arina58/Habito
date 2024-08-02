@@ -4,8 +4,8 @@ import android.content.Context
 import com.example.habitstracker.*
 
 class GetReceiveNotificationsUseCase {
-    fun execute(): Boolean {
-        val pref = MAIN.getSharedPreferences("User", Context.MODE_PRIVATE)
+    operator fun invoke(context: Context): Boolean {
+        val pref = context.getSharedPreferences("User", Context.MODE_PRIVATE)
         return pref.getBoolean(RECEIVE_NOTIFICATION, DEFAULT_RECEIVE)
     }
 }

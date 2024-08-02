@@ -5,7 +5,7 @@ import org.eazegraph.lib.charts.PieChart
 import org.eazegraph.lib.models.PieModel
 
 class AddPieChartUseCase {
-    fun execute(item: PieChart, value1: Int, value2: Int){
+    operator fun invoke(item: PieChart, value1: Int, value2: Int){
         item.clearChart()
         var v2 = value2
         if(value1 + value2 == 0) v2 = 1

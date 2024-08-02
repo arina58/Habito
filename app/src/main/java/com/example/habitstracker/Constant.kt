@@ -2,7 +2,6 @@ package com.example.habitstracker
 
 import android.provider.BaseColumns
 
-lateinit var MAIN: MainActivity
 const val USER_NAME = "username"
 const val DEFAULT_NAME = "default"
 const val DEFAULT_LOCATION = false

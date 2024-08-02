@@ -4,25 +4,19 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.os.Build
-import com.example.habitstracker.MAIN
 import com.example.habitstracker.domain.Notifications
 
-class SetNotificationUseCase {
-    private val alarmManager = MAIN.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-    private val alarmIntent = createAlarmIntent()
-
-    private fun createAlarmIntent(): PendingIntent {
-        val intent = Intent(MAIN, Notifications::class.java)
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            PendingIntent.getBroadcast(MAIN, 0, intent, PendingIntent.FLAG_MUTABLE)
-        } else {
-            PendingIntent.getBroadcast(MAIN, 0, intent, 0)
-        }
+class SetNotificationUseCase(private val context: Context) {
+    private val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+    private val alarmIntent = Intent(context, Notifications::class.java).let { intent ->
+        PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
     }
-    fun execute(){
-       if(GetReceiveNotificationsUseCase().execute()) setNotification()
-        else removeNotification()
+
+    private val getReceiveNotificationsUseCase = GetReceiveNotificationsUseCase()
+
+    operator fun invoke(){
+       if(getReceiveNotificationsUseCase(context)) setNotification()
+       else removeNotification()
     }
     private fun removeNotification(){
         alarmManager.cancel(alarmIntent)

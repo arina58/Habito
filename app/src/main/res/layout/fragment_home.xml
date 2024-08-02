@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".presentation.mainActivity.MainActivity">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -76,58 +76,57 @@
                     android:id="@+id/constraintLayout2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginTop="20dp">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal"
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/CalendarItem1"
+                        android:layout_width="43dp"
+                        android:layout_height="43dp"
+                        android:background="@drawable/calendar_background"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/CalendarItem2"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside">
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/CalendarItem1"
-                            android:layout_width="43dp"
-                            android:layout_height="43dp"
-                            android:layout_marginLeft="7dp"
-                            android:layout_marginRight="5dp"
-                            android:background="@drawable/calendar_background">
+                        <TextView
+                            android:id="@+id/tvDay1"
+                            style="@style/MyTextBold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textAlignment="center"
+                            android:textSize="13sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                            <TextView
-                                android:id="@+id/tvDay1"
-                                style="@style/MyTextBold"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:textAlignment="center"
-                                android:textSize="13sp"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                        <TextView
+                            android:id="@+id/tvMonth1"
+                            style="@style/MyTextBold"
+                            android:layout_width="47dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="6dp"
+                            android:textAlignment="center"
+                            android:textSize="13sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvDay1" />
 
-                            <TextView
-                                android:id="@+id/tvMonth1"
-                                style="@style/MyTextBold"
-                                android:layout_width="47dp"
-                                android:layout_height="wrap_content"
-                                android:textAlignment="center"
-                                android:textSize="13sp"
-                                android:layout_marginBottom="6dp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.5"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/tvDay1"/>
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/CalendarItem2"
                             android:layout_width="43dp"
                             android:layout_height="43dp"
-                            android:layout_marginRight="5dp"
-                            android:background="@drawable/calendar_background">
+                            android:background="@drawable/calendar_background"
+                            app:layout_constraintStart_toEndOf="@+id/CalendarItem1"
+                            app:layout_constraintEnd_toStartOf="@+id/CalendarItem3"
+                            app:layout_constraintTop_toTopOf="parent">
 
                             <TextView
                                 android:id="@+id/tvDay2"
@@ -163,8 +162,10 @@
                             android:id="@+id/CalendarItem3"
                             android:layout_width="43dp"
                             android:layout_height="43dp"
-                            android:layout_marginRight="5dp"
-                            android:background="@drawable/calendar_background">
+                            android:background="@drawable/calendar_background"
+                            app:layout_constraintStart_toEndOf="@+id/CalendarItem2"
+                            app:layout_constraintEnd_toStartOf="@+id/CalendarItem4"
+                            app:layout_constraintTop_toTopOf="parent">
 
                             <TextView
                                 android:id="@+id/tvDay3"
@@ -198,8 +199,10 @@
                             android:id="@+id/CalendarItem4"
                             android:layout_width="43dp"
                             android:layout_height="43dp"
-                            android:layout_marginRight="5dp"
-                            android:background="@drawable/calendar_background">
+                            android:background="@drawable/calendar_background"
+                            app:layout_constraintStart_toEndOf="@+id/CalendarItem3"
+                            app:layout_constraintEnd_toStartOf="@+id/CalendarItem5"
+                            app:layout_constraintTop_toTopOf="parent">
 
                             <TextView
                                 android:id="@+id/tvDay4"
@@ -233,8 +236,10 @@
                             android:id="@+id/CalendarItem5"
                             android:layout_width="43dp"
                             android:layout_height="43dp"
-                            android:layout_marginRight="5dp"
-                            android:background="@drawable/calendar_background">
+                            android:background="@drawable/calendar_background"
+                            app:layout_constraintStart_toEndOf="@+id/CalendarItem4"
+                            app:layout_constraintEnd_toStartOf="@+id/CalendarItem6"
+                            app:layout_constraintTop_toTopOf="parent">
 
                             <TextView
                                 android:id="@+id/tvDay5"
@@ -268,8 +273,10 @@
                             android:id="@+id/CalendarItem6"
                             android:layout_width="43dp"
                             android:layout_height="43dp"
-                            android:layout_marginRight="5dp"
-                            android:background="@drawable/calendar_background">
+                            app:layout_constraintEnd_toStartOf="@+id/CalendarItem7"
+                            android:background="@drawable/calendar_background"
+                            app:layout_constraintStart_toEndOf="@+id/CalendarItem5"
+                            app:layout_constraintTop_toTopOf="parent">
 
                             <TextView
                                 android:id="@+id/tvDay6"
@@ -303,8 +310,10 @@
                             android:id="@+id/CalendarItem7"
                             android:layout_width="43dp"
                             android:layout_height="43dp"
-                            android:layout_marginRight="5dp"
-                            android:background="@drawable/calendar_background">
+                            android:background="@drawable/calendar_background"
+                            app:layout_constraintStart_toEndOf="@+id/CalendarItem6"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent">
 
                             <TextView
                                 android:id="@+id/tvDay7"
@@ -334,7 +343,6 @@
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -462,7 +470,8 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView8"
-                        tools:listitem="@layout/item_of_list" />
+                        tools:listitem="@layout/item_of_list"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
