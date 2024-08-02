@@ -7,10 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.habitstracker.databinding.FragmentSettingsBinding
+import com.example.habitstracker.di.DaggerAppComponent
 import com.example.habitstracker.presentation.ViewModelFactory
 import javax.inject.Inject
 
 class SettingsFragment : Fragment() {
+    private val component = DaggerAppComponent.factory().create(
+        requireActivity().application,
+        requireActivity().applicationContext)
+
     private val settingsClass by lazy {
         FragmentSettingsBinding.inflate(layoutInflater)
     }
@@ -28,6 +33,7 @@ class SettingsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        component.inject(this)
         super.onViewCreated(view, savedInstanceState)
 
         settingsClass.SwitchTheme.isChecked = vm.stateSwitchTheme.value == true

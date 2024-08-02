@@ -4,8 +4,12 @@ import android.app.Application
 import android.content.Context
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.habitstracker.presentation.analysisFragment.AnalysisFragment
+import com.example.habitstracker.presentation.finishFragment.FinishFragment
 import com.example.habitstracker.presentation.homeFragment.HomeFragment
 import com.example.habitstracker.presentation.mainActivity.MainActivity
+import com.example.habitstracker.presentation.registerFragment.UserNameFragment
+import com.example.habitstracker.presentation.settingsFragment.SettingsFragment
 import dagger.BindsInstance
 import dagger.Component
 
@@ -15,6 +19,14 @@ interface AppComponent {
     fun inject(activity: MainActivity)
 
     fun inject(fragment: HomeFragment)
+
+    fun inject(fragment: AnalysisFragment)
+
+    fun inject(fragment: FinishFragment)
+
+    fun inject(fragment: UserNameFragment)
+
+    fun inject(fragment: SettingsFragment)
 
     @Component.Factory
     interface ApplicationComponentFactory{

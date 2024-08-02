@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.habitstracker.*
 import com.example.habitstracker.databinding.FragmentHomeBinding
+import com.example.habitstracker.di.DaggerAppComponent
 import com.example.habitstracker.domain.dialogs.DialogAddHabit
 import com.example.habitstracker.domain.dialogs.DialogChangeHabit
 import com.example.habitstracker.domain.useCase.AddPieChartUseCase
@@ -18,6 +19,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import javax.inject.Inject
 
 class HomeFragment : Fragment() {
+
+    private val component = DaggerAppComponent.factory().create(
+        requireActivity().application,
+        requireActivity().applicationContext)
 
     private val homeClass: FragmentHomeBinding by lazy {
         FragmentHomeBinding.inflate(layoutInflater)
@@ -41,6 +46,7 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        component.inject(this)
         super.onViewCreated(view, savedInstanceState)
 
         val bar = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)

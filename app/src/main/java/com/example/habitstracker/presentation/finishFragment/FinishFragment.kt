@@ -9,10 +9,16 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.habitstracker.R
 import com.example.habitstracker.databinding.FragmentFinishHabitsListBinding
+import com.example.habitstracker.di.DaggerAppComponent
 import com.example.habitstracker.presentation.ViewModelFactory
 import javax.inject.Inject
 
 class FinishFragment : Fragment() {
+
+    private val component = DaggerAppComponent.factory().create(
+        requireActivity().application,
+        requireActivity().applicationContext)
+
     private val finishHabitsClass: FragmentFinishHabitsListBinding by lazy {
         FragmentFinishHabitsListBinding.inflate(layoutInflater)
     }
@@ -32,6 +38,7 @@ class FinishFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        component.inject(this)
         super.onViewCreated(view, savedInstanceState)
 
         val adapter = FinishHabitsAdapter()
