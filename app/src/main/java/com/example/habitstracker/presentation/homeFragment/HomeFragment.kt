@@ -19,11 +19,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import javax.inject.Inject
 
 class HomeFragment : Fragment() {
-
-    private val component = DaggerAppComponent.factory().create(
-        requireActivity().application,
-        requireActivity().applicationContext)
-
     private val homeClass: FragmentHomeBinding by lazy {
         FragmentHomeBinding.inflate(layoutInflater)
     }
@@ -46,8 +41,13 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        component.inject(this)
         super.onViewCreated(view, savedInstanceState)
+
+        val component = DaggerAppComponent.factory().create(
+            requireActivity().application,
+            requireActivity().applicationContext)
+
+        component.inject(this)
 
         val bar = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bar.visibility = View.VISIBLE

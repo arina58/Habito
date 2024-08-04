@@ -15,10 +15,6 @@ import com.example.habitstracker.presentation.ViewModelFactory
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
-
-    private val component = DaggerAppComponent.factory().create(application, applicationContext)
-
-
     private val mainClass: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
@@ -32,11 +28,16 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
-        component.inject(this)
         super.onCreate(savedInstanceState)
+        val component = DaggerAppComponent.factory().create(application, applicationContext)
+        component.inject(this)
+
         setContentView(mainClass.root)
 
-        val navController = Navigation.findNavController(this, R.id.navHostFragment)
+//        val navController = NavHostFragmentNavigation.findNavController(this, R.id.navHostFragment)
+
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
+        val navController = navHostFragment.navController
 
         (supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment)
             .also { navHost ->

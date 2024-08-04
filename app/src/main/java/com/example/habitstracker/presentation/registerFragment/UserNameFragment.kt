@@ -14,11 +14,6 @@ import com.example.habitstracker.presentation.ViewModelFactory
 import javax.inject.Inject
 
 class UserNameFragment : Fragment() {
-
-    private val component = DaggerAppComponent.factory().create(
-        requireActivity().application,
-        requireActivity().applicationContext)
-
     private val enterNameClass: FragmentEnterNameBinding by lazy {
         FragmentEnterNameBinding.inflate(layoutInflater)
     }
@@ -37,8 +32,13 @@ class UserNameFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        component.inject(this)
         super.onViewCreated(view, savedInstanceState)
+
+        val component = DaggerAppComponent.factory().create(
+            requireActivity().application,
+            requireActivity().applicationContext)
+
+        component.inject(this)
 
         enterNameClass.nameEnterCont.setOnClickListener {
             vm.saveUserName(requireActivity(), enterNameClass.NameText.text)

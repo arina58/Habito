@@ -14,11 +14,6 @@ import com.example.habitstracker.presentation.ViewModelFactory
 import javax.inject.Inject
 
 class FinishFragment : Fragment() {
-
-    private val component = DaggerAppComponent.factory().create(
-        requireActivity().application,
-        requireActivity().applicationContext)
-
     private val finishHabitsClass: FragmentFinishHabitsListBinding by lazy {
         FragmentFinishHabitsListBinding.inflate(layoutInflater)
     }
@@ -38,8 +33,13 @@ class FinishFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        component.inject(this)
         super.onViewCreated(view, savedInstanceState)
+
+        val component = DaggerAppComponent.factory().create(
+            requireActivity().application,
+            requireActivity().applicationContext)
+
+        component.inject(this)
 
         val adapter = FinishHabitsAdapter()
 

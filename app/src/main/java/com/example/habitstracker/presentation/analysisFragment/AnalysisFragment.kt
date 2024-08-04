@@ -12,12 +12,6 @@ import com.example.habitstracker.presentation.ViewModelFactory
 import javax.inject.Inject
 
 class AnalysisFragment : Fragment() {
-
-    private val component = DaggerAppComponent.factory().create(
-        requireActivity().application,
-        requireActivity().applicationContext)
-
-
     private val analysisClass: FragmentAnalysisBinding by lazy {
         FragmentAnalysisBinding.inflate(layoutInflater)
     }
@@ -35,8 +29,13 @@ class AnalysisFragment : Fragment() {
         return analysisClass.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        component.inject(this)
         super.onViewCreated(view, savedInstanceState)
+
+        val component = DaggerAppComponent.factory().create(
+            requireActivity().application,
+            requireActivity().applicationContext)
+
+        component.inject(this)
 
         val adapter = ProgressBarAdapter()
 
