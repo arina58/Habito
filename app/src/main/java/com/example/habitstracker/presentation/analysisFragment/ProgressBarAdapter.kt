@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.habitstracker.R
 import com.example.habitstracker.domain.model.HabitItem
 
-class ProgressBarAdapter() :
+class ProgressBarAdapter:
     ListAdapter<HabitItem, ProgressBarAdapter.ProgressDataViewHolder>(ProgressDataDiffCallback()) {
 
     var clickListener: ((HabitItem) -> Unit)? = null
@@ -35,7 +35,7 @@ class ProgressBarAdapter() :
 //        }
 
         holder.bar.max = 7
-        ObjectAnimator.ofInt(holder.bar, "progress", item.date_of_week).setDuration(1000).start()
+        ObjectAnimator.ofInt(holder.bar, "progress", item.dateOfWeek).setDuration(1000).start()
 
         holder.itemView.setOnClickListener {
             clickListener?.invoke(item)

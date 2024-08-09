@@ -19,11 +19,11 @@
 
         <TextView
             style="@style/MyTextBold"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_gravity="left"
             android:layout_marginBottom="0dp"
-            android:paddingLeft="5dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="0dp"
             android:text="@string/header_finish_habits"
             android:textSize="30sp"
             android:gravity="center_vertical"

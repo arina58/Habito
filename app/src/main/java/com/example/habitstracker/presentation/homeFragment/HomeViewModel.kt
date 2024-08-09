@@ -7,7 +7,6 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.habitstracker.R
-import com.example.habitstracker.domain.model.HabitItem
 import com.example.habitstracker.domain.useCase.*
 import kotlinx.coroutines.launch
 import java.util.*
@@ -15,15 +14,15 @@ import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
     application: Application,
-    private val getStreakUseCase: GetStreakUseCase,
-    private val getUserNameUseCase: GetUserNameUseCase,
-    private val getCurrentMonthUseCase: GetCurrentMonthUseCase,
-    private val getWeeklyDateUseCase: GetWeeklyDateUseCase,
+    getStreakUseCase: GetStreakUseCase,
+    getUserNameUseCase: GetUserNameUseCase,
+    getCurrentMonthUseCase: GetCurrentMonthUseCase,
+    getWeeklyDateUseCase: GetWeeklyDateUseCase,
     private val updateHabitUseCase: UpdateHabitUseCase,
     private val deleteHabitUseCase: DeleteHabitUseCase,
     private val getHabitItem: GetHabitItemUseCase,
-    private val getNotCompletedHabitListCase: GetNotCompletedHabitListUseCase,
-    private val getCompletedHabitListUseCase: GetCompletedHabitListUseCase
+    getNotCompletedHabitListCase: GetNotCompletedHabitListUseCase,
+    getCompletedHabitListUseCase: GetCompletedHabitListUseCase
 ) : AndroidViewModel(application) {
 
     private val streaks = getStreakUseCase(application)
@@ -68,7 +67,7 @@ class HomeViewModel @Inject constructor(
             updateHabitUseCase(
                 habit.copy(
                     status = 1,
-                    date_of_week = habit.date_of_week + 1
+                    dateOfWeek = habit.dateOfWeek + 1
                 )
             )
         }

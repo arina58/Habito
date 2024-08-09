@@ -10,8 +10,8 @@ import javax.inject.Inject
 
 class SettingsViewModel @Inject constructor(
     application: Application,
-    private val getReceiveNotificationsUseCase: GetReceiveNotificationsUseCase,
-    private val getNameThemeUseCase: GetNameThemeUseCase,
+    getReceiveNotificationsUseCase: GetReceiveNotificationsUseCase,
+    getNameThemeUseCase: GetNameThemeUseCase,
     private val saveReceiveNotificationsUseCase: SaveReceiveNotificationsUseCase,
     private val setNotificationUseCase: SetNotificationUseCase,
     private val saveNameThemeUseCase: SaveNameThemeUseCase,

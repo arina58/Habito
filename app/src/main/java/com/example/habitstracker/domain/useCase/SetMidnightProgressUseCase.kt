@@ -14,7 +14,7 @@ class SetMidnightProgressUseCase @Inject constructor() {
     operator fun invoke(context: Context){
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val alarmIntent = Intent(context, MidnightProgress::class.java).let { intent ->
-            PendingIntent.getBroadcast(context, 0, intent,0)
+            PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
         }
 
         val midnight = Calendar.getInstance().apply {

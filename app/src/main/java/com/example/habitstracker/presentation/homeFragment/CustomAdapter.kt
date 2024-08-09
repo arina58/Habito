@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.habitstracker.R
 import com.example.habitstracker.domain.model.HabitItem
 
-class CustomAdapter() : ListAdapter<HabitItem, CustomAdapter.ItemsDataViewHolder>(
+class CustomAdapter: ListAdapter<HabitItem, CustomAdapter.ItemsDataViewHolder>(
     ItemsDataDiffCallback()
 ) {
 

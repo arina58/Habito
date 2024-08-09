@@ -15,12 +15,10 @@ import javax.inject.Inject
 class MidnightProgress @Inject constructor(
     private val saveStreakUseCase: SaveStreakUseCase,
     private val updateHabitUseCase: UpdateHabitUseCase,
-    private val getHabitsFromDBUseCase: GetHabitListUseCase
+    getHabitsFromDBUseCase: GetHabitListUseCase
 ) : BroadcastReceiver() {
 
     private val data = getHabitsFromDBUseCase.invoke().value
-
-
     private val scope = CoroutineScope(Dispatchers.IO)
 
     override fun onReceive(context: Context, intent: Intent) {
@@ -59,7 +57,7 @@ class MidnightProgress @Inject constructor(
         if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
             data?.forEach {
                 if(it.status == 0){
-                    it.date_of_week = 0
+                    it.dateOfWeek = 0
                     scope.launch {
                         updateHabitUseCase(it)
                     }

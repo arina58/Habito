@@ -7,7 +7,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
 import androidx.fragment.app.DialogFragment
-import com.example.habitstracker.data.HabitRepositoryImpl
+
 import com.example.habitstracker.databinding.NewGoalBinding
 import com.example.habitstracker.di.DaggerAppComponent
 import com.example.habitstracker.domain.model.HabitItem

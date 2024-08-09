@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 class AnalysisViewModel @Inject constructor(
     application: Application,
-    private val getHabitsFromDBUseCase: GetHabitListUseCase
+    getHabitsFromDBUseCase: GetHabitListUseCase
 ): AndroidViewModel(application) {
 
     var data =  getHabitsFromDBUseCase.invoke()

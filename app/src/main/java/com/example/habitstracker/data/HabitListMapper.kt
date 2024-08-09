@@ -10,7 +10,7 @@ class HabitListMapper {
             title = habitItem.title,
             period = habitItem.period,
             status = habitItem.status,
-            date_of_week = habitItem.date_of_week,
+            dateOfWeek = habitItem.dateOfWeek,
             current = habitItem.current,
             best = habitItem.best,
             description = habitItem.description
@@ -23,7 +23,7 @@ class HabitListMapper {
             title = habitItemDbModel.title,
             period = habitItemDbModel.period,
             status = habitItemDbModel.status,
-            date_of_week = habitItemDbModel.date_of_week,
+            dateOfWeek = habitItemDbModel.dateOfWeek,
             current = habitItemDbModel.current,
             best = habitItemDbModel.best,
             description = habitItemDbModel.description

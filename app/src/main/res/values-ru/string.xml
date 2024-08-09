@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Habito</string>
-    <string name="error">Error</string>
-    <string name="description">description</string>
     <string name="about_app">Habit Tracker - это простое приложение для отслеживания привычек и саморазвития, которое помогает вам ставить цели, развивать интеллект и продуктивность.
     </string>
 
@@ -96,4 +94,12 @@
     <string name="theme_header">Тема</string>
     <string name="theme_switch">Темная тема</string>
     <string name="about_app_header">О приложении</string>
+
+
+    <!--Descriprion-->
+    <string name="logo">главный логотип</string>
+    <string name="finishBottomDescription">Кнопка для показа завершенных привычек</string>
+    <string name="returnButtonDescription">Кнопка, которая возвращакет привычки в статус невыполненных</string>
+    <string name="addIconDescription">Кнопка для создания новой привычки</string>
+    <string name="moreButtonDescription">Кнопка, которая показывает дополнительное меню для каждой привычки</string>
 </resources>

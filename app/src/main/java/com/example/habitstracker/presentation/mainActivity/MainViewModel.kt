@@ -10,7 +10,7 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     application: Application,
     private val getUserNameUseCase: GetUserNameUseCase,
-    private val getHabitsFromDBUseCase: GetHabitListUseCase,
+    getHabitsFromDBUseCase: GetHabitListUseCase,
     private val setNotificationUseCase: SetNotificationUseCase,
     private val setMidnightProgressUseCase: SetMidnightProgressUseCase,
     private val switchThemeUseCase: SwitchThemeUseCase

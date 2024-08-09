@@ -14,17 +14,14 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/scroll_view">
+            android:layout_height="wrap_content">
 
             <LinearLayout
-                android:id="@+id/Linear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -36,7 +33,7 @@
                         android:layout_marginStart="15dp"
                         android:layout_marginTop="30dp"
                         android:text="@string/hello"
-                        android:textSize="16dp"
+                        android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,7 +54,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:textSize="24dp"
+                            android:textSize="24sp"
                             android:layout_marginStart="0dp"/>
 
                         <ImageButton
@@ -67,13 +64,13 @@
                             android:layout_weight="0"
                             app:srcCompat="@drawable/finish_icon"
                             android:backgroundTint="@android:color/transparent"
-                            android:buttonTint="?attr/textFillColor"/>
+                            android:buttonTint="?attr/textFillColor"
+                            android:contentDescription="@string/finishBottomDescription"/>
                     </LinearLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -346,7 +343,6 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -369,7 +365,7 @@
                             android:id="@+id/OverallStreak"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="12dp"
+                            android:layout_marginStart="12dp"
                             android:layout_marginTop="8dp"
                             android:layout_marginBottom="8dp"
                             android:layout_weight="1"
@@ -380,7 +376,7 @@
                             android:id="@+id/BestStreak"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="12dp"
+                            android:layout_marginStart="12dp"
                             android:layout_marginTop="8dp"
                             android:layout_marginBottom="8dp"
                             android:layout_weight="1"
@@ -390,7 +386,6 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -408,7 +403,7 @@
                             android:id="@+id/PieChart"
                             android:layout_width="115dp"
                             android:layout_height="115dp"
-                            android:layout_marginRight="30dp"
+                            android:layout_marginEnd="30dp"
                             tools:ignore="MissingConstraints"
                             app:egInnerPaddingColor="?attr/colorSurface"/>
 
@@ -425,14 +420,14 @@
                                 android:id="@+id/DescDone"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginRight="0dp"
+                                android:layout_marginEnd="0dp"
                                 style="@style/MyTextBold"
                                 android:textSize="20sp" />
 
                             <TextView
                                 android:id="@+id/ChartText3"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="0dp"
                                 android:layout_weight="0"
                                 style="@style/MyText"
                                 android:textSize="20sp" />
@@ -484,7 +479,7 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="16dp"
         android:backgroundTint="?attr/colorPrimary"
-        android:contentDescription="add_icon"
+        android:contentDescription="@string/addIconDescription"
         android:src="@drawable/add_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

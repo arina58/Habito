@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">Habito</string>
-    <string name="error">Error</string>
-    <string name="description">description</string>
     <string name="about_app">Habit Tracker is a simple app for tracking habits and self-development that helps you manage habits, set goals and develop intelligence and productivity.
     </string>
 
@@ -45,7 +43,7 @@
     <string name="card_name_goal">Habit name:</string>
     <string name="card_description_goal">Description:</string>
     <string name="card_days_goal">Days left:</string>
-    <string name="progress_bar_text"> from 7 days target</string>
+    <string name="progress_bar_text"> of 7 days habit has been completed</string>
 
     <!-- Fragment finish habits -->
     <string name="header_finish_habits">Finish</string>
@@ -53,7 +51,6 @@
     <!-- Fragment home -->
     <string name="hello">Hello, </string>
     <string-array name="time_text">
-        <item>Good Night</item>
         <item>Good Night</item>
         <item>Good Morning</item>
         <item>Good Afternoon</item>
@@ -96,4 +93,9 @@
     <string name="theme_header">Theme</string>
     <string name="theme_switch">Dark theme</string>
     <string name="about_app_header">About app</string>
+    <string name="logo">Main logo image</string>
+    <string name="finishBottomDescription">Button for show finished habits</string>
+    <string name="returnButtonDescription">Button that return habits to the status of not completed</string>
+    <string name="addIconDescription">Button for create new habit</string>
+    <string name="moreButtonDescription">Button to display an additional menu of habits</string>
 </resources>

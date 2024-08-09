@@ -19,14 +19,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginRight="13dp"
+            android:layout_marginEnd="13dp"
             android:layout_marginTop="5dp">
 
             <TextView
                 android:id="@+id/NameItem"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 style="@style/MyText"
                 android:layout_weight="1"
                 android:textSize="20sp" />
@@ -47,7 +47,7 @@
                 android:layout_height="match_parent"
                 android:backgroundTint="#00000000"
                 app:srcCompat="@drawable/more_item"
-                android:contentDescription="moreButton" />
+                android:contentDescription="@string/moreButtonDescription" />
         </LinearLayout>
 
         <LinearLayout
@@ -55,9 +55,9 @@
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
             android:layout_marginBottom="15dp"
-            android:layout_marginRight="13dp">
+            android:layout_marginEnd="13dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -69,7 +69,7 @@
 
             <TextView
                 android:id="@+id/Current"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 style="@style/MyText"

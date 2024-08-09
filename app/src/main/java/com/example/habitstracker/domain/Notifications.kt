@@ -14,7 +14,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.example.habitstracker.R
 
-class Notifications(private val context: Context) : BroadcastReceiver() {
+class Notifications(context: Context) : BroadcastReceiver() {
     private var notification = NotificationCompat.Builder(context, "1")
         .setSmallIcon(R.drawable.icon)
         .setContentTitle("Habito")
