@@ -36,4 +36,17 @@ class HabitRepositoryImpl @Inject constructor(application: Application) : HabitR
         habitListDao.addHabitItem(mapper.mapEntityToDbModel(habitItem))
     }
 
+    override fun getNotCompletedHabitList(): LiveData<List<HabitItem>> =
+        MediatorLiveData<List<HabitItem>>().apply {
+            addSource(habitListDao.getNotCompletedHabitList()) {
+                value = mapper.mapListDbModelToListEntity(it)
+            }
+        }
+
+    override fun getCompletedHabitList(): LiveData<List<HabitItem>> =
+        MediatorLiveData<List<HabitItem>>().apply {
+            addSource(habitListDao.getCompletedHabitList()) {
+                value = mapper.mapListDbModelToListEntity(it)
+            }
+        }
 }

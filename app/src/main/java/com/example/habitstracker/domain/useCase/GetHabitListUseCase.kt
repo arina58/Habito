@@ -5,7 +5,7 @@ import com.example.habitstracker.domain.HabitRepository
 import com.example.habitstracker.domain.model.HabitItem
 import javax.inject.Inject
 
-class GetHabitsFromDBUseCase @Inject constructor(private val habitRepository: HabitRepository) {
+class GetHabitListUseCase @Inject constructor(private val habitRepository: HabitRepository) {
 
     operator fun invoke(): LiveData<List<HabitItem>> {
         return habitRepository.getHabitList()

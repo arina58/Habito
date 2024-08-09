@@ -2,6 +2,7 @@ package com.example.habitstracker.presentation.homeFragment
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,7 +46,8 @@ class HomeFragment : Fragment() {
 
         val component = DaggerAppComponent.factory().create(
             requireActivity().application,
-            requireActivity().applicationContext)
+            requireActivity().applicationContext
+        )
 
         component.inject(this)
 
@@ -75,12 +77,12 @@ class HomeFragment : Fragment() {
         val adapter = CustomAdapter()
         homeClass.CheckList.adapter = adapter
 
-        vm.data.observe(viewLifecycleOwner) {
+        vm.notCompletedHabits.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
 
         adapter.checkBoxListener = {
-//            vm.markItemCompleted(requireActivity(), it)
+            vm.markItemCompleted(it)
         }
 
         adapter.changeItemListener = {
@@ -101,23 +103,21 @@ class HomeFragment : Fragment() {
     }
 
     private fun addPieChart() {
-//        vm.notDoneHabits.observe(viewLifecycleOwner) {
-//            addPieChartUseCase(
-//                homeClass.PieChart,
-//                vm.doneHabits.value!!,
-//                vm.data.value!!.size
-//            )
-//        }
-//        vm.doneHabits.observe(viewLifecycleOwner) {
-//            addPieChartUseCase(
-//                homeClass.PieChart,
-//                vm.doneHabits.value!!,
-//                vm.data.value!!.size
-//            )
-//        }
-//        vm.label.observe(viewLifecycleOwner) {
-//            homeClass.DescDone.text = it
-//        }
+        vm.completedHabitsCount.observe(viewLifecycleOwner) { completedCount ->
+            vm.notCompletedHabitsCount.observe(viewLifecycleOwner) { notCompletedCount ->
+                addPieChartUseCase(
+                    homeClass.PieChart,
+                    completedCount,
+                    notCompletedCount
+                )
+                Log.i("addPieChartUseCase", "$completedCount - $notCompletedCount")
+                vm.updateLabel()
+            }
+        }
+
+        vm.label.observe(viewLifecycleOwner) {
+            homeClass.DescDone.text = it
+        }
     }
 
     private fun createCalendar() {

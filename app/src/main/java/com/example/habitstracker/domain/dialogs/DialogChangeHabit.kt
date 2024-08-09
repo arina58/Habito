@@ -7,29 +7,22 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
 import androidx.fragment.app.DialogFragment
-import com.example.habitstracker.ID
-import com.example.habitstracker.data.HabitRepositoryImpl
+import androidx.lifecycle.ViewModelProvider
 import com.example.habitstracker.databinding.ChangeGoalBinding
-import com.example.habitstracker.domain.model.HabitItem
-import com.example.habitstracker.domain.useCase.GetHabitItemUseCase
-import com.example.habitstracker.domain.useCase.GetHabitsFromDBUseCase
-import com.example.habitstracker.domain.useCase.UpdateHabitUseCase
+import com.example.habitstracker.di.DaggerAppComponent
 import com.example.habitstracker.domain.useCase.ValidateUseCase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.example.habitstracker.presentation.ViewModelFactory
 import javax.inject.Inject
 
-class DialogChangeHabit: DialogFragment() {
+class DialogChangeHabit : DialogFragment() {
     private lateinit var changeHabitClass: ChangeGoalBinding
 
     @Inject
-    lateinit var getHabitItemUseCase: GetHabitItemUseCase
+    lateinit var vmFactory: ViewModelFactory
 
-    @Inject
-    lateinit var updateHabitUseCase: UpdateHabitUseCase
-
-    private val scope = CoroutineScope(Dispatchers.IO)
+    private val vm: DialogChangeHabitViewModel by lazy {
+        ViewModelProvider(this, vmFactory)[DialogChangeHabitViewModel::class.java]
+    }
 
     companion object {
         fun newInstance(value: Int): DialogChangeHabit {
@@ -52,21 +45,32 @@ class DialogChangeHabit: DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val id = requireArguments().getInt("id", 0)
-        var item: HabitItem? = null
-        scope.launch {
-            item = getHabitItemUseCase(id)
-        }
 
-        changeHabitClass.NameGoalText.text = Editable.Factory.getInstance().newEditable(item?.title)
-        changeHabitClass.NumberText.text = Editable.Factory.getInstance().newEditable(item?.period.toString())
-        changeHabitClass.DescriptionText.text = Editable.Factory.getInstance().newEditable(item?.description)
+        val component = DaggerAppComponent.factory()
+            .create(requireActivity().application, requireActivity().applicationContext)
+        component.inject(this)
+
+        val id = requireArguments().getInt("id", 0)
+
+        vm.getHabit(id)
+
+        vm.habit.observe(viewLifecycleOwner) {
+            changeHabitClass.NameGoalText.text =
+                Editable.Factory.getInstance().newEditable(it.title)
+            changeHabitClass.NumberText.text =
+                Editable.Factory.getInstance().newEditable(it.period.toString())
+            changeHabitClass.DescriptionText.text =
+                Editable.Factory.getInstance().newEditable(it.description)
+        }
 
         changeHabitClass.NameGoalText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun afterTextChanged(p0: Editable?) {
-                ValidateUseCase(requireActivity()).validateName(changeHabitClass.NameGoalText, changeHabitClass.NameGoal)
+                ValidateUseCase(requireActivity()).validateName(
+                    changeHabitClass.NameGoalText,
+                    changeHabitClass.NameGoal
+                )
             }
 
         })
@@ -75,7 +79,10 @@ class DialogChangeHabit: DialogFragment() {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun afterTextChanged(p0: Editable?) {
-                ValidateUseCase(requireActivity()).validateDescription(changeHabitClass.DescriptionText, changeHabitClass.Description)
+                ValidateUseCase(requireActivity()).validateDescription(
+                    changeHabitClass.DescriptionText,
+                    changeHabitClass.Description
+                )
             }
         })
 
@@ -83,22 +90,33 @@ class DialogChangeHabit: DialogFragment() {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun afterTextChanged(p0: Editable?) {
-                ValidateUseCase(requireActivity()).validateNumber(changeHabitClass.NumberText, changeHabitClass.Number)
+                ValidateUseCase(requireActivity()).validateNumber(
+                    changeHabitClass.NumberText,
+                    changeHabitClass.Number
+                )
             }
         })
 
         changeHabitClass.ButtonCreate.setOnClickListener {
-            if (ValidateUseCase(requireActivity()).validateName(changeHabitClass.NameGoalText, changeHabitClass.NameGoal) &&
-                ValidateUseCase(requireActivity()).validateNumber(changeHabitClass.NumberText, changeHabitClass.Number) &&
-                ValidateUseCase(requireActivity()).validateDescription(changeHabitClass.DescriptionText, changeHabitClass.Description)) {
+            if (ValidateUseCase(requireActivity()).validateName(
+                    changeHabitClass.NameGoalText,
+                    changeHabitClass.NameGoal
+                ) &&
+                ValidateUseCase(requireActivity()).validateNumber(
+                    changeHabitClass.NumberText,
+                    changeHabitClass.Number
+                ) &&
+                ValidateUseCase(requireActivity()).validateDescription(
+                    changeHabitClass.DescriptionText,
+                    changeHabitClass.Description
+                )
+            ) {
 
-                item?.period = changeHabitClass.NumberText.text.toString().toInt()
-                item?.title = changeHabitClass.NameGoalText.text.toString()
-                item?.description = changeHabitClass.DescriptionText.text.toString()
-
-                scope.launch {
-                    item?.let { updateHabitUseCase(it) }
-                }
+                vm.updateHabit(
+                    changeHabitClass.NumberText.text,
+                    changeHabitClass.NameGoalText.text,
+                    changeHabitClass.DescriptionText.text
+                )
 
 //                MAIN.vmHome.updateData(0, item[0])
 
@@ -110,6 +128,7 @@ class DialogChangeHabit: DialogFragment() {
         }
 
     }
+
     override fun onStart() {
         super.onStart()
         dialog?.window?.setLayout(

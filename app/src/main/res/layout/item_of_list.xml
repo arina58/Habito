@@ -60,6 +60,14 @@
             android:layout_marginRight="13dp">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/MyText"
+                android:textSize="16sp"
+                android:text="@string/current"
+                android:layout_marginEnd="5dp"/>
+
+            <TextView
                 android:id="@+id/Current"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -68,12 +76,18 @@
                 android:textSize="16sp" />
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/MyText"
+                android:textSize="16sp"
+                android:layout_marginEnd="5dp"
+                android:text="@string/best"/>
+
+            <TextView
                 android:id="@+id/Best"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 style="@style/MyText"
-                android:textAlignment="viewEnd"
                 android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>

@@ -47,6 +47,7 @@ class AnalysisFragment : Fragment() {
 
         vm.data.observe(viewLifecycleOwner){
             adapter.submitList(it)
+            vm.checkLabel()
         }
 
         vm.title.observe(viewLifecycleOwner){

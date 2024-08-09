@@ -6,8 +6,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.habitstracker.*
 import com.example.habitstracker.domain.useCase.*
+import javax.inject.Inject
 
-class SettingsViewModel(
+class SettingsViewModel @Inject constructor(
     application: Application,
     private val getReceiveNotificationsUseCase: GetReceiveNotificationsUseCase,
     private val getNameThemeUseCase: GetNameThemeUseCase,

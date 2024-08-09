@@ -9,6 +9,7 @@ import android.view.*
 import androidx.fragment.app.DialogFragment
 import com.example.habitstracker.data.HabitRepositoryImpl
 import com.example.habitstracker.databinding.NewGoalBinding
+import com.example.habitstracker.di.DaggerAppComponent
 import com.example.habitstracker.domain.model.HabitItem
 import com.example.habitstracker.domain.useCase.AddHabitUseCase
 import com.example.habitstracker.domain.useCase.ValidateUseCase
@@ -36,6 +37,9 @@ class DialogAddHabit : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val component = DaggerAppComponent.factory().create(requireActivity().application, requireActivity().applicationContext)
+        component.inject(this)
 
         addHabitClass.NameGoalText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}

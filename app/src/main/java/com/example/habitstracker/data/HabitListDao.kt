@@ -20,4 +20,10 @@ interface HabitListDao {
 
     @Query("DELETE FROM habits WHERE id=:habitItemId")
     suspend fun deleteHabitItem(habitItemId: Int)
+
+    @Query("SELECT * FROM habits WHERE status = 0")
+    fun getNotCompletedHabitList(): LiveData<List<HabitItemDbModel>>
+
+    @Query("SELECT * FROM habits WHERE status = 1")
+    fun getCompletedHabitList(): LiveData<List<HabitItemDbModel>>
 }

@@ -1,17 +1,13 @@
 package com.example.habitstracker.domain
 
-import android.app.Application
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import com.example.habitstracker.STATUS
-import com.example.habitstracker.data.HabitRepositoryImpl
-import com.example.habitstracker.domain.useCase.GetHabitsFromDBUseCase
+import com.example.habitstracker.domain.useCase.GetHabitListUseCase
 import com.example.habitstracker.domain.useCase.SaveStreakUseCase
 import com.example.habitstracker.domain.useCase.UpdateHabitUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
@@ -19,7 +15,7 @@ import javax.inject.Inject
 class MidnightProgress @Inject constructor(
     private val saveStreakUseCase: SaveStreakUseCase,
     private val updateHabitUseCase: UpdateHabitUseCase,
-    private val getHabitsFromDBUseCase: GetHabitsFromDBUseCase
+    private val getHabitsFromDBUseCase: GetHabitListUseCase
 ) : BroadcastReceiver() {
 
     private val data = getHabitsFromDBUseCase.invoke().value

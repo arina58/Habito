@@ -35,7 +35,7 @@ class ProgressBarAdapter() :
 //        }
 
         holder.bar.max = 7
-        ObjectAnimator.ofInt(holder.bar, "progress", item.current).setDuration(1000).start()
+        ObjectAnimator.ofInt(holder.bar, "progress", item.date_of_week).setDuration(1000).start()
 
         holder.itemView.setOnClickListener {
             clickListener?.invoke(item)

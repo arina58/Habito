@@ -6,8 +6,9 @@ import android.text.Editable
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.habitstracker.domain.useCase.SaveUserNameUseCase
+import javax.inject.Inject
 
-class UserNameViewModel(
+class UserNameViewModel @Inject constructor(
     private val saveUserNameUseCase: SaveUserNameUseCase
 ): ViewModel() {
 

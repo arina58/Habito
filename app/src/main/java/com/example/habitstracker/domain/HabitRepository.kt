@@ -14,4 +14,8 @@ interface HabitRepository {
     suspend fun deleteHabitItem(habitItemId: Int)
 
     suspend fun editHabitItem(habitItem: HabitItem)
+
+    fun getNotCompletedHabitList(): LiveData<List<HabitItem>>
+
+    fun getCompletedHabitList(): LiveData<List<HabitItem>>
 }
