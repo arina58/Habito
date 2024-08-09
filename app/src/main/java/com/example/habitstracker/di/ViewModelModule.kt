@@ -19,47 +19,47 @@ import dagger.multibindings.StringKey
 interface ViewModelModule {
 
     @IntoMap
-    @StringKey("MainViewModel")
+    @ViewModelKey(MainViewModel::class)
     @Binds
     fun bindMainViewModel(impl: MainViewModel): ViewModel
 
     @IntoMap
-    @StringKey("AnalysisViewModel")
+    @ViewModelKey(AnalysisViewModel::class)
     @Binds
     fun bindAnalysisViewModel(impl: AnalysisViewModel): ViewModel
 
     @IntoMap
-    @StringKey("FinishViewModel")
+    @ViewModelKey(FinishViewModel::class)
     @Binds
     fun bindFinishViewModel(impl: FinishViewModel): ViewModel
 
     @IntoMap
-    @StringKey("HomeViewModel")
+    @ViewModelKey(HomeViewModel::class)
     @Binds
     fun bindHomeViewModel(impl: HomeViewModel): ViewModel
 
     @IntoMap
-    @StringKey("UserNameViewModel")
+    @ViewModelKey(UserNameViewModel::class)
     @Binds
     fun bindRegisterViewModel(impl: UserNameViewModel): ViewModel
 
     @IntoMap
-    @StringKey("SettingsViewModel")
+    @ViewModelKey(SettingsViewModel::class)
     @Binds
     fun bindSettingsViewModel(impl: SettingsViewModel): ViewModel
 
     @IntoMap
-    @StringKey("ChangeHabitViewModel")
+    @ViewModelKey(ChangeHabitViewModel::class)
     @Binds
     fun bindDialogChangeViewModel(impl: ChangeHabitViewModel): ViewModel
 
     @IntoMap
-    @StringKey("AddHabitViewModel")
+    @ViewModelKey(AddHabitViewModel::class)
     @Binds
     fun bindDialogAddViewModel(impl: AddHabitViewModel): ViewModel
 
     @IntoMap
-    @StringKey("FinishHabitViewModel")
+    @ViewModelKey(FinishHabitViewModel::class)
     @Binds
     fun bindDialogFinishViewModel(impl: FinishHabitViewModel): ViewModel
 }
