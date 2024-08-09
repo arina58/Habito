@@ -2,11 +2,9 @@ package com.example.habitstracker.di
 
 import android.app.Application
 import android.content.Context
-import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import com.example.habitstracker.domain.dialogs.DialogAddHabit
-import com.example.habitstracker.domain.dialogs.DialogChangeHabit
-import com.example.habitstracker.domain.dialogs.DialogFinishHabit
+import com.example.habitstracker.presentation.addHabitDialog.AddHabit
+import com.example.habitstracker.presentation.changeHabitDialog.ChangeHabit
+import com.example.habitstracker.presentation.finishHabit.FinishHabit
 import com.example.habitstracker.presentation.analysisFragment.AnalysisFragment
 import com.example.habitstracker.presentation.finishFragment.FinishFragment
 import com.example.habitstracker.presentation.homeFragment.HomeFragment
@@ -32,11 +30,11 @@ interface AppComponent {
 
     fun inject(fragment: SettingsFragment)
 
-    fun inject(dialog: DialogAddHabit)
+    fun inject(dialog: AddHabit)
 
-    fun inject(dialog: DialogChangeHabit)
+    fun inject(dialog: ChangeHabit)
 
-    fun inject(dialog: DialogFinishHabit)
+    fun inject(dialog: FinishHabit)
 
     @Component.Factory
     interface ApplicationComponentFactory{

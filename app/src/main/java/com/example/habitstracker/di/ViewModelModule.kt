@@ -1,9 +1,11 @@
 package com.example.habitstracker.di
 
 import androidx.lifecycle.ViewModel
-import com.example.habitstracker.domain.dialogs.DialogChangeHabitViewModel
+import com.example.habitstracker.presentation.changeHabitDialog.ChangeHabitViewModel
+import com.example.habitstracker.presentation.addHabitDialog.AddHabitViewModel
 import com.example.habitstracker.presentation.analysisFragment.AnalysisViewModel
 import com.example.habitstracker.presentation.finishFragment.FinishViewModel
+import com.example.habitstracker.presentation.finishHabit.FinishHabitViewModel
 import com.example.habitstracker.presentation.homeFragment.HomeViewModel
 import com.example.habitstracker.presentation.mainActivity.MainViewModel
 import com.example.habitstracker.presentation.registerFragment.UserNameViewModel
@@ -47,7 +49,17 @@ interface ViewModelModule {
     fun bindSettingsViewModel(impl: SettingsViewModel): ViewModel
 
     @IntoMap
-    @StringKey("DialogChangeHabitViewModel")
+    @StringKey("ChangeHabitViewModel")
     @Binds
-    fun bindDialogChangeViewModel(impl: DialogChangeHabitViewModel): ViewModel
+    fun bindDialogChangeViewModel(impl: ChangeHabitViewModel): ViewModel
+
+    @IntoMap
+    @StringKey("AddHabitViewModel")
+    @Binds
+    fun bindDialogAddViewModel(impl: AddHabitViewModel): ViewModel
+
+    @IntoMap
+    @StringKey("FinishHabitViewModel")
+    @Binds
+    fun bindDialogFinishViewModel(impl: FinishHabitViewModel): ViewModel
 }

@@ -12,8 +12,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.habitstracker.*
 import com.example.habitstracker.databinding.FragmentHomeBinding
 import com.example.habitstracker.di.DaggerAppComponent
-import com.example.habitstracker.domain.dialogs.DialogAddHabit
-import com.example.habitstracker.domain.dialogs.DialogChangeHabit
+import com.example.habitstracker.presentation.addHabitDialog.AddHabit
+import com.example.habitstracker.presentation.changeHabitDialog.ChangeHabit
 import com.example.habitstracker.domain.useCase.AddPieChartUseCase
 import com.example.habitstracker.presentation.ViewModelFactory
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -65,7 +65,7 @@ class HomeFragment : Fragment() {
         addCheckList()
 
         homeClass.ActionButton.setOnClickListener {
-            DialogAddHabit().show(requireActivity().supportFragmentManager, "dialogAdd")
+            AddHabit().show(requireActivity().supportFragmentManager, "dialogAdd")
         }
         homeClass.FinishButton.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_finishHabitsFragment)
@@ -86,7 +86,7 @@ class HomeFragment : Fragment() {
         }
 
         adapter.changeItemListener = {
-            val dialog = DialogChangeHabit.newInstance(it)
+            val dialog = ChangeHabit.newInstance(it)
             dialog.show(requireActivity().supportFragmentManager, "dialogChange")
         }
 

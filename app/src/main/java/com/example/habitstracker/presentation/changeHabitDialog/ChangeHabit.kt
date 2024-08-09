@@ -1,4 +1,4 @@
-package com.example.habitstracker.domain.dialogs
+package com.example.habitstracker.presentation.changeHabitDialog
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -8,27 +8,27 @@ import android.text.TextWatcher
 import android.view.*
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.habitstracker.R
 import com.example.habitstracker.databinding.ChangeGoalBinding
 import com.example.habitstracker.di.DaggerAppComponent
-import com.example.habitstracker.domain.useCase.ValidateUseCase
 import com.example.habitstracker.presentation.ViewModelFactory
 import javax.inject.Inject
 
-class DialogChangeHabit : DialogFragment() {
-    private lateinit var changeHabitClass: ChangeGoalBinding
+class ChangeHabit : DialogFragment() {
+    private lateinit var binding: ChangeGoalBinding
 
     @Inject
     lateinit var vmFactory: ViewModelFactory
 
-    private val vm: DialogChangeHabitViewModel by lazy {
-        ViewModelProvider(this, vmFactory)[DialogChangeHabitViewModel::class.java]
+    private val vm: ChangeHabitViewModel by lazy {
+        ViewModelProvider(this, vmFactory)[ChangeHabitViewModel::class.java]
     }
 
     companion object {
-        fun newInstance(value: Int): DialogChangeHabit {
+        fun newInstance(value: Int): ChangeHabit {
             val args = Bundle()
             args.putInt("id", value)
-            val fragment = DialogChangeHabit()
+            val fragment = ChangeHabit()
             fragment.arguments = args
             return fragment
         }
@@ -38,9 +38,9 @@ class DialogChangeHabit : DialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        changeHabitClass = ChangeGoalBinding.inflate(layoutInflater, container, false)
+        binding = ChangeGoalBinding.inflate(layoutInflater, container, false)
 
-        return changeHabitClass.root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -55,78 +55,78 @@ class DialogChangeHabit : DialogFragment() {
         vm.getHabit(id)
 
         vm.habit.observe(viewLifecycleOwner) {
-            changeHabitClass.NameGoalText.text =
+            binding.NameGoalText.text =
                 Editable.Factory.getInstance().newEditable(it.title)
-            changeHabitClass.NumberText.text =
+            binding.NumberText.text =
                 Editable.Factory.getInstance().newEditable(it.period.toString())
-            changeHabitClass.DescriptionText.text =
+            binding.DescriptionText.text =
                 Editable.Factory.getInstance().newEditable(it.description)
         }
 
-        changeHabitClass.NameGoalText.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-            override fun afterTextChanged(p0: Editable?) {
-                ValidateUseCase(requireActivity()).validateName(
-                    changeHabitClass.NameGoalText,
-                    changeHabitClass.NameGoal
-                )
-            }
+        setTextChangedListener()
 
-        })
+        binding.ButtonCreate.setOnClickListener {
+            vm.updateHabit(
+                binding.NameGoalText,
+                binding.DescriptionText,
+                binding.NumberText
+            )
+        }
 
-        changeHabitClass.DescriptionText.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-            override fun afterTextChanged(p0: Editable?) {
-                ValidateUseCase(requireActivity()).validateDescription(
-                    changeHabitClass.DescriptionText,
-                    changeHabitClass.Description
-                )
-            }
-        })
+        vm.shouldCloseDialog.observe(viewLifecycleOwner){
+            dismiss()
+        }
 
-        changeHabitClass.NumberText.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-            override fun afterTextChanged(p0: Editable?) {
-                ValidateUseCase(requireActivity()).validateNumber(
-                    changeHabitClass.NumberText,
-                    changeHabitClass.Number
-                )
-            }
-        })
-
-        changeHabitClass.ButtonCreate.setOnClickListener {
-            if (ValidateUseCase(requireActivity()).validateName(
-                    changeHabitClass.NameGoalText,
-                    changeHabitClass.NameGoal
-                ) &&
-                ValidateUseCase(requireActivity()).validateNumber(
-                    changeHabitClass.NumberText,
-                    changeHabitClass.Number
-                ) &&
-                ValidateUseCase(requireActivity()).validateDescription(
-                    changeHabitClass.DescriptionText,
-                    changeHabitClass.Description
-                )
-            ) {
-
-                vm.updateHabit(
-                    changeHabitClass.NumberText.text,
-                    changeHabitClass.NameGoalText.text,
-                    changeHabitClass.DescriptionText.text
-                )
-
-//                MAIN.vmHome.updateData(0, item[0])
-
-//                if(MAIN.vmAnalysis != null){
-//                    MAIN.vmAnalysis?.updateItem(item[0].id)
-//                }
-                dismiss()
+        vm.errorName.observe(viewLifecycleOwner){
+            binding.NameGoal.error = if(it){
+                resources.getString(R.string.error_validate_name_goal)
+            }else{
+                null
             }
         }
 
+        vm.errorDescription.observe(viewLifecycleOwner){
+            binding.Description.error = if(it){
+                resources.getString(R.string.error_validate_description)
+            }else{
+                null
+            }
+        }
+
+        vm.errorCount.observe(viewLifecycleOwner){
+            binding.Number.error = if(it){
+                resources.getString(R.string.error_validate_number)
+            }else{
+                null
+            }
+        }
+    }
+
+    private fun setTextChangedListener() {
+        binding.NameGoalText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun afterTextChanged(p0: Editable?) {
+                vm.resetErrorName()
+            }
+
+        })
+
+        binding.DescriptionText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun afterTextChanged(p0: Editable?) {
+                vm.resetErrorDescription()
+            }
+        })
+
+        binding.NumberText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun afterTextChanged(p0: Editable?) {
+                vm.resetErrorCount()
+            }
+        })
     }
 
     override fun onStart() {

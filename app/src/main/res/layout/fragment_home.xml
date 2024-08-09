@@ -461,6 +461,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"
                         android:isScrollContainer="false"
+                        android:paddingBottom="80dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView8"
