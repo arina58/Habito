@@ -1,6 +1,5 @@
 package com.example.habitstracker.domain.useCase
 
-import android.content.Context
 import javax.inject.Inject
 
 class ValidateUseCase @Inject constructor() {

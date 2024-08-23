@@ -5,9 +5,11 @@ import com.example.habitstracker.R
 import java.util.*
 import javax.inject.Inject
 
-class GetCurrentMonthUseCase @Inject constructor() {
+class GetCurrentMonthUseCase @Inject constructor(
+    private val context: Context
+) {
 
-    operator fun invoke(context: Context): List<String> {
+    operator fun invoke(): List<String> {
         val cal: Calendar = Calendar.getInstance()
         val date = cal.get(Calendar.DATE)
         val monthsI = mutableListOf<Int>()

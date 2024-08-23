@@ -11,9 +11,9 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.habitstracker.HabitoApp
 import com.example.habitstracker.R
 import com.example.habitstracker.databinding.FinishGoalBinding
-import com.example.habitstracker.di.DaggerAppComponent
 import com.example.habitstracker.presentation.ViewModelFactory
 import javax.inject.Inject
 
@@ -63,8 +63,7 @@ class FinishHabit : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val component = DaggerAppComponent.factory()
-            .create(requireActivity().application, requireActivity().applicationContext)
+        val component = (requireActivity().application as HabitoApp).component
         component.inject(this)
 
         val id = requireArguments().getInt("id", 0)

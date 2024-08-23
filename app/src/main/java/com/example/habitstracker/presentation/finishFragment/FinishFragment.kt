@@ -1,15 +1,15 @@
 package com.example.habitstracker.presentation.finishFragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.habitstracker.HabitoApp
 import com.example.habitstracker.R
 import com.example.habitstracker.databinding.FragmentFinishHabitsListBinding
-import com.example.habitstracker.di.DaggerAppComponent
 import com.example.habitstracker.presentation.ViewModelFactory
 import javax.inject.Inject
 
@@ -35,10 +35,7 @@ class FinishFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val component = DaggerAppComponent.factory().create(
-            requireActivity().application,
-            requireActivity().applicationContext)
-
+        val component = (requireActivity().application as HabitoApp).component
         component.inject(this)
 
         val adapter = FinishHabitsAdapter()

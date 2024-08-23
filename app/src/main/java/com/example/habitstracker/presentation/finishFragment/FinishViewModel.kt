@@ -1,7 +1,6 @@
 package com.example.habitstracker.presentation.finishFragment
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.habitstracker.domain.useCase.GetCompletedHabitListUseCase
 import com.example.habitstracker.domain.useCase.GetHabitItemUseCase
@@ -10,11 +9,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class FinishViewModel @Inject constructor(
-    application: Application,
     getCompletedHabitUseCase: GetCompletedHabitListUseCase,
     private val updateHabitUseCase: UpdateHabitUseCase,
     private val getHabitItemUseCase: GetHabitItemUseCase
-): AndroidViewModel(application) {
+): ViewModel() {
 
     var data = getCompletedHabitUseCase.invoke()
 

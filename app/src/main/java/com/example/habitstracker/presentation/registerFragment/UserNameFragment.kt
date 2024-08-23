@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.habitstracker.HabitoApp
 import com.example.habitstracker.R
 import com.example.habitstracker.databinding.FragmentEnterNameBinding
-import com.example.habitstracker.di.DaggerAppComponent
 import com.example.habitstracker.presentation.ViewModelFactory
 import javax.inject.Inject
 
@@ -34,14 +34,11 @@ class UserNameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val component = DaggerAppComponent.factory().create(
-            requireActivity().application,
-            requireActivity().applicationContext)
-
+        val component = (requireActivity().application as HabitoApp).component
         component.inject(this)
 
         enterNameClass.nameEnterCont.setOnClickListener {
-            vm.saveUserName(requireActivity(), enterNameClass.NameText.text)
+            vm.saveUserName(enterNameClass.NameText.text)
         }
 
         vm.changeFragment.observe(viewLifecycleOwner){

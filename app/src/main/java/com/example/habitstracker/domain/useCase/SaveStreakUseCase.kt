@@ -4,9 +4,11 @@ import android.content.Context
 import com.example.habitstracker.*
 import javax.inject.Inject
 
-class SaveStreakUseCase @Inject constructor() {
+class SaveStreakUseCase @Inject constructor(
+    private val context: Context
+) {
 
-    operator fun invoke(flag: Boolean, context: Context){
+    operator fun invoke(flag: Boolean){
         val pref = context.getSharedPreferences("User", Context.MODE_PRIVATE)
         var currentStreak = pref.getInt(CURRENT_STREAK, 0)
         val editor = pref?.edit()

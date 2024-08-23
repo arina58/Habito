@@ -29,10 +29,11 @@ class ProgressBarAdapter:
         val item = getItem(position)
 
         holder.nameItem.text = item.title
-//        holder.description.text = buildString {
-//            append(item.Count.toString())
-//            append(item.text)
-//        }
+        holder.description.text = buildString {
+            append(item.dateOfWeek.toString())
+            append(" ")
+            append(holder.itemView.context.resources.getString(R.string.progress_bar_text))
+        }
 
         holder.bar.max = 7
         ObjectAnimator.ofInt(holder.bar, "progress", item.dateOfWeek).setDuration(1000).start()

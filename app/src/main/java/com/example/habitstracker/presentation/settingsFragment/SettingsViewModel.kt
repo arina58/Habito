@@ -1,7 +1,6 @@
 package com.example.habitstracker.presentation.settingsFragment
 
 import android.app.Application
-import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.habitstracker.*
@@ -22,26 +21,24 @@ class SettingsViewModel @Inject constructor(
     var stateNotification = MutableLiveData<Boolean>()
 
     init{
-        stateNotification.value = getReceiveNotificationsUseCase(application)
+        stateNotification.value = getReceiveNotificationsUseCase()
 
-        if(getNameThemeUseCase(application) == DARK_THEME)
+        if(getNameThemeUseCase() == DARK_THEME)
             stateSwitchTheme.value = true
     }
 
-    fun changeNotification(context: Context, state: Boolean){
-        saveReceiveNotificationsUseCase(context, state)
+    fun changeNotification(state: Boolean){
+        saveReceiveNotificationsUseCase(state)
         setNotificationUseCase()
     }
 
-    fun changeTheme (context: Context, state: Boolean){
+    fun changeTheme (state: Boolean){
         if(state){
-            saveNameThemeUseCase(context, DARK_THEME)
+            saveNameThemeUseCase(DARK_THEME)
             switchThemeUseCase(DARK_THEME)
         }else{
-            saveNameThemeUseCase(context, LIGHT_THEME)
+            saveNameThemeUseCase(LIGHT_THEME)
             switchThemeUseCase(LIGHT_THEME)
         }
-
-//        MAIN.vm.theme.value = MAIN.vm.theme.value?.plus(1)
     }
 }

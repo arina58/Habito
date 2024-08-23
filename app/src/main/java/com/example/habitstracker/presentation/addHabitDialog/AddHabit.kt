@@ -5,12 +5,16 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.*
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.habitstracker.HabitoApp
 import com.example.habitstracker.R
 import com.example.habitstracker.databinding.NewGoalBinding
-import com.example.habitstracker.di.DaggerAppComponent
 import com.example.habitstracker.presentation.ViewModelFactory
 import javax.inject.Inject
 
@@ -36,8 +40,7 @@ class AddHabit : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val component = DaggerAppComponent.factory()
-            .create(requireActivity().application, requireActivity().applicationContext)
+        val component = (requireActivity().application as HabitoApp).component
         component.inject(this)
 
         setTextChangedListener()

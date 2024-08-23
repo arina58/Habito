@@ -6,9 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.example.habitstracker.HabitoApp
 import com.example.habitstracker.R
 import com.example.habitstracker.databinding.ActivityMainBinding
-import com.example.habitstracker.di.DaggerAppComponent
 import com.example.habitstracker.presentation.ViewModelFactory
 import javax.inject.Inject
 
@@ -27,12 +27,10 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val component = DaggerAppComponent.factory().create(application, applicationContext)
+        val component = (application as HabitoApp).component
         component.inject(this)
 
         setContentView(mainClass.root)
-
-//        val navController = NavHostFragmentNavigation.findNavController(this, R.id.navHostFragment)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         val navController = navHostFragment.navController
@@ -58,6 +56,10 @@ class MainActivity : AppCompatActivity() {
                     navHost.navController.graph = navGraph
                 }
             mainClass.bottomNavigationView.setupWithNavController(navController)
+        }
+
+        vm.finishedHabits.observe(this){
+            vm.showFinishedHabits(supportFragmentManager)
         }
     }
 }

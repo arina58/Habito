@@ -17,7 +17,7 @@ import com.example.habitstracker.R
 class Notifications(context: Context) : BroadcastReceiver() {
     private var notification = NotificationCompat.Builder(context, "1")
         .setSmallIcon(R.drawable.icon)
-        .setContentTitle("Habito")
+        .setContentTitle(context.resources.getString(R.string.app_name))
         .setContentText("You have uncompleted tasks")
         .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
         .build()

@@ -1,7 +1,6 @@
 package com.example.habitstracker.presentation.registerFragment
 
 
-import android.content.Context
 import android.text.Editable
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,9 +13,9 @@ class UserNameViewModel @Inject constructor(
 
     var changeFragment = MutableLiveData<Unit>()
 
-    fun saveUserName(context: Context, name: Editable?){
+    fun saveUserName(name: Editable?){
         if(name?.length in 1..20) {
-            saveUserNameUseCase(context, name.toString())
+            saveUserNameUseCase(name.toString())
             changeFragment.value = Unit
         }
     }

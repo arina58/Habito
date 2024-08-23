@@ -17,7 +17,7 @@ class SetNotificationUseCase @Inject constructor(
     }
 
     operator fun invoke(){
-       if(getReceiveNotificationsUseCase(context)) setNotification()
+       if(getReceiveNotificationsUseCase()) setNotification()
        else removeNotification()
     }
     private fun removeNotification(){

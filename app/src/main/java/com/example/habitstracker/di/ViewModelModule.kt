@@ -1,9 +1,9 @@
 package com.example.habitstracker.di
 
 import androidx.lifecycle.ViewModel
-import com.example.habitstracker.presentation.changeHabitDialog.ChangeHabitViewModel
 import com.example.habitstracker.presentation.addHabitDialog.AddHabitViewModel
 import com.example.habitstracker.presentation.analysisFragment.AnalysisViewModel
+import com.example.habitstracker.presentation.changeHabitDialog.ChangeHabitViewModel
 import com.example.habitstracker.presentation.finishFragment.FinishViewModel
 import com.example.habitstracker.presentation.finishHabit.FinishHabitViewModel
 import com.example.habitstracker.presentation.homeFragment.HomeViewModel
@@ -13,7 +13,6 @@ import com.example.habitstracker.presentation.settingsFragment.SettingsViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
-import dagger.multibindings.StringKey
 
 @Module
 interface ViewModelModule {

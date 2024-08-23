@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import com.example.habitstracker.HabitoApp
 import com.example.habitstracker.databinding.FragmentSettingsBinding
-import com.example.habitstracker.di.DaggerAppComponent
 import com.example.habitstracker.presentation.ViewModelFactory
 import javax.inject.Inject
 
@@ -31,21 +31,18 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val component = DaggerAppComponent.factory().create(
-            requireActivity().application,
-            requireActivity().applicationContext)
-
+        val component = (requireActivity().application as HabitoApp).component
         component.inject(this)
 
         settingsClass.SwitchTheme.isChecked = vm.stateSwitchTheme.value == true
         settingsClass.NotificationSwitch.isChecked = vm.stateNotification.value!!
 
         settingsClass.NotificationSwitch.setOnClickListener{
-            vm.changeNotification(requireActivity(), settingsClass.NotificationSwitch.isChecked)
+            vm.changeNotification(settingsClass.NotificationSwitch.isChecked)
         }
 
         settingsClass.SwitchTheme.setOnClickListener{
-            vm.changeTheme(requireActivity(), settingsClass.SwitchTheme.isChecked)
+            vm.changeTheme(settingsClass.SwitchTheme.isChecked)
         }
     }
 }

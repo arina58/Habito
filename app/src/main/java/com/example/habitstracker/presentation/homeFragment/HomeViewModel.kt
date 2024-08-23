@@ -1,10 +1,10 @@
 package com.example.habitstracker.presentation.homeFragment
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.habitstracker.R
 import com.example.habitstracker.domain.useCase.*
@@ -23,13 +23,13 @@ class HomeViewModel @Inject constructor(
     private val getHabitItem: GetHabitItemUseCase,
     getNotCompletedHabitListCase: GetNotCompletedHabitListUseCase,
     getCompletedHabitListUseCase: GetCompletedHabitListUseCase
-) : AndroidViewModel(application) {
+) : ViewModel() {
 
-    private val streaks = getStreakUseCase(application)
+    private val streaks = getStreakUseCase()
     private val res = application.resources
 
-    var userName = "${res.getString(R.string.hello)} ${getUserNameUseCase(application)}"
-    var currentMonth = getCurrentMonthUseCase(application)
+    var userName = "${res.getString(R.string.hello)} ${getUserNameUseCase()}"
+    var currentMonth = getCurrentMonthUseCase()
     var dayInWeek = getWeeklyDateUseCase.getDayInWeek()
     var weeklyDate = getWeeklyDateUseCase.execute()
     var timeTitle = MutableLiveData<String>()

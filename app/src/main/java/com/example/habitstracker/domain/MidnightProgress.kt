@@ -22,20 +22,20 @@ class MidnightProgress @Inject constructor(
     private val scope = CoroutineScope(Dispatchers.IO)
 
     override fun onReceive(context: Context, intent: Intent) {
-        checkStreak(context)
+        checkStreak()
         updateHabits()
         checkSunday()
     }
 
-    private fun checkStreak(context: Context) {
+    private fun checkStreak() {
         var addStreakFlag = true
         data?.forEach {
             if (it.status == 0) addStreakFlag = false
         }
         if (addStreakFlag)
-            saveStreakUseCase(true, context)
+            saveStreakUseCase(true)
         else
-            saveStreakUseCase(false, context)
+            saveStreakUseCase(false)
     }
 
     private fun updateHabits() {

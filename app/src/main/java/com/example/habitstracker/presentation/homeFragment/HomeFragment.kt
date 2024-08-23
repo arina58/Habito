@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.habitstracker.*
 import com.example.habitstracker.databinding.FragmentHomeBinding
-import com.example.habitstracker.di.DaggerAppComponent
 import com.example.habitstracker.presentation.addHabitDialog.AddHabit
 import com.example.habitstracker.presentation.changeHabitDialog.ChangeHabit
 import com.example.habitstracker.domain.useCase.AddPieChartUseCase
@@ -44,11 +43,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val component = DaggerAppComponent.factory().create(
-            requireActivity().application,
-            requireActivity().applicationContext
-        )
-
+        val component = (requireActivity().application as HabitoApp).component
         component.inject(this)
 
         val bar = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)
@@ -74,7 +69,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun addCheckList() {
-        val adapter = CustomAdapter()
+        val adapter = ItemsDataAdapter()
         homeClass.CheckList.adapter = adapter
 
         vm.notCompletedHabits.observe(viewLifecycleOwner) {
