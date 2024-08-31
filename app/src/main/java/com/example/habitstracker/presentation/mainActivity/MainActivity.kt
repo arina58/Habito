@@ -2,6 +2,7 @@ package com.example.habitstracker.presentation.mainActivity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.View.GONE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
@@ -13,7 +14,7 @@ import com.example.habitstracker.presentation.ViewModelFactory
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
-    private val mainClass: ActivityMainBinding by lazy {
+    private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
@@ -24,13 +25,16 @@ class MainActivity : AppCompatActivity() {
         ViewModelProvider(this, vmFactory)[MainViewModel::class.java]
     }
 
+    private val component by lazy {
+        (application as HabitoApp).component
+    }
+
     @SuppressLint("WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val component = (application as HabitoApp).component
         component.inject(this)
 
-        setContentView(mainClass.root)
+        setContentView(binding.root)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         val navController = navHostFragment.navController
@@ -44,7 +48,7 @@ class MainActivity : AppCompatActivity() {
             navHost.navController.graph = navGraph
         }
 
-        mainClass.bottomNavigationView.setupWithNavController(navController)
+        binding.bottomNavigationView.setupWithNavController(navController)
 
         vm.theme.observe(this){
             (supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment)
@@ -55,7 +59,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     navHost.navController.graph = navGraph
                 }
-            mainClass.bottomNavigationView.setupWithNavController(navController)
+            binding.bottomNavigationView.setupWithNavController(navController)
         }
 
         vm.finishedHabits.observe(this){

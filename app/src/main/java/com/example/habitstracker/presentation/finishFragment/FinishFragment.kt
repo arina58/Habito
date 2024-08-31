@@ -11,6 +11,7 @@ import com.example.habitstracker.HabitoApp
 import com.example.habitstracker.R
 import com.example.habitstracker.databinding.FragmentFinishHabitsListBinding
 import com.example.habitstracker.presentation.ViewModelFactory
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import javax.inject.Inject
 
 class FinishFragment : Fragment() {
@@ -25,6 +26,10 @@ class FinishFragment : Fragment() {
         ViewModelProvider(this, vmFactory)[FinishViewModel::class.java]
     }
 
+    private val component by lazy {
+        (requireActivity().application as HabitoApp).component
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,9 +39,10 @@ class FinishFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val component = (requireActivity().application as HabitoApp).component
         component.inject(this)
+
+        val bar = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        bar.visibility = View.GONE
 
         val adapter = FinishHabitsAdapter()
 
@@ -48,6 +54,7 @@ class FinishFragment : Fragment() {
 
         finishHabitsClass.BackButton.setOnClickListener {
             findNavController().navigate(R.id.action_finishHabitsFragment_to_homeFragment)
+            bar.visibility = View.VISIBLE
         }
 
         vm.data.observe(viewLifecycleOwner){

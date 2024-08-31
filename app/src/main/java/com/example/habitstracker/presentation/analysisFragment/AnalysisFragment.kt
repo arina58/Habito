@@ -22,6 +22,11 @@ class AnalysisFragment : Fragment() {
     private val vm: AnalysisViewModel by lazy {
         ViewModelProvider(this, vmFactory)[AnalysisViewModel::class.java]
     }
+
+    private val component by lazy {
+        (requireActivity().application as HabitoApp).component
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,8 +35,6 @@ class AnalysisFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val component = (requireActivity().application as HabitoApp).component
         component.inject(this)
 
         val adapter = ProgressBarAdapter()

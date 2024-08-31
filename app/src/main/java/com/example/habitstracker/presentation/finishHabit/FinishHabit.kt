@@ -27,6 +27,10 @@ class FinishHabit : DialogFragment() {
         ViewModelProvider(this, vmFactory)[FinishHabitViewModel::class.java]
     }
 
+    private val component by lazy {
+        (requireActivity().application as HabitoApp).component
+    }
+
     companion object {
         fun newInstance(value: Int): FinishHabit {
             val args = Bundle()
@@ -56,14 +60,11 @@ class FinishHabit : DialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FinishGoalBinding.inflate(layoutInflater, container, false)
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val component = (requireActivity().application as HabitoApp).component
         component.inject(this)
 
         val id = requireArguments().getInt("id", 0)

@@ -28,6 +28,10 @@ class ChangeHabit : DialogFragment() {
         ViewModelProvider(this, vmFactory)[ChangeHabitViewModel::class.java]
     }
 
+    private val component by lazy {
+        (requireActivity().application as HabitoApp).component
+    }
+
     companion object {
         fun newInstance(value: Int): ChangeHabit {
             val args = Bundle()
@@ -49,8 +53,6 @@ class ChangeHabit : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val component = (requireActivity().application as HabitoApp).component
         component.inject(this)
 
         val id = requireArguments().getInt("id", 0)

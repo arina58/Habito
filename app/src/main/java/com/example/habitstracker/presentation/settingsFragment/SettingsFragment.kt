@@ -21,6 +21,11 @@ class SettingsFragment : Fragment() {
     private val vm by lazy {
         ViewModelProvider(this, vmFactory)[SettingsViewModel::class.java]
     }
+
+    private val component by lazy {
+        (requireActivity().application as HabitoApp).component
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,8 +35,6 @@ class SettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val component = (requireActivity().application as HabitoApp).component
         component.inject(this)
 
         settingsClass.SwitchTheme.isChecked = vm.stateSwitchTheme.value == true

@@ -33,6 +33,10 @@ class HomeFragment : Fragment() {
     @Inject
     lateinit var addPieChartUseCase: AddPieChartUseCase
 
+    private val component by lazy {
+        (requireActivity().application as HabitoApp).component
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,14 +46,14 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val component = (requireActivity().application as HabitoApp).component
         component.inject(this)
 
         val bar = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bar.visibility = View.VISIBLE
 
         homeClass.CheckList.isNestedScrollingEnabled = false
+
+        homeClass.ChartText3.text = resources.getStringArray(R.array.chart_text)[2]
 
         homeClass.ChartText3.text =
             requireActivity().resources.getStringArray(R.array.chart_text)[2]

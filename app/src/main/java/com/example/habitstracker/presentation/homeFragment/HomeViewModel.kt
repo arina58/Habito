@@ -53,8 +53,6 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-
-
     var label = MutableLiveData<String>()
 
     init {

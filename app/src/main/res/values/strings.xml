@@ -98,4 +98,6 @@
     <string name="returnButtonDescription">Button that return habits to the status of not completed</string>
     <string name="addIconDescription">Button for create new habit</string>
     <string name="moreButtonDescription">Button to display an additional menu of habits</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

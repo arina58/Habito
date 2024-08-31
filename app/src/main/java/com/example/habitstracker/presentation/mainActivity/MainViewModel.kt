@@ -36,7 +36,7 @@ class MainViewModel @Inject constructor(
 
     private fun setStartDestination() {
         startDestination.value = if (getUserNameUseCase() != DEFAULT_NAME)
-            R.id.homeFragment else R.id.enterNameFragment
+            R.id.homeFragment else R.id.userNameFragment
     }
 
     private fun getFinishedHabits() {

@@ -3,16 +3,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/enterNameFragment">
-    <fragment
-        android:id="@+id/enterNameFragment"
-        android:name="com.example.habitstracker.presentation.registerFragment.UserNameFragment"
-        android:label="EnterNameFragment"
-        tools:layout="@layout/fragment_enter_name">
-        <action
-            android:id="@+id/action_enterNameFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-    </fragment>
+    app:startDestination="@id/userNameFragment">
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.habitstracker.presentation.homeFragment.HomeFragment"
@@ -39,6 +30,15 @@
         tools:layout="@layout/fragment_finish_habits_list">
         <action
             android:id="@+id/action_finishHabitsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userNameFragment"
+        android:name="com.example.habitstracker.presentation.registerFragment.UserNameFragment"
+        android:label="UserNameFragment"
+        tools:layout="@layout/fragment_user_name">
+        <action
+            android:id="@+id/action_userNameFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

@@ -427,8 +427,7 @@
                             <TextView
                                 android:id="@+id/ChartText3"
                                 android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_weight="0"
+                                android:layout_height="wrap_content"
                                 style="@style/MyText"
                                 android:textSize="20sp" />
                         </LinearLayout>

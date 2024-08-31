@@ -28,19 +28,20 @@ class AddHabit : DialogFragment() {
         ViewModelProvider(this, vmFactory)[AddHabitViewModel::class.java]
     }
 
+    private val component by lazy {
+        (requireActivity().application as HabitoApp).component
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = NewGoalBinding.inflate(layoutInflater, container, false)
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val component = (requireActivity().application as HabitoApp).component
         component.inject(this)
 
         setTextChangedListener()
