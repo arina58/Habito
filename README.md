@@ -41,8 +41,8 @@ Habito - это простое и удобное приложение для о�
 
 На всех полях также работает валидация, срабатывающая при нажатии на кнопку `create new`. Если ввод не прошел проверку, то пользователь увидит соответствующее сообщение.
 
-<div align="center"><img src="materials/images/dialog.png" alt="dialog" height="600" style="padding-right: 50px;"/></div>
-<div align="center"><img src="materials/images/dialogError.png" alt="dialog_error" height="600"/></div>
+<div align="center"><img src="materials/images/dialog.png" alt="dialog" height="600" style="padding-right: 50px;"/>
+<img src="materials/images/dialogError.png" alt="dialog_error" height="600"/></div>
 
 ### Изменение и удаление привычки
 
